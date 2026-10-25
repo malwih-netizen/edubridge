@@ -1,0 +1,22 @@
+%% size: 2200x1600
+sequenceDiagram
+  autonumber
+  actor U as User
+  participant FE as React app
+  participant API as PHP API
+  participant DB as MySQL
+  U->>FE: Enter email + password
+  FE->>FE: Validate form (format, required)
+  FE->>API: POST /api/auth/login
+  API->>DB: SELECT user WHERE email = ?
+  DB-->>API: user row (password_hash)
+  alt password_verify() fails
+    API-->>FE: 401 invalid_credentials
+    FE-->>U: "Email or password is incorrect"
+  else valid
+    API->>DB: INSERT user_sessions (jti, device, browser)
+    API->>API: Sign JWT (sub, role, jti, exp)
+    API-->>FE: 200 { token, user }
+    FE->>FE: Save session, route by role
+    FE-->>U: Student / Advisor / Admin dashboard
+  end

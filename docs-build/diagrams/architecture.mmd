@@ -1,0 +1,42 @@
+%% size: 2000x2600
+flowchart TB
+  subgraph Clients["Users (web browser, desktop or mobile)"]
+    S([Student]):::actor
+    E([Advisor / Employee]):::actor
+    A([Administrator]):::actor
+  end
+  subgraph FE["Presentation layer — React.js (Vite)"]
+    UI["Bilingual UI<br/>Arabic RTL / English LTR"]
+    RT["React Router<br/>role-protected routes"]
+    AX["Axios API client<br/>JWT + Accept-Language"]
+  end
+  subgraph BE["Application layer — PHP 8 REST API"]
+    R["Front controller<br/>Router + CORS"]
+    MW["Auth middleware<br/>JWT + role check"]
+    C["Controllers<br/>Auth · Students · Scholarships<br/>CRM · Account · Contact"]
+    SV["Services<br/>Matching · Readiness · Notifications"]
+  end
+  subgraph DL["Data layer"]
+    DB[("MySQL / MariaDB<br/>edubridge — 25 tables")]
+    FS[("File storage<br/>storage/uploads")]
+  end
+  subgraph EXT["External services"]
+    G["Groq API<br/>LLM explanations"]
+    M["Email (SMTP)<br/>confirmations & reminders"]
+    CR["Scheduler (cron)<br/>deadlines & re-matching"]
+  end
+  S & E & A --> UI
+  UI --> RT --> AX
+  AX -- "HTTPS / JSON" --> R
+  R --> MW --> C --> SV
+  C -- "PDO prepared statements" --> DB
+  SV --> DB
+  C --> FS
+  SV -. "REST" .-> G
+  SV -.-> M
+  CR -.-> SV
+  classDef actor fill:#000000,color:#fff,stroke:#000000
+  style FE fill:#f2f2f2,stroke:#333333
+  style BE fill:#f5f5f5,stroke:#808080
+  style DL fill:#f5f5f5,stroke:#333333
+  style EXT fill:#ffffff,stroke:#8c8c8c,stroke-dasharray: 4 3

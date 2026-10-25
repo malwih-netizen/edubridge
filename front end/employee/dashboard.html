@@ -1,0 +1,435 @@
+<!-- EduBridge — لوحة تحكم الموظف: نقرة عامة على أداء المستشار وما يحتاجه اليوم من مهام طلابية. -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0F2C55" />
+  <title>Employee Dashboard — EduBridge</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="../js/i18n-ar.js"></script>
+  <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+  <div class="edu-toast" id="eduToast">
+    <i data-lucide="check-circle-2" style="width:14px;height:14px;margin-right:6px;"></i>
+    تم حفظ التحديث بنجاح
+  </div>
+
+  <button class="menu-overlay" id="menuOverlay" aria-label="Close menu"></button>
+
+  <div class="portal-shell">
+
+    <aside class="portal-sidebar" id="portalSidebar">
+      <div class="sidebar-top">
+        <a class="brand-lockup" href="dashboard.html">
+          <img class="brand-logo" src="../assetes/logo_edubridge_dark.png" alt="EduBridge" />
+        </a>
+        <button class="icon-btn sidebar-close" id="sidebarClose" aria-label="Close sidebar">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="side-link active" href="dashboard.html">
+          <i data-lucide="layout-dashboard"></i> Overview
+        </a>
+        <a class="side-link" href="students.html">
+          <i data-lucide="users"></i> Students
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="ticket"></i> Service Requests
+        </a>
+        <a class="side-link" href="scholarships.html">
+          <i data-lucide="award"></i> Scholarships
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="file-stack"></i> Applications
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="message-square"></i> Communications
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="bar-chart-3"></i> Reports
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="settings"></i> Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="support-card">
+          <i data-lucide="headphones"></i>
+          <div>
+            <strong>Support Desk</strong>
+            <span>Priority line for advisors</span>
+          </div>
+          <i data-lucide="chevron-right" style="margin-left:auto;width:14px;height:14px;"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="portal-main">
+      <header class="portal-header">
+        <div class="header-left">
+          <button class="icon-btn mobile-menu" id="mobileMenu" aria-label="Open menu">
+            <i data-lucide="menu"></i>
+          </button>
+          <img class="portal-header-mark" src="../assetes/logo_edubridge.png" alt="" />
+          <div class="crumbs">
+            <span>Portal</span>
+            <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
+            <span class="current">Employee CRM</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="top-search">
+            <i data-lucide="search" style="width:14px;height:14px;"></i>
+            <input type="text" placeholder="Search students, scholarships..." />
+          </div>
+          <button class="icon-btn notification-btn" aria-label="Notifications">
+            <i data-lucide="bell"></i>
+            <b>3</b>
+          </button>
+          <button class="profile-trigger" aria-label="Profile">
+            <span class="avatar avatar-gold">MA</span>
+            <span>Maya — Advisor</span>
+            <i data-lucide="chevron-down" style="width:13px;height:13px;"></i>
+          </button>
+        </div>
+      </header>
+
+      <section class="portal-content">
+
+        <div class="portal-title-row">
+          <div>
+            <p class="eyebrow">EMPLOYEE DASHBOARD</p>
+            <h1>Good morning, Maya</h1>
+            <p>12 students active on your roster · 7 service requests pending</p>
+          </div>
+          <div class="title-buttons">
+            <div class="date-control">
+              <i data-lucide="calendar" style="width:13px;height:13px;"></i>
+              This week
+              <i data-lucide="chevron-down" style="width:11px;height:11px;"></i>
+            </div>
+            <a class="edu-btn gold small" href="students.html">
+              <i data-lucide="plus" style="width:12px;height:12px;"></i> New Student
+            </a>
+          </div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-icon blue"><i data-lucide="users" style="width:19px;height:19px;"></i></div>
+            <div>
+              <strong>147</strong>
+              <span>Active Students</span>
+              <small>↑ 8 this month</small>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon gold"><i data-lucide="award" style="width:19px;height:19px;"></i></div>
+            <div>
+              <strong>$2.4M</strong>
+              <span>Scholarships Secured</span>
+              <small>↑ 14.2% YoY</small>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#eef5fe;color:#295c9c;"><i data-lucide="file-check-2" style="width:19px;height:19px;"></i></div>
+            <div>
+              <strong>38</strong>
+              <span>Applications Submitted</span>
+              <small>5 under review</small>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i data-lucide="message-circle" style="width:19px;height:19px;"></i></div>
+            <div>
+              <strong>92%</strong>
+              <span>Advisor Response SLA</span>
+              <small>Within 4 hours</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <h2>Pipeline Kanban — Applications</h2>
+          <a class="text-link" href="scholarships.html">
+            View all pipelines <i data-lucide="arrow-right" style="width:10px;height:10px;"></i>
+          </a>
+        </div>
+
+        <div class="kanban-board">
+          <div class="kanban-col">
+            <div><h3>LEAD</h3><span>6</span></div>
+            <button class="kanban-card">
+              <strong>Sarah Ahmed</strong>
+              <span>Engineering interest · CGPA 3.9</span>
+              <em>Assigned: Maya</em>
+              <span class="status-pill slate">New</span>
+            </button>
+            <button class="kanban-card">
+              <strong>Omar Khalil</strong>
+              <span>Business school target</span>
+              <em>Last touch: 2d ago</em>
+              <span class="status-pill slate">New</span>
+            </button>
+          </div>
+          <div class="kanban-col">
+            <div><h3>QUALIFIED</h3><span>5</span></div>
+            <button class="kanban-card">
+              <strong>Lina Mansour</strong>
+              <span>Medicine · UK universities</span>
+              <em>Readiness 72%</em>
+              <span class="status-pill blue">Profile done</span>
+            </button>
+            <button class="kanban-card">
+              <strong>Youssef Said</strong>
+              <span>CS · Ivy prospects</span>
+              <em>Essay draft in review</em>
+              <span class="status-pill blue">Docs pending</span>
+            </button>
+          </div>
+          <div class="kanban-col">
+            <div><h3>MATCHING</h3><span>8</span></div>
+            <button class="kanban-card">
+              <strong>Hana Tarek</strong>
+              <span>Global Excellence 94% match</span>
+              <em>3 scholarships proposed</em>
+              <span class="status-pill gold">High fit</span>
+            </button>
+            <button class="kanban-card">
+              <strong>Karim Adel</strong>
+              <span>Need-based aid priority</span>
+              <em>5 options shortlisted</em>
+              <span class="status-pill gold">Awaiting pick</span>
+            </button>
+          </div>
+          <div class="kanban-col">
+            <div><h3>APPLYING</h3><span>4</span></div>
+            <button class="kanban-card">
+              <strong>Nour El-Din</strong>
+              <span>Merit Scholarship · Round 2</span>
+              <em>Essays submitted</em>
+              <span class="status-pill blue">With student</span>
+            </button>
+            <button class="kanban-card">
+              <strong>Malak Hisham</strong>
+              <span>Engineering Leadership</span>
+              <em>LOR request sent</em>
+              <span class="status-pill blue">Advisor follow-up</span>
+            </button>
+          </div>
+          <div class="kanban-col">
+            <div><h3>SUBMITTED</h3><span>3</span></div>
+            <button class="kanban-card">
+              <strong>Ziad Mostafa</strong>
+              <span>Future Leaders · Deadline passed</span>
+              <em>Awaiting committee</em>
+              <span class="status-pill slate">Under review</span>
+            </button>
+            <button class="kanban-card">
+              <strong>Mariam Sherif</strong>
+              <span>Women in STEM award</span>
+              <em>Submitted Jan 12</em>
+              <span class="status-pill slate">Under review</span>
+            </button>
+          </div>
+          <div class="kanban-col">
+            <div><h3>AWARDED</h3><span>7</span></div>
+            <button class="kanban-card">
+              <strong>Farida Samir</strong>
+              <span>Global Excellence · Full ride</span>
+              <em>Awarded $65,000</em>
+              <span class="status-pill green">Accepted</span>
+            </button>
+            <button class="kanban-card">
+              <strong>Amr Youssef</strong>
+              <span>Provost Scholarship</span>
+              <em>Awarded $32,000</em>
+              <span class="status-pill green">Accepted</span>
+            </button>
+          </div>
+          <div class="kanban-col">
+            <div><h3>LOST / DEFER</h3><span>2</span></div>
+            <button class="kanban-card">
+              <strong>Bassem R.</strong>
+              <span>Defer to next cycle</span>
+              <em>Family reason</em>
+              <span class="status-pill gold">Deferred</span>
+            </button>
+            <button class="kanban-card">
+              <strong>Dina A.</strong>
+              <span>Alternative offer accepted</span>
+              <em>Closed Jan 04</em>
+              <span class="status-pill red">Lost</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="employee-lower">
+
+          <div class="employee-table-panel">
+            <div class="section-heading">
+              <h2>Recent Activity</h2>
+              <a class="text-link" href="dashboard.html">View log <i data-lucide="arrow-right" style="width:10px;height:10px;"></i></a>
+            </div>
+            <div class="simple-table">
+              <div class="table-head">
+                <span>Student</span>
+                <span>Activity</span>
+                <span>Type</span>
+                <span>Date</span>
+                <span>Status</span>
+              </div>
+              <div class="table-line">
+                <div class="student-cell"><i>SA</i> Sarah Ahmed</div>
+                <span>Uploaded transcript v2</span>
+                <span>Document</span>
+                <span>Today · 09:42</span>
+                <span class="status-pill green">Received</span>
+              </div>
+              <div class="table-line">
+                <div class="student-cell"><i>LM</i> Lina Mansour</div>
+                <span>Call scheduled — course mapping</span>
+                <span>Meeting</span>
+                <span>Today · 11:30</span>
+                <span class="status-pill blue">Scheduled</span>
+              </div>
+              <div class="table-line">
+                <div class="student-cell"><i>HT</i> Hana Tarek</div>
+                <span>Submitted Global Excellence app</span>
+                <span>Application</span>
+                <span>Yesterday</span>
+                <span class="status-pill slate">Submitted</span>
+              </div>
+              <div class="table-line">
+                <div class="student-cell"><i>KA</i> Karim Adel</div>
+                <span>Requested advisor review — essay</span>
+                <span>Service</span>
+                <span>Yesterday</span>
+                <span class="status-pill gold">Pending</span>
+              </div>
+              <div class="table-line">
+                <div class="student-cell"><i>MS</i> Mariam Sherif</div>
+                <span>LOR from Prof. Galal received</span>
+                <span>Document</span>
+                <span>2 days ago</span>
+                <span class="status-pill green">Verified</span>
+              </div>
+              <div class="table-line">
+                <div class="student-cell"><i>NE</i> Nour El-Din</div>
+                <span>Profile readiness +9%</span>
+                <span>Progress</span>
+                <span>3 days ago</span>
+                <span class="status-pill blue">Updated</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="deadlines-panel">
+            <div class="section-heading">
+              <h2>Upcoming Deadlines</h2>
+            </div>
+            <div class="deadline">
+              <span><i data-lucide="calendar-clock" style="width:13px;height:13px;"></i></span>
+              <div>
+                <strong>Global Excellence — Round 2</strong>
+                <small>Hana Tarek · 3 docs remaining</small>
+              </div>
+              <span class="status-pill gold">3d</span>
+            </div>
+            <div class="deadline">
+              <span><i data-lucide="calendar-clock" style="width:13px;height:13px;"></i></span>
+              <div>
+                <strong>Engineering Leadership app</strong>
+                <small>Malak Hisham · LOR pending</small>
+              </div>
+              <span class="status-pill gold">5d</span>
+            </div>
+            <div class="deadline">
+              <span><i data-lucide="calendar-clock" style="width:13px;height:13px;"></i></span>
+              <div>
+                <strong>Women in STEM — decision</strong>
+                <small>Mariam Sherif · committee meets</small>
+              </div>
+              <span class="status-pill blue">7d</span>
+            </div>
+            <div class="deadline">
+              <span><i data-lucide="calendar-clock" style="width:13px;height:13px;"></i></span>
+              <div>
+                <strong>Provost Scholarship deposit</strong>
+                <small>Amr Youssef · enrollment confirm</small>
+              </div>
+              <span class="status-pill red">Urgent</span>
+            </div>
+          </div>
+
+          <div class="employee-preview">
+            <div class="preview-student">
+              <div class="large-avatar small">SA</div>
+              <div>
+                <h3>Sarah Ahmed</h3>
+                <p>Grade 12 · Engineering track · CGPA 3.92</p>
+                <p><span class="status-pill green">Active</span> <span class="status-pill blue">Assigned: Maya</span></p>
+              </div>
+              <i data-lucide="external-link" style="color:#6e829a;width:14px;height:14px;"></i>
+            </div>
+
+            <div class="tab-row">
+              <button class="active">Profile</button>
+              <button>Documents</button>
+              <button>Services</button>
+              <button>Applications</button>
+            </div>
+
+            <div class="info-mini">
+              <dl>
+                <div><dt>Full name</dt><dd>Sarah Khaled Ahmed</dd></div>
+                <div><dt>Nationality</dt><dd>Egyptian</dd></div>
+                <div><dt>Target countries</dt><dd>USA, Canada, UK</dd></div>
+                <div><dt>Target field</dt><dd>Aerospace Engineering</dd></div>
+                <div><dt>Test scores</dt><dd>SAT 1480 / IELTS 7.5</dd></div>
+              </dl>
+            </div>
+
+            <div class="employee-preview-bottom">
+              <div>
+                <div class="score-wrap small">
+                  <div class="score-ring" style="--score: 288deg;"><span>80</span></div>
+                </div>
+                <small>Profile Readiness</small>
+              </div>
+              <div>
+                <a class="edu-btn outline small" href="students.html">
+                  <i data-lucide="user" style="width:11px;height:11px;"></i> 360°
+                </a>
+                <a class="edu-btn gold small" href="scholarships.html">
+                  <i data-lucide="award" style="width:11px;height:11px;"></i> Match
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lucide@1.50.0/dist/umd/lucide.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    if (window.lucide) window.lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!-- EduBridge — ملف الطالب 360 درجة: نظرة كاملة على سارة أحمد، جاهزيتها، تواصلها، خدماتها، وتقدمها في المنح. -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0F2C55" />
+  <title>Student 360° — Sarah Ahmed | EduBridge</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="../js/i18n-ar.js"></script>
+  <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+  <div class="edu-toast" id="eduToast">
+    <i data-lucide="check-circle-2" style="width:14px;height:14px;margin-right:6px;"></i>
+    Student record updated
+  </div>
+
+  <button class="menu-overlay" id="menuOverlay" aria-label="Close menu"></button>
+
+  <div class="portal-shell">
+
+    <aside class="portal-sidebar" id="portalSidebar">
+      <div class="sidebar-top">
+        <a class="brand-lockup" href="dashboard.html">
+          <img class="brand-logo" src="../assetes/logo_edubridge_dark.png" alt="EduBridge" />
+        </a>
+        <button class="icon-btn sidebar-close" id="sidebarClose" aria-label="Close sidebar">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="layout-dashboard"></i> Overview
+        </a>
+        <a class="side-link active" href="students.html">
+          <i data-lucide="users"></i> Students
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="ticket"></i> Service Requests
+        </a>
+        <a class="side-link" href="scholarships.html">
+          <i data-lucide="award"></i> Scholarships
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="file-stack"></i> Applications
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="message-square"></i> Communications
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="bar-chart-3"></i> Reports
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="settings"></i> Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="support-card">
+          <i data-lucide="headphones"></i>
+          <div>
+            <strong>Support Desk</strong>
+            <span>Priority line for advisors</span>
+          </div>
+          <i data-lucide="chevron-right" style="margin-left:auto;width:14px;height:14px;"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="portal-main">
+      <header class="portal-header">
+        <div class="header-left">
+          <button class="icon-btn mobile-menu" id="mobileMenu" aria-label="Open menu">
+            <i data-lucide="menu"></i>
+          </button>
+          <img class="portal-header-mark" src="../assetes/logo_edubridge.png" alt="" />
+          <div class="crumbs">
+            <a href="dashboard.html" style="color:inherit;text-decoration:none;">Employee CRM</a>
+            <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
+            <a href="students.html" style="color:inherit;text-decoration:none;">Students</a>
+            <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
+            <span class="current">Sarah Ahmed</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="top-search">
+            <i data-lucide="search" style="width:14px;height:14px;"></i>
+            <input type="text" placeholder="Search roster..." />
+          </div>
+          <button class="icon-btn notification-btn" aria-label="Notifications">
+            <i data-lucide="bell"></i>
+            <b>3</b>
+          </button>
+          <button class="profile-trigger" aria-label="Profile">
+            <span class="avatar avatar-gold">MA</span>
+            <span>Maya — Advisor</span>
+            <i data-lucide="chevron-down" style="width:13px;height:13px;"></i>
+          </button>
+        </div>
+      </header>
+
+      <section class="portal-content">
+
+        <div class="portal-title-row">
+          <div>
+            <a href="students.html" class="text-link" style="margin-bottom:6px;">
+              <i data-lucide="arrow-left" style="width:10px;height:10px;"></i> Back to roster
+            </a>
+            <p class="eyebrow">STUDENT THREE SIXTY</p>
+          </div>
+          <div class="title-buttons">
+            <button class="edu-btn outline small">
+              <i data-lucide="share-2" style="width:11px;height:11px;"></i> Share
+            </button>
+            <button class="edu-btn outline small">
+              <i data-lucide="edit-3" style="width:11px;height:11px;"></i> Edit Profile
+            </button>
+            <button class="edu-btn gold small">
+              <i data-lucide="message-square-plus" style="width:11px;height:11px;"></i> Log Contact
+            </button>
+          </div>
+        </div>
+
+        <section class="student-360">
+          <div class="student-360-head">
+            <div class="large-avatar">SA</div>
+            <div>
+              <h2>
+                Sarah Ahmed
+                <span class="status-pill green">Active</span>
+                <span class="status-pill blue">Engineering Track</span>
+              </h2>
+              <p>
+                <span><i data-lucide="map-pin" style="width:9px;height:9px;"></i> Cairo, Egypt</span>
+                <i></i>
+                <span><i data-lucide="graduation-cap" style="width:9px;height:9px;"></i> Grade 12 · CGPA 3.92</span>
+                <i></i>
+                <span><i data-lucide="globe" style="width:9px;height:9px;"></i> Targets: USA · Canada · UK</span>
+                <i></i>
+                <span><i data-lucide="user-check" style="width:9px;height:9px;"></i> Advisor: Maya R.</span>
+              </p>
+              <p style="margin-top:6px;">
+                <span><i data-lucide="mail" style="width:9px;height:9px;"></i> sarah.ahmed@edubridge.app</span>
+                <i></i>
+                <span><i data-lucide="phone" style="width:9px;height:9px;"></i> +20 100 448 9921</span>
+                <i></i>
+                <span><i data-lucide="calendar" style="width:9px;height:9px;"></i> Enrolled since Aug 2024</span>
+              </p>
+            </div>
+            <div class="head-readiness">
+              <small>Profile Readiness</small>
+              <div class="score-wrap small">
+                <div class="score-ring" style="--score: 288deg;"><span>80</span></div>
+                <span>
+                  <small>On track for R2 deadlines</small>
+                  <small>+9 pts this month</small>
+                </span>
+              </div>
+              <div class="updated-by">
+                <span class="avatar avatar-blue">MR</span>
+                <div>
+                  <b>Last advisor update</b><br />
+                  Maya R. · Today 09:42
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-row student-tabs">
+            <button class="active">360° Snapshot</button>
+            <button>Profile &amp; Academics</button>
+            <button>Documents</button>
+            <button>Scholarship Matches</button>
+            <button>Applications</button>
+            <button>Services &amp; Requests</button>
+            <button>Communications</button>
+          </div>
+
+          <div class="student-360-grid">
+
+            <div class="mini-panel info-mini">
+              <h3><i data-lucide="user" style="width:14px;height:14px;"></i> Personal Info</h3>
+              <dl>
+                <div><dt>Full name</dt><dd>Sarah Khaled Ahmed</dd></div>
+                <div><dt>Date of birth</dt><dd>14 Mar 2008</dd></div>
+                <div><dt>Nationality</dt><dd>Egyptian</dd></div>
+                <div><dt>Passport</dt><dd>#A10982244 · Exp 2029</dd></div>
+                <div><dt>Guardian</dt><dd>Khaled Ahmed (father)</dd></div>
+                <div><dt>Home city</dt><dd>New Cairo, Cairo</dd></div>
+                <div><dt>Languages</dt><dd>Arabic, English (C1)</dd></div>
+              </dl>
+            </div>
+
+            <div class="mini-panel info-mini">
+              <h3><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> Academic Profile</h3>
+              <dl>
+                <div><dt>Current school</dt><dd>British Intl. College</dd></div>
+                <div><dt>Curriculum</dt><dd>A-Level · Math/Physics</dd></div>
+                <div><dt>CGPA</dt><dd>3.92 / 4.00</dd></div>
+                <div><dt>Class rank</dt><dd>3 of 87 (top 4%)</dd></div>
+                <div><dt>SAT</dt><dd>1480 (EBRW 720 · M 760)</dd></div>
+                <div><dt>IELTS</dt><dd>7.5 (Writing 7.0)</dd></div>
+                <div><dt>Intended major</dt><dd>Aerospace Engineering</dd></div>
+              </dl>
+            </div>
+
+            <div class="mini-panel readiness-mini">
+              <h3><i data-lucide="sparkles" style="width:14px;height:14px;"></i> Readiness Snapshot</h3>
+              <div class="score-wrap small">
+                <div class="score-ring" style="--score: 288deg;"><span>80</span></div>
+              </div>
+              <div>
+                <p>Profile is competitive for Round 2. Two items remain before Sarah can submit the top-choice package.</p>
+              </div>
+              <strong>Missing to reach 90%:</strong>
+              <span>· 2 recommendation letters pending <em>· 1 essay final review</em></span>
+              <button class="edu-btn outline small" style="margin-top:9px;justify-self:start;">
+                <i data-lucide="list-checks" style="width:10px;height:10px;"></i> Open checklist
+              </button>
+            </div>
+
+            <div class="mini-panel">
+              <div class="panel-title-line">
+                <h3><i data-lucide="message-square" style="width:14px;height:14px;"></i> Recent Comm</h3>
+                <button class="text-link">View all <i data-lucide="arrow-right" style="width:9px;height:9px;"></i></button>
+              </div>
+              <div class="comm-entry">
+                <span><i data-lucide="mail" style="width:12px;height:12px;"></i></span>
+                <div>
+                  <strong>Essay feedback — Common App</strong>
+                  <p>Sent annotated draft · 3 edits suggested</p>
+                  <p style="color:#98a6b5;">Maya → Sarah · Today 09:12</p>
+                </div>
+              </div>
+              <div class="comm-entry">
+                <span><i data-lucide="phone-call" style="width:12px;height:12px;"></i></span>
+                <div>
+                  <strong>Advising call (32 min)</strong>
+                  <p>Finalised shortlist of 6 universities</p>
+                  <p style="color:#98a6b5;">Yesterday 16:00</p>
+                </div>
+              </div>
+              <div class="comm-entry">
+                <span><i data-lucide="calendar-check" style="width:12px;height:12px;"></i></span>
+                <div>
+                  <strong>Mock interview scheduled</strong>
+                  <p>Sun 2pm · with Khalid Mansour</p>
+                  <p style="color:#98a6b5;">Created · 2 days ago</p>
+                </div>
+              </div>
+              <div class="comm-entry">
+                <span><i data-lucide="file-text" style="width:12px;height:12px;"></i></span>
+                <div>
+                  <strong>Transcript v2 received</strong>
+                  <p>Verified by registrar · stored to vault</p>
+                  <p style="color:#98a6b5;">Sarah uploaded · 2 days ago</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mini-panel">
+              <div class="panel-title-line">
+                <h3><i data-lucide="folder-check" style="width:14px;height:14px;"></i> Documents Checklist</h3>
+                <button class="text-link">Vault <i data-lucide="arrow-right" style="width:9px;height:9px;"></i></button>
+              </div>
+              <div class="mini-checklist">
+                <div>
+                  <div class="check-state verified"><i data-lucide="check" style="width:11px;height:11px;"></i></div>
+                  <div>Official transcript (grades 10–12)</div>
+                  <small>Verified</small>
+                </div>
+                <div>
+                  <div class="check-state verified"><i data-lucide="check" style="width:11px;height:11px;"></i></div>
+                  <div>Passport / national ID scan</div>
+                  <small>Verified</small>
+                </div>
+                <div>
+                  <div class="check-state verified"><i data-lucide="check" style="width:11px;height:11px;"></i></div>
+                  <div>Standardised test score reports</div>
+                  <small>Verified</small>
+                </div>
+                <div>
+                  <div class="check-state pending"><i data-lucide="clock" style="width:11px;height:11px;"></i></div>
+                  <div>Teacher recommendation (Math)</div>
+                  <small>Requested</small>
+                </div>
+                <div>
+                  <div class="check-state pending"><i data-lucide="clock" style="width:11px;height:11px;"></i></div>
+                  <div>Counsellor recommendation</div>
+                  <small>Requested</small>
+                </div>
+                <div>
+                  <div class="check-state missing"><i data-lucide="alert-circle" style="width:11px;height:11px;"></i></div>
+                  <div>Financial statement / sponsor letter</div>
+                  <small>Missing</small>
+                </div>
+                <div>
+                  <div class="check-state verified"><i data-lucide="check" style="width:11px;height:11px;"></i></div>
+                  <div>Personal essay draft 2</div>
+                  <small>In review</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="mini-panel">
+              <div class="panel-title-line">
+                <h3><i data-lucide="briefcase" style="width:14px;height:14px;"></i> Active Services</h3>
+                <button class="text-link">Requests <i data-lucide="arrow-right" style="width:9px;height:9px;"></i></button>
+              </div>
+              <div class="compact-service">
+                <div class="service-icon"><i data-lucide="pen-tool" style="width:13px;height:13px;"></i></div>
+                <div>
+                  <strong>Essay Coaching — 4 pack</strong>
+                  <small>2 of 4 delivered · Next: Why Major</small>
+                </div>
+                <span class="status-pill blue">In progress</span>
+              </div>
+              <div class="compact-service">
+                <div class="service-icon" style="background:#fff5df;color:#a87316;"><i data-lucide="users" style="width:13px;height:13px;"></i></div>
+                <div>
+                  <strong>University Shortlisting</strong>
+                  <small>Shortlist approved · 6 universities</small>
+                </div>
+                <span class="status-pill green">Delivered</span>
+              </div>
+              <div class="compact-service">
+                <div class="service-icon" style="background:#edf8ef;color:#248255;"><i data-lucide="mic-2" style="width:13px;height:13px;"></i></div>
+                <div>
+                  <strong>Mock Interview + feedback</strong>
+                  <small>Scheduled Sun · K. Mansour</small>
+                </div>
+                <span class="status-pill gold">Scheduled</span>
+              </div>
+            </div>
+
+            <div class="mini-panel">
+              <div class="panel-title-line">
+                <h3>
+                  <span class="current-app-title">
+                    <i data-lucide="award" style="width:15px;height:15px;color:#295c9c;"></i>
+                    <div>
+                      <strong>Global Excellence Scholarship</strong>
+                      <small>Current flagship application · Round 2</small>
+                    </div>
+                  </span>
+                </h3>
+                <span class="status-pill blue">Applying</span>
+              </div>
+              <dl>
+                <dt>University</dt><dd>Western Michigan University</dd>
+                <dt>Program</dt><dd>BSc Aerospace Engineering</dd>
+                <dt>Award value</dt><dd>Up to $68,000 / 4 years</dd>
+                <dt>Round deadline</dt><dd>15 Feb 2026</dd>
+                <dt>Days left</dt><dd>3 days · <em style="color:#bf4545;">urgent</em></dd>
+                <dt>Completion</dt><dd>82%</dd>
+              </dl>
+              <div style="margin-top:6px;">
+                <div class="match-meta" style="margin:0;">
+                  <span class="status-pill green">Match 92%</span>
+                  <span class="status-pill slate">Need-aware</span>
+                  <span class="status-pill gold">3 essay prompts</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mini-panel insight-mini">
+              <h3><i data-lucide="lightbulb" style="width:14px;height:14px;"></i> Match Insight</h3>
+              <div><i data-lucide="trending-up" style="width:11px;height:11px;"></i> AI confidence · updated today</div>
+              <strong>92%<small> match score</small></strong>
+              <p>Sarah's STEM rigor, community leadership portfolio, and regional demographic make this a top-5 fit for Global Excellence cohort '26.</p>
+              <em>
+                <i data-lucide="zap" style="width:9px;height:9px;"></i>
+                Recommend: highlight robotics championship in essay 2
+              </em>
+              <div style="margin-top:12px;display:flex;gap:5px;">
+                <button class="edu-btn outline small" style="min-height:28px;padding:4px 8px;font-size:8px;">
+                  <i data-lucide="sparkles" style="width:9px;height:9px;"></i> Generate prompts
+                </button>
+                <button class="edu-btn navy small" style="min-height:28px;padding:4px 8px;font-size:8px;">
+                  Open application
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lucide@1.50.0/dist/umd/lucide.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    if (window.lucide) window.lucide.createIcons();
+  </script>
+</body>
+</html>

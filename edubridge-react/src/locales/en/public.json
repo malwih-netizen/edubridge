@@ -1,0 +1,269 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "services": "Services",
+    "how": "How it works",
+    "scholarships": "Scholarships",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "signIn": "Sign in",
+    "apply": "Apply now",
+    "openMenu": "Open navigation",
+    "closeMenu": "Close navigation",
+    "primary": "Main navigation",
+    "findScholarship": "Find a scholarship",
+    "menu": "Menu",
+    "language": "Language"
+  },
+  "hero": {
+    "kicker": "Smart scholarship & student services",
+    "title1": "Bridge your dreams to",
+    "titleEm": "new opportunities.",
+    "text": "EduBridge helps students organise their files, discover relevant scholarships, and move through every application step with clarity and human guidance.",
+    "cta": "Apply now",
+    "imageAlt": "International students preparing their study plans"
+  },
+  "proof": {
+    "p1Title": "40+ countries",
+    "p1Text": "Academic opportunities worldwide",
+    "p2Title": "Student-centred matching",
+    "p2Text": "Guidance grounded in your profile",
+    "p3Title": "One connected journey",
+    "p3Text": "Documents, services, and applications"
+  },
+  "services": {
+    "eyebrow": "Built for the full journey",
+    "title": "Everything you need to move forward.",
+    "cta": "Request this service",
+    "moreTitle": "Not sure where to start?",
+    "moreText": "Create your profile and an advisor will recommend the right services for you."
+  },
+  "how": {
+    "eyebrow": "A clearer application path",
+    "title": "Know what comes next — at every stage.",
+    "text": "EduBridge replaces scattered messages and unclear follow-ups with a simple workflow designed around your real progress.",
+    "imageAlt": "Study documents and an international academic path",
+    "imageLabel": "One place for every document, request, and next action.",
+    "s1Title": "Create your profile",
+    "s1Text": "Tell us about your academic path, goals, language, and preferred destination.",
+    "s2Title": "Prepare your file",
+    "s2Text": "Upload and organise documents, then see exactly what is still needed.",
+    "s3Title": "Explore opportunities",
+    "s3Text": "Review scholarship matches and request guidance from an EduBridge advisor.",
+    "s4Title": "Track each step",
+    "s4Text": "Follow services and applications from the first request to the final result."
+  },
+  "roles": {
+    "eyebrow": "One platform, three experiences",
+    "title": "Built for students, advisors, and administrators.",
+    "cta": "Open student portal",
+    "student": {
+      "label": "For students",
+      "title": "Stay ready, discover opportunities, and track every next step.",
+      "f1": "Scholarship matches",
+      "f2": "Document workspace",
+      "f3": "Application journey"
+    },
+    "employee": {
+      "label": "For advisors",
+      "title": "Manage student histories and service workflows in one CRM.",
+      "f1": "Student 360 profile",
+      "f2": "Request pipeline",
+      "f3": "Communication notes"
+    },
+    "admin": {
+      "label": "For administrators",
+      "title": "Monitor operations, access, reports, and scholarship activity.",
+      "f1": "User roles",
+      "f2": "Data reports",
+      "f3": "Result tracker"
+    }
+  },
+  "guidance": {
+    "eyebrow": "Human guidance, smarter organisation",
+    "title": "Technology helps you see the path. People help you walk it.",
+    "text": "Your dashboard highlights document gaps and relevant opportunities. Your advisor stays involved before you take the next important step.",
+    "p1": "Readiness score and missing-document alerts",
+    "p2": "AI-assisted matching with advisor review",
+    "p3": "Clear application and result tracking",
+    "cta": "Create your student account",
+    "imageAlt": "An EduBridge advisor supporting a student"
+  },
+  "faq": {
+    "eyebrow": "Questions",
+    "title": "Frequently asked questions",
+    "q1": "Who can use EduBridge?",
+    "a1": "Any student planning to study abroad — from bachelor's to PhD — can create a profile, upload documents, and explore scholarships that fit their background.",
+    "q2": "How does scholarship matching work?",
+    "a2": "We compare your academic level, field, grades, and language results with each opportunity's requirements, then an advisor reviews the results with you.",
+    "q3": "Can an advisor help with my CV and motivation letter?",
+    "a3": "Yes. You can request CV preparation, motivation letter support, translation, and full application assistance directly from your dashboard.",
+    "q4": "Is my information kept private?",
+    "a4": "Your documents are visible only to you and the EduBridge team assigned to your file, and are used solely to prepare your applications."
+  },
+  "cta": {
+    "eyebrow": "Ready when you are",
+    "title": "Give your academic journey a clearer starting point.",
+    "text": "Create your profile, prepare your documents, and see which opportunities may fit your goals.",
+    "primary": "Start your profile",
+    "secondary": "I already have an account"
+  },
+  "footer": {
+    "about": "Smart scholarship and student services — organised files, relevant opportunities, and human guidance at every step.",
+    "journey": "Student journey",
+    "platform": "Platform",
+    "contact": "Contact us",
+    "createAccount": "Create account",
+    "studentPortal": "Student portal",
+    "employeePortal": "Advisor CRM",
+    "adminPortal": "Admin dashboard",
+    "email": "info@edubridge.com",
+    "hours": "Sunday – Thursday, 9:00 – 17:00",
+    "location": "Supporting students worldwide",
+    "backTop": "Back to top"
+  },
+  "browse": {
+    "eyebrow": "Scholarship directory",
+    "title": "Find your next scholarship",
+    "text": "Browse open opportunities by study level, country and field. Sign in to see full requirements and apply with an advisor.",
+    "keyword": "Keyword",
+    "keywordPh": "Scholarship or university name…",
+    "level": "Study level",
+    "country": "Country",
+    "field": "Field of study",
+    "funding": "Funding",
+    "anyLevel": "Any level",
+    "anyCountry": "Any country",
+    "anyField": "Any field",
+    "anyFunding": "Any funding",
+    "search": "Search",
+    "reset": "Reset filters",
+    "results": "{{count}} scholarships found",
+    "results_one": "1 scholarship found",
+    "sort": "Sort by",
+    "sortDeadline": "Closing soonest",
+    "sortName": "Name (A–Z)",
+    "open": "Open",
+    "upcoming": "Opening soon",
+    "closed": "Closed",
+    "deadline": "Deadline",
+    "opens": "Opens",
+    "details": "View details",
+    "emptyTitle": "No scholarships match your search",
+    "emptyText": "Try another country or study level, or reset the filters.",
+    "ctaTitle": "Want scholarships matched to your profile?",
+    "ctaText": "Create a free account to get matched opportunities, a document checklist and an advisor who follows up with you.",
+    "ctaBtn": "Sign in or create an account",
+    "results_zero": "No scholarships found",
+    "results_other": "{{count}} scholarships found"
+  },
+  "teaser": {
+    "back": "All scholarships",
+    "overview": "Overview",
+    "facts": "Key facts",
+    "level": "Study level",
+    "funding": "Funding",
+    "amount": "Award value",
+    "deadline": "Application deadline",
+    "opens": "Applications open",
+    "country": "Country",
+    "university": "University",
+    "fields": "Fields of study",
+    "lockedTitle": "Full details are available after signing in",
+    "lockedText": "Sign in to see eligibility requirements, required documents, your match with this scholarship and to apply with an EduBridge advisor.",
+    "locked1": "Eligibility requirements (GPA, language, nationality)",
+    "locked2": "Required documents checklist",
+    "locked3": "Your personal match score",
+    "locked4": "Application steps and advisor support",
+    "signin": "Sign in to apply",
+    "register": "Create a free account",
+    "related": "Similar scholarships",
+    "notFound": "This scholarship could not be found.",
+    "daysLeft": "{{count}} days left",
+    "daysLeft_one": "1 day left",
+    "daysLeft_other": "{{count}} days left"
+  },
+  "contact": {
+    "eyebrow": "Contact us",
+    "title": "Let’s talk about your next step",
+    "text": "Send us your question and an EduBridge advisor will get back to you by email or phone within one working day.",
+    "name": "Full name",
+    "namePh": "e.g. Sarah Ahmed",
+    "email": "Email address",
+    "emailPh": "you@example.com",
+    "phone": "Mobile number",
+    "phonePh": "+970 59 123 4567",
+    "subject": "Subject",
+    "subjects": {
+      "general": "General inquiry",
+      "scholarships": "Scholarships",
+      "services": "Student services",
+      "support": "Technical support"
+    },
+    "message": "Message",
+    "messagePh": "Tell us briefly how we can help…",
+    "consent": "I agree to be contacted about my inquiry.",
+    "send": "Send message",
+    "sending": "Sending…",
+    "sentTitle": "Message sent",
+    "sentText": "Thank you! We received your message and will reply to {{email}} soon.",
+    "another": "Send another message",
+    "errName": "Please enter your full name.",
+    "errEmail": "Enter a valid email address.",
+    "errPhone": "Enter a valid mobile number.",
+    "errMessage": "Please write at least 10 characters.",
+    "errConsent": "Please accept to be contacted.",
+    "infoTitle": "Contact information",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "hoursLabel": "Working hours",
+    "locationLabel": "Location",
+    "phoneValue": "+970 8 000 0000"
+  },
+  "aboutUs": {
+    "title": "A graduation project built by four engineers-to-be",
+    "lead": "We are four Computer Systems Engineering students at the University College of Science and Technology. EduBridge is our graduation project: a web platform that helps an educational consultancy office organise students, documents, scholarships and services in one place.",
+    "storyTitle": "Why we built EduBridge",
+    "story": "Students usually send their files and questions over WhatsApp, and advisors track everything by hand. We wanted to replace that with one clear workflow: students build their profile, upload documents once, discover suitable scholarships and follow every step, while advisors manage requests from a single CRM.",
+    "missionTitle": "Our goal",
+    "mission": "Make the scholarship journey simpler for students and the daily work lighter for advisors — with technology that supports people, not replaces them.",
+    "facts": {
+      "members": "Team members",
+      "modules": "System modules",
+      "weeks": "Weeks of work",
+      "year": "Academic year"
+    },
+    "factsValues": {
+      "members": "4",
+      "modules": "12",
+      "weeks": "15",
+      "year": "2026/2027"
+    },
+    "teamTitle": "Meet the team",
+    "supervisor": "Supervised by Ms. Amina Al-Salout",
+    "university": "University College of Science and Technology · Computer Systems Engineering",
+    "members": {
+      "lamia": {
+        "name": "Lamia Madi",
+        "role": "Backend developer",
+        "focus": "PHP REST API, authentication and scholarship management"
+      },
+      "nada": {
+        "name": "Nada Al-Astal",
+        "role": "Frontend developer",
+        "focus": "React interfaces, dashboards and bilingual design"
+      },
+      "alaa": {
+        "name": "Alaa Abu Mustafa",
+        "role": "Database & integration",
+        "focus": "MySQL design, students and documents modules, testing"
+      },
+      "janeen": {
+        "name": "Janeen Al-Qutati",
+        "role": "Matching & CRM",
+        "focus": "Scholarship matching, readiness score, CRM and evaluation"
+      }
+    }
+  }
+}

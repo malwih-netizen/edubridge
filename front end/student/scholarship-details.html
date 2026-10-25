@@ -1,0 +1,268 @@
+<!--
+  EduBridge - تفاصيل المنحة الدراسية
+  Scholarship Details HTML
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0F2C55" />
+  <title>EduBridge - Scholarship Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="../js/i18n-ar.js"></script>
+  <script src="../js/i18n.js"></script>
+</head>
+<body>
+  <div class="edu-toast" id="toast"></div>
+
+  <div class="portal-shell">
+    <aside class="portal-sidebar" id="portalSidebar">
+      <div class="sidebar-top">
+        <a href="dashboard.html" class="brand-lockup">
+          <img src="../assetes/logo_edubridge_dark.png" alt="EduBridge" class="brand-logo" />
+        </a>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Close sidebar">
+          <i data-lucide="X"></i>
+        </button>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="side-link"><i data-lucide="LayoutDashboard"></i> Dashboard</a>
+        <a href="profile.html" class="side-link"><i data-lucide="User"></i> My Profile</a>
+        <a href="documents.html" class="side-link"><i data-lucide="FolderOpen"></i> My Documents</a>
+        <a href="scholarships.html" class="side-link active"><i data-lucide="Search"></i> Find Scholarships</a>
+        <a href="services.html" class="side-link"><i data-lucide="Briefcase"></i> My Services</a>
+        <a href="applications.html" class="side-link"><i data-lucide="FileCheck2"></i> Applications</a>
+        <a href="dashboard.html" class="side-link"><i data-lucide="Bell"></i> Notifications</a>
+        <a href="profile.html" class="side-link"><i data-lucide="Settings"></i> Settings</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="support-card">
+          <i data-lucide="Headphones"></i>
+          <div>
+            <strong>Need help?</strong>
+            <span>Chat with your advisor</span>
+          </div>
+          <i data-lucide="ChevronRight"></i>
+        </div>
+        <div class="security-note">
+          <i data-lucide="ShieldCheck"></i>
+          Secure & encrypted session
+        </div>
+      </div>
+    </aside>
+
+    <button class="menu-overlay" id="menuOverlay" aria-label="Close menu"></button>
+
+    <main class="portal-main">
+      <header class="portal-header">
+        <div class="header-left">
+          <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">
+            <i data-lucide="Menu"></i>
+          </button>
+          <div class="crumbs">
+            <span><i data-lucide="Home" size="14"></i></span>
+            <span>/</span>
+            <a href="scholarships.html" style="color:#63738a; text-decoration:none;">Find Scholarships</a>
+            <span>/</span>
+            <span class="current">Scholarship Details</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <label class="top-search">
+            <i data-lucide="Search" size="16"></i>
+            <input type="text" placeholder="Search documents, services…" />
+          </label>
+          <button class="icon-btn notification-btn" aria-label="Notifications">
+            <i data-lucide="Bell" size="17"></i>
+            <b>3</b>
+          </button>
+          <button class="profile-trigger" aria-label="Profile">
+            <span class="avatar avatar-gold">SA</span>
+            <span>Sarah Ahmed</span>
+            <i data-lucide="ChevronDown" size="15"></i>
+          </button>
+        </div>
+      </header>
+
+      <section class="portal-content">
+        <div class="portal-title-row">
+          <div>
+            <h1>Scholarship Details</h1>
+            <p>Review eligibility, coverage, and next steps for this opportunity.</p>
+          </div>
+        </div>
+
+        <div class="scholarship-detail-page">
+          <article class="detail-hero">
+            <span class="detail-university"><i data-lucide="GraduationCap" size="31"></i></span>
+            <div>
+              <h2>Global Excellence Scholarship</h2>
+              <p>University of Toronto</p>
+              <div class="detail-meta">
+                <span><i data-lucide="MapPin" size="15"></i> Canada</span>
+                <span>Master's / PhD</span>
+                <span>Fully Funded</span>
+                <span><i data-lucide="CalendarClock" size="15"></i> Deadline: 15 July 2025</span>
+              </div>
+              <div class="match-tags">
+                <span class="status-pill green">Eligible</span>
+                <span class="status-pill blue">High Impact</span>
+              </div>
+            </div>
+            <div class="detail-actions">
+              <div class="match-score large">92%<small>Match</small></div>
+              <button class="edu-btn gold" onclick="showToast('Guidance request started for Global Excellence Scholarship.')">
+                Request Guidance <i data-lucide="MessageCircle" size="16"></i>
+              </button>
+              <button class="edu-btn outline" onclick="showToast('Scholarship saved to your opportunities list.')">
+                <i data-lucide="BookMarked" size="16"></i> Bookmark Scholarship
+              </button>
+            </div>
+          </article>
+
+          <div class="detail-layout">
+            <section class="detail-main">
+              <article class="info-block">
+                <span class="info-icon"><i data-lucide="BookMarked" size="22"></i></span>
+                <div>
+                  <h3>Overview</h3>
+                  <p>The Global Excellence Scholarship supports outstanding international students pursuing Master's or PhD degrees. It recognizes academic excellence, leadership potential, and a commitment to making a global impact.</p>
+                </div>
+                <i data-lucide="ChevronRight" class="info-chevron" size="18"></i>
+              </article>
+
+              <article class="info-block">
+                <span class="info-icon"><i data-lucide="UserCheck" size="22"></i></span>
+                <div>
+                  <h3>Eligibility Requirements</h3>
+                  <div class="requirement-grid">
+                    <span><b>Academic Field</b>All Fields</span>
+                    <span><b>GPA</b>Min. 3.3 / 4.0</span>
+                    <span><b>Nationality</b>All Countries</span>
+                    <span><b>Language</b>English</span>
+                    <span><b>Study Level</b>Master's / PhD</span>
+                  </div>
+                </div>
+                <i data-lucide="ChevronRight" class="info-chevron" size="18"></i>
+              </article>
+
+              <article class="info-block">
+                <span class="info-icon"><i data-lucide="CircleCheckBig" size="22"></i></span>
+                <div>
+                  <h3>Funding Coverage</h3>
+                  <div class="check-grid">
+                    <span><i data-lucide="Check" size="15"></i> Full tuition fees</span>
+                    <span><i data-lucide="Check" size="15"></i> Health insurance</span>
+                    <span><i data-lucide="Check" size="15"></i> Annual living stipend (20,000 CAD)</span>
+                    <span><i data-lucide="Check" size="15"></i> Research and conference support</span>
+                  </div>
+                </div>
+                <i data-lucide="ChevronRight" class="info-chevron" size="18"></i>
+              </article>
+
+              <article class="info-block">
+                <span class="info-icon"><i data-lucide="FileCheck2" size="22"></i></span>
+                <div>
+                  <h3>Application Requirements</h3>
+                  <div class="check-grid">
+                    <span><i data-lucide="Check" size="15"></i> Online application form</span>
+                    <span><i data-lucide="Check" size="15"></i> Two letters of recommendation</span>
+                    <span><i data-lucide="Check" size="15"></i> Statement of purpose</span>
+                    <span><i data-lucide="Check" size="15"></i> CV / Resume</span>
+                    <span><i data-lucide="Check" size="15"></i> Academic transcripts</span>
+                    <span><i data-lucide="Check" size="15"></i> Research proposal (PhD applicants)</span>
+                  </div>
+                </div>
+                <i data-lucide="ChevronRight" class="info-chevron" size="18"></i>
+              </article>
+
+              <article class="info-block">
+                <span class="info-icon"><i data-lucide="CalendarClock" size="22"></i></span>
+                <div>
+                  <h3>Important Dates</h3>
+                  <div class="date-track">
+                    <span><b>15 May 2025</b>Applications Open</span>
+                    <span class="active"><b>15 July 2025</b>Application Deadline</span>
+                    <span><b>15 Aug 2025</b>Shortlist Announcement</span>
+                    <span><b>30 Sep 2025</b>Final Results</span>
+                  </div>
+                </div>
+                <i data-lucide="ChevronRight" class="info-chevron" size="18"></i>
+              </article>
+            </section>
+
+            <aside class="detail-side">
+              <div class="why-match detail">
+                <h3>Why this matches you</h3>
+                <div><span>Academic Field</span><b>25%</b></div>
+                <div><span>GPA</span><b>20%</b></div>
+                <div><span>Study Level</span><b>15%</b></div>
+                <div><span>Nationality</span><b>15%</b></div>
+                <div><span>Language</span><b>10%</b></div>
+                <div><span>Preferred Country</span><b>10%</b></div>
+                <div><span>Funding</span><b>5%</b></div>
+                <strong class="total-score">Total Match Score <em>92%</em></strong>
+                <div class="ai-note">
+                  <i data-lucide="Sparkles" size="16"></i>
+                  AI-assisted recommendation. Review official requirements with your EduBridge advisor. This score does not guarantee eligibility or admission.
+                </div>
+              </div>
+
+              <div class="required-docs">
+                <h3>Required Documents</h3>
+                <div class="mini-checklist">
+                  <div>
+                    <span class="check-state verified"><i data-lucide="Check" size="13"></i></span>
+                    <span>Academic Transcripts</span>
+                    <small>Verified</small>
+                  </div>
+                  <div>
+                    <span class="check-state verified"><i data-lucide="Check" size="13"></i></span>
+                    <span>Passport Copy</span>
+                    <small>Verified</small>
+                  </div>
+                  <div>
+                    <span class="check-state pending"><i data-lucide="Clock3" size="13"></i></span>
+                    <span>Statement of Purpose</span>
+                    <small>Pending</small>
+                  </div>
+                  <div>
+                    <span class="check-state missing"><i data-lucide="X" size="13"></i></span>
+                    <span>Letters of Recommendation</span>
+                    <small>Missing</small>
+                  </div>
+                  <div>
+                    <span class="check-state pending"><i data-lucide="Clock3" size="13"></i></span>
+                    <span>CV / Resume</span>
+                    <small>Pending</small>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lucide@1.50.0/dist/umd/lucide.min.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') lucide.createIcons();
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      if (!t) return;
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2300);
+    }
+  </script>
+</body>
+</html>

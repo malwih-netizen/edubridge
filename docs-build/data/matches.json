@@ -1,0 +1,781 @@
+{
+    "weights": {
+        "field": 25,
+        "gpa": 20,
+        "level": 15,
+        "nationality": 15,
+        "language": 10,
+        "country": 10,
+        "funding": 5
+    },
+    "scholarships": [
+        {
+            "id": 1,
+            "name": "Global Excellence Scholarship",
+            "country": "canada",
+            "minGpa": 3.3,
+            "language": {
+                "test": "IELTS",
+                "score": 7
+            },
+            "levels": [
+                "master",
+                "phd"
+            ],
+            "fields": [
+                "business",
+                "computerScience",
+                "engineering"
+            ],
+            "funding": "full"
+        },
+        {
+            "id": 2,
+            "name": "DAAD Graduate Scholarship",
+            "country": "germany",
+            "minGpa": 3,
+            "language": {
+                "test": "IELTS",
+                "score": 6.5
+            },
+            "levels": [
+                "master",
+                "phd"
+            ],
+            "fields": [
+                "computerScience",
+                "engineering",
+                "science"
+            ],
+            "funding": "full"
+        },
+        {
+            "id": 3,
+            "name": "Commonwealth Master’s Scholarship",
+            "country": "uk",
+            "minGpa": 3.4,
+            "language": {
+                "test": "IELTS",
+                "score": 7
+            },
+            "levels": [
+                "master"
+            ],
+            "fields": [
+                "business",
+                "computerScience",
+                "publicHealth"
+            ],
+            "funding": "full"
+        },
+        {
+            "id": 5,
+            "name": "Erasmus Mundus Joint Master",
+            "country": "netherlands",
+            "minGpa": 3.5,
+            "language": {
+                "test": "IELTS",
+                "score": 7
+            },
+            "levels": [
+                "master"
+            ],
+            "fields": [
+                "computerScience",
+                "engineering",
+                "science"
+            ],
+            "funding": "full"
+        },
+        {
+            "id": 4,
+            "name": "Türkiye Burslari",
+            "country": "turkey",
+            "minGpa": 2.8,
+            "language": {
+                "test": "IELTS",
+                "score": 6
+            },
+            "levels": [
+                "bachelor",
+                "master",
+                "phd"
+            ],
+            "fields": [
+                "business",
+                "computerScience",
+                "engineering",
+                "science"
+            ],
+            "funding": "full"
+        },
+        {
+            "id": 6,
+            "name": "Malaysia International Scholarship",
+            "country": "malaysia",
+            "minGpa": 3,
+            "language": {
+                "test": "IELTS",
+                "score": 6
+            },
+            "levels": [
+                "master",
+                "phd"
+            ],
+            "fields": [
+                "business",
+                "engineering",
+                "science"
+            ],
+            "funding": "partial"
+        }
+    ],
+    "students": [
+        {
+            "id": 1,
+            "name": "Sarah Ahmed",
+            "field": "computerScience",
+            "level": "master",
+            "gpa": 3.7,
+            "language": {
+                "test": "IELTS",
+                "score": 6.5
+            },
+            "nationality": "palestine",
+            "countries": [
+                "canada",
+                "germany"
+            ],
+            "funding": "full",
+            "readiness": {
+                "score": 65,
+                "missing": [
+                    "cv",
+                    "language"
+                ]
+            },
+            "matches": {
+                "1": {
+                    "score": 95,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 0.5,
+                        "country": 1,
+                        "funding": 1
+                    }
+                },
+                "2": {
+                    "score": 100,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 1,
+                        "funding": 1
+                    }
+                },
+                "3": {
+                    "score": 85,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 0.5,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "5": {
+                    "score": 85,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 0.5,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "4": {
+                    "score": 90,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "6": {
+                    "score": 62,
+                    "level": "potential",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 0.4
+                    }
+                }
+            }
+        },
+        {
+            "id": 6,
+            "name": "Yousef Karimi",
+            "field": "engineering",
+            "level": "phd",
+            "gpa": 3.9,
+            "language": {
+                "test": "IELTS",
+                "score": 7.5
+            },
+            "nationality": "jordan",
+            "countries": [
+                "canada",
+                "germany"
+            ],
+            "funding": "full",
+            "readiness": {
+                "score": 0,
+                "missing": [
+                    "passport",
+                    "transcript",
+                    "degree",
+                    "cv",
+                    "language",
+                    "motivation",
+                    "recommendation"
+                ]
+            },
+            "matches": {
+                "1": {
+                    "score": 100,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 1,
+                        "funding": 1
+                    }
+                },
+                "2": {
+                    "score": 100,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 1,
+                        "funding": 1
+                    }
+                },
+                "3": {
+                    "score": 50,
+                    "level": "potential",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 1,
+                        "level": 0,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "5": {
+                    "score": 75,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 0,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "4": {
+                    "score": 90,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "6": {
+                    "score": 87,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 0.4
+                    }
+                }
+            }
+        },
+        {
+            "id": 7,
+            "name": "Noor Hassan",
+            "field": "business",
+            "level": "master",
+            "gpa": 3.4,
+            "language": {
+                "test": "IELTS",
+                "score": 6.5
+            },
+            "nationality": "egypt",
+            "countries": [
+                "malaysia",
+                "uk"
+            ],
+            "funding": "partial",
+            "readiness": {
+                "score": 0,
+                "missing": [
+                    "passport",
+                    "transcript",
+                    "degree",
+                    "cv",
+                    "language",
+                    "motivation",
+                    "recommendation"
+                ]
+            },
+            "matches": {
+                "1": {
+                    "score": 82,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 0.5,
+                        "country": 0,
+                        "funding": 0.4
+                    }
+                },
+                "2": {
+                    "score": 62,
+                    "level": "potential",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 0.4
+                    }
+                },
+                "3": {
+                    "score": 92,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 0.5,
+                        "country": 1,
+                        "funding": 0.4
+                    }
+                },
+                "5": {
+                    "score": 47,
+                    "level": "notSuitable",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 0.5,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 0.5,
+                        "country": 0,
+                        "funding": 0.4
+                    }
+                },
+                "4": {
+                    "score": 87,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 0.4
+                    }
+                },
+                "6": {
+                    "score": 100,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 1,
+                        "funding": 1
+                    }
+                }
+            }
+        },
+        {
+            "id": 8,
+            "name": "Omar Saleh",
+            "field": "science",
+            "level": "bachelor",
+            "gpa": 3.1,
+            "language": {
+                "test": null,
+                "score": null
+            },
+            "nationality": "palestine",
+            "countries": [
+                "turkey"
+            ],
+            "funding": "full",
+            "readiness": {
+                "score": 0,
+                "missing": [
+                    "passport",
+                    "transcript",
+                    "degree",
+                    "cv",
+                    "language",
+                    "motivation",
+                    "recommendation"
+                ]
+            },
+            "matches": {
+                "1": {
+                    "score": 30,
+                    "level": "notSuitable",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 0.5,
+                        "level": 0,
+                        "nationality": 1,
+                        "language": 0,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "2": {
+                    "score": 65,
+                    "level": "potential",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 0,
+                        "nationality": 1,
+                        "language": 0,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "3": {
+                    "score": 30,
+                    "level": "notSuitable",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 0.5,
+                        "level": 0,
+                        "nationality": 1,
+                        "language": 0,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "5": {
+                    "score": 45,
+                    "level": "notSuitable",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 0,
+                        "level": 0,
+                        "nationality": 1,
+                        "language": 0,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "4": {
+                    "score": 90,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 0,
+                        "country": 1,
+                        "funding": 1
+                    }
+                },
+                "6": {
+                    "score": 62,
+                    "level": "potential",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 0,
+                        "nationality": 1,
+                        "language": 0,
+                        "country": 0,
+                        "funding": 0.4
+                    }
+                }
+            }
+        },
+        {
+            "id": 9,
+            "name": "Layla Saeed",
+            "field": "publicHealth",
+            "level": "master",
+            "gpa": 3.6,
+            "language": {
+                "test": "IELTS",
+                "score": 7
+            },
+            "nationality": "saudi",
+            "countries": [
+                "uk"
+            ],
+            "funding": "full",
+            "readiness": {
+                "score": 0,
+                "missing": [
+                    "passport",
+                    "transcript",
+                    "degree",
+                    "cv",
+                    "language",
+                    "motivation",
+                    "recommendation"
+                ]
+            },
+            "matches": {
+                "1": {
+                    "score": 65,
+                    "level": "potential",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "2": {
+                    "score": 65,
+                    "level": "potential",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "3": {
+                    "score": 100,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 1,
+                        "funding": 1
+                    }
+                },
+                "5": {
+                    "score": 65,
+                    "level": "potential",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "4": {
+                    "score": 65,
+                    "level": "potential",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "6": {
+                    "score": 62,
+                    "level": "potential",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 0.4
+                    }
+                }
+            }
+        },
+        {
+            "id": 10,
+            "name": "Hadi Tamimi",
+            "field": "computerScience",
+            "level": "master",
+            "gpa": 3.8,
+            "language": {
+                "test": "IELTS",
+                "score": 7.5
+            },
+            "nationality": "uae",
+            "countries": [
+                "canada"
+            ],
+            "funding": "full",
+            "readiness": {
+                "score": 0,
+                "missing": [
+                    "passport",
+                    "transcript",
+                    "degree",
+                    "cv",
+                    "language",
+                    "motivation",
+                    "recommendation"
+                ]
+            },
+            "matches": {
+                "1": {
+                    "score": 100,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 1,
+                        "funding": 1
+                    }
+                },
+                "2": {
+                    "score": 90,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "3": {
+                    "score": 90,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "5": {
+                    "score": 90,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "4": {
+                    "score": 90,
+                    "level": "eligible",
+                    "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 1
+                    }
+                },
+                "6": {
+                    "score": 62,
+                    "level": "potential",
+                    "parts": {
+                        "field": 0,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 0,
+                        "funding": 0.4
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0F2C55" />
+  <title>EduBridge — Bridges Beyond Borders</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="js/i18n-ar.js"></script>
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+  <div id="eduToast" class="edu-toast"></div>
+
+  <!-- ======== الموقع العام: Home + SignIn + Onboarding ======== -->
+  <div class="public-site" id="home-view">
+    <header class="public-nav">
+      <a href="index.html" class="public-brand"><img src="assetes/logo_edubridge.png" alt="Edu Bridge" /></a>
+      <nav class="public-links">
+        <a href="#about">About Us</a>
+        <a href="#scholarships">Scholarships</a>
+        <a href="#services">Student Services</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="public-nav-actions">
+      </div>
+      <button class="nav-menu" aria-label="Open navigation"><i data-lucide="Menu"></i></button>
+    </header>
+
+    <main>
+      <section class="hero-section" id="about">
+        <div class="hero-copy">
+          <p class="hero-kicker">SMART SCHOLARSHIP &amp; STUDENT SERVICES</p>
+          <h1>Bridge your dreams to <em>new opportunities.</em></h1>
+          <p class="hero-description">EduBridge helps students organize their files, discover relevant scholarships, and move through every application step with clarity and human guidance.</p>
+          <a href="auth.html" class="hero-cta-apply">
+            Apply Now <i data-lucide="ArrowRight"></i>
+          </a>
+          <div class="hero-trust">
+            <span><i data-lucide="ShieldCheck"></i> Organized student files</span>
+            <span><i data-lucide="UsersRound"></i> Advisor-led support</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-arches" aria-hidden="true"><span /><span /><span /></div>
+          <img src="assetes/edubridge-hero-students_fb921f73.jpg" alt="International students preparing their study plans" />
+          <div class="hero-float-card match-card"><i data-lucide="Sparkles"></i><div><small>Smart guidance</small><strong>92% opportunity match</strong></div></div>
+          <div class="hero-float-card ready-card"><i data-lucide="CircleCheckBig"></i><div><small>File readiness</small><strong>Only 2 items to complete</strong></div></div>
+        </div>
+      </section>
+
+      <section class="proof-strip">
+        <div><i data-lucide="Globe2"></i><span><strong>40+ countries</strong>Academic opportunities worldwide</span></div>
+        <div><i data-lucide="Award"></i><span><strong>Student-centered matching</strong>Guidance grounded in your profile</span></div>
+        <div><i data-lucide="BookOpenCheck"></i><span><strong>One connected journey</strong>Documents, services, and applications</span></div>
+      </section>
+
+      <section class="section-shell services-section" id="services">
+        <div class="intro-row">
+          <div><p class="eyebrow">BUILT FOR THE FULL JOURNEY</p><h2>Everything you need to move forward.</h2></div>
+          <p>From the first document to the final decision, EduBridge keeps the journey simple, organized, and connected to real advisor support.</p>
+        </div>
+        <div class="service-grid">
+          <a class="service-card" href="student/scholarships.html"><span class="service-icon"><i data-lucide="GraduationCap"></i></span><h3>Scholarships</h3><p>Find relevant opportunities using your academic profile and goals.</p><span class="text-link">Explore this area <i data-lucide="ArrowRight"></i></span></a>
+          <a class="service-card" href="student/services.html"><span class="service-icon"><i data-lucide="FileCheck2"></i></span><h3>Academic Guidance</h3><p>Prepare a stronger application with a trusted advisor at every step.</p><span class="text-link">Explore this area <i data-lucide="ArrowRight"></i></span></a>
+          <a class="service-card" href="student/documents.html"><span class="service-icon"><i data-lucide="HeartHandshake"></i></span><h3>Student Services</h3><p>Organize documents, requests, translations, and application support.</p><span class="text-link">Explore this area <i data-lucide="ArrowRight"></i></span></a>
+        </div>
+      </section>
+
+      <section class="section-shell journey-section" id="how-it-works">
+        <div class="journey-image"><img src="assetes/edubridge-study-journey_805752ef.jpg" alt="Study documents and international academic path" /><div class="journey-image-label"><i data-lucide="BookOpenCheck"></i><span>One place for every document, request, and next action.</span></div></div>
+        <div class="journey-copy">
+          <p class="eyebrow">A CLEARER APPLICATION PATH</p>
+          <h2>Know what comes next—at every stage.</h2>
+          <p class="journey-intro">EduBridge replaces scattered messages and unclear follow-ups with a simple workflow designed around your real progress.</p>
+          <div class="journey-steps">
+            <article><span>01</span><div><h3>Create your profile</h3><p>Tell us about your academic path, goals, language, and preferred destination.</p></div></article>
+            <article><span>02</span><div><h3>Prepare your file</h3><p>Upload and organize documents, then see exactly what is still needed.</p></div></article>
+            <article><span>03</span><div><h3>Explore opportunities</h3><p>Review scholarship matches and request guidance from an EduBridge advisor.</p></div></article>
+            <article><span>04</span><div><h3>Track each step</h3><p>Follow services and applications from the first request to the final result.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="guidance-band" id="scholarships">
+        <div class="guidance-copy">
+          <p class="eyebrow">HUMAN GUIDANCE, SMARTER ORGANIZATION</p>
+          <h2>Technology helps you see the path. People help you walk it.</h2>
+          <p>Your dashboard can highlight document gaps and relevant opportunities. Your advisor remains involved before you take the next important step.</p>
+          <div class="guidance-points"><span><i data-lucide="Check"></i> Readiness score and missing-document alerts</span><span><i data-lucide="Check"></i> AI-assisted matching with advisor review</span><span><i data-lucide="Check"></i> Clear application and result tracking</span></div>
+          <a class="edu-btn navy" href="auth.html">Create your student account <i data-lucide="ArrowRight"></i></a>
+        </div>
+        <img src="assetes/edubridge-guidance-session_733db0c0.jpg" alt="EduBridge advisor supporting a student" />
+      </section>
+
+      <section class="section-shell platform-preview">
+        <div class="preview-head"><div><p class="eyebrow">ONE PLATFORM, THREE EXPERIENCES</p><h2>Built for students, advisors, and administrators.</h2></div><a href="student/dashboard.html" class="text-link">Open student portal <i data-lucide="ArrowRight"></i></a></div>
+        <div class="role-panels">
+          <a class="role-panel student" href="student/dashboard.html"><span class="role-icon"><i data-lucide="GraduationCap"></i></span><p>For students</p><h3>Stay ready, discover opportunities, and track every next step.</h3><ul><li><i data-lucide="Check"></i> Scholarship matches</li><li><i data-lucide="Check"></i> Document workspace</li><li><i data-lucide="Check"></i> Application journey</li></ul></a>
+          <a class="role-panel employee" href="employee/dashboard.html"><span class="role-icon"><i data-lucide="UsersRound"></i></span><p>For advisors</p><h3>Manage student histories and service workflows in one CRM.</h3><ul><li><i data-lucide="Check"></i> Student 360 profile</li><li><i data-lucide="Check"></i> Request pipeline</li><li><i data-lucide="Check"></i> Communication notes</li></ul></a>
+          <a class="role-panel admin" href="admin/dashboard.html"><span class="role-icon"><i data-lucide="ShieldCheck"></i></span><p>For administrators</p><h3>Monitor operations, access, reports, and scholarship activity.</h3><ul><li><i data-lucide="Check"></i> User roles</li><li><i data-lucide="Check"></i> Data reports</li><li><i data-lucide="Check"></i> Result tracker</li></ul></a>
+        </div>
+      </section>
+
+      <section class="cta-section" id="contact"><div><p class="eyebrow">READY WHEN YOU ARE</p><h2>Let your academic journey have a clearer starting point.</h2><p>Create your profile, prepare your documents, and see what opportunities may fit your goals.</p></div><a href="auth.html" class="edu-btn gold">Start your profile <i data-lucide="ArrowRight"></i></a></section>
+    </main>
+
+    <footer class="public-footer"><div><img src="assetes/logo_edubridge_dark.png" alt="Edu Bridge" /><p>Bridges Beyond Borders</p></div><div><strong>Student journey</strong><a href="#scholarships">Scholarships</a><a href="#services">Student services</a><a href="auth.html">Create account</a></div><div><strong>Platform</strong><a href="student/dashboard.html">Student portal</a><a href="employee/dashboard.html">Employee CRM</a><a href="admin/dashboard.html">Admin dashboard</a></div><div><strong>EduBridge</strong><a href="#about">About us</a><a href="#contact">Contact</a><span>&copy; 2026 EduBridge</span></div></footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

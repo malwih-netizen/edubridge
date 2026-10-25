@@ -1,0 +1,20 @@
+%% size: 2400x1800
+sequenceDiagram
+  autonumber
+  actor S as Student
+  participant API as PHP API
+  participant X as Text extraction
+  participant G as Groq API
+  participant DB as MySQL
+  actor E as Advisor
+  S->>API: Upload "Language certificate"
+  API->>DB: INSERT documents (underReview)
+  API->>X: Extract text (PDF text layer)
+  X-->>API: plain text (first pages)
+  API->>G: "Is this an IELTS/TOEFL result? Return test, score, date, name"
+  G-->>API: { type: "IELTS", score: 6.5, date: "2025-11", confidence: 0.92 }
+  API->>DB: Save suggestion (pre-filled review)
+  API->>E: Notification "Document ready for review"
+  E->>API: Approve (or correct the values)
+  API->>DB: UPDATE documents + student language score
+  API->>API: Re-compute readiness & match scores

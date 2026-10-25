@@ -1,0 +1,71 @@
+%% size: 2400x2200
+erDiagram
+  users {
+    INT id PK
+    ENUM role "student|employee|admin"
+    VARCHAR first_name
+    VARCHAR last_name
+    VARCHAR name_ar
+    VARCHAR email UK
+    VARCHAR phone
+    VARCHAR password_hash "bcrypt"
+    ENUM status "active|pending|suspended|invited"
+    ENUM department
+    TINYINT two_factor
+    DATETIME email_verified_at
+    DATETIME last_login_at
+  }
+  user_sessions {
+    INT id PK
+    INT user_id FK
+    CHAR token_id UK "JWT jti"
+    ENUM device_type
+    VARCHAR browser
+    VARCHAR os
+    VARCHAR ip_address
+    DATETIME last_active_at
+    DATETIME revoked_at
+  }
+  password_resets {
+    INT id PK
+    VARCHAR email
+    VARCHAR code_hash
+    DATETIME expires_at
+    DATETIME used_at
+  }
+  email_verifications {
+    INT id PK
+    INT user_id FK
+    VARCHAR email
+    VARCHAR token_hash
+    DATETIME expires_at
+  }
+  notifications {
+    INT id PK
+    INT user_id FK
+    ENUM type
+    VARCHAR title
+    VARCHAR title_ar
+    VARCHAR link
+    DATETIME read_at
+  }
+  notification_settings {
+    INT user_id PK,FK
+    ENUM category PK
+    TINYINT email
+    TINYINT in_app
+  }
+  audit_log {
+    BIGINT id PK
+    INT user_id FK
+    VARCHAR action
+    VARCHAR entity
+    INT entity_id
+    JSON meta
+  }
+  users ||--o{ user_sessions : "has"
+  users ||--o{ email_verifications : "has"
+  users ||--o{ notifications : "receives"
+  users ||--o{ notification_settings : "configures"
+  users ||--o{ audit_log : "performs"
+  password_resets }o..|| users : "matches email"

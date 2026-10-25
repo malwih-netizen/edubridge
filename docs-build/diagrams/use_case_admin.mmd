@@ -1,0 +1,20 @@
+%% size: 2200x1600
+flowchart LR
+  AD(["Administrator"]):::actor
+  subgraph SYS["EduBridge System — Admin & automated use cases"]
+    direction TB
+    A1(["Manage users & roles"])
+    A2(["Set permissions per module"])
+    A3(["Manage scholarships"])
+    A4(["View reports & statistics"])
+    A5(["Export reports"])
+    S1(["Compute match & readiness"])
+    S2(["Send notifications & reminders"])
+    S3(["Close expired scholarships"])
+  end
+  AI(["Scheduler + matching engine"]):::sys
+  AD --- A1 & A2 & A3 & A4 & A5
+  S1 & S2 & S3 --- AI
+  classDef actor fill:#000000,color:#fff,stroke:#000000
+  classDef sys fill:#808080,color:#fff,stroke:#595959
+  style SYS fill:#f5f5f5,stroke:#333333
