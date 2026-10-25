@@ -27,3 +27,4 @@ Thumbs.db
 
 # headless browser profiles used to render PDFs/diagrams
 .edge/
+deploy/pages/

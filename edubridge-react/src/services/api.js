@@ -27,7 +27,8 @@ api.interceptors.response.use(
   (err) => {
     if (err.response?.status === 401) {
       try { localStorage.removeItem('edu-session'); } catch { /* ignore */ }
-      if (!window.location.pathname.startsWith('/login')) window.location.assign('/login');
+      const login = `${import.meta.env.BASE_URL}login`; // BASE_URL is '/' or '/edubridge/' (GitHub Pages)
+      if (!window.location.pathname.startsWith(login)) window.location.assign(login);
     }
     return Promise.reject(err.response?.data || err);
   },
