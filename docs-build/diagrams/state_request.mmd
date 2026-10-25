@@ -1,0 +1,8 @@
+%% size: 1600x1400
+stateDiagram-v2
+  [*] --> NewRequest
+  NewRequest --> InProgress: assigned to advisor
+  InProgress --> WaitingForStudent: info needed
+  WaitingForStudent --> InProgress: student replies
+  InProgress --> Completed
+  Completed --> [*]

@@ -1,0 +1,265 @@
+{
+  "dashboard": {
+    "eyebrow": "Admin console · Overview",
+    "title": "Administrator dashboard",
+    "subtitle": "A cross-platform view of students, requests, applications and team performance.",
+    "exportReport": "Export report",
+    "openReports": "Open reports",
+    "trend": "{{value}} vs last month",
+    "trendTitle": "Students & applications trend",
+    "trendSub": "New students and submitted applications per month",
+    "statusTitle": "Application status mix",
+    "statusSub": "Where every application currently stands",
+    "countriesTitle": "Most requested countries",
+    "countriesSub": "Share of requests by destination",
+    "servicesTitle": "Most requested services",
+    "servicesSub": "Service requests ranked by volume",
+    "acceptanceTitle": "Acceptance statistics",
+    "acceptanceSub": "Admission outcomes this cycle",
+    "workloadTitle": "Employee workload",
+    "workloadSub": "Active and completed cases across {{count}} advisors",
+    "activityTitle": "Recent system activity",
+    "activitySub": "Audit trail of administrative actions",
+    "auditLog": "Audit log",
+    "noActivity": "No activity recorded yet",
+    "avgActive": "Avg. active per advisor",
+    "totalDone": "Cases completed",
+    "busiest": "Highest workload"
+  },
+  "kpi": {
+    "students": "Registered students",
+    "requests": "Service requests",
+    "applications": "Applications",
+    "acceptance": "Acceptance rate",
+    "requestsHint": "Across {{count}} services",
+    "acceptedHint": "{{count}} students accepted"
+  },
+  "charts": {
+    "students": "Students",
+    "applications": "Applications",
+    "area": "Area",
+    "bar": "Bars",
+    "noData": "No data for this period",
+    "totalApps": "Total applications",
+    "requests": "Requests",
+    "share": "Share of requests",
+    "reqCount": "{{count}} requests",
+    "acceptanceRate": "Acceptance",
+    "activeCases": "Active cases",
+    "completedCases": "Completed cases"
+  },
+  "activity": {
+    "newAdvisor": {
+      "title": "New advisor onboarded",
+      "text": "Layla Saeed joined Compliance with the Advisor role"
+    },
+    "batchApproved": {
+      "title": "Scholarship batch approved",
+      "text": "12 applications for the Fall intake — Canada & Germany"
+    },
+    "securityAudit": {
+      "title": "Security audit completed",
+      "text": "Role-based access review — no high-risk findings"
+    },
+    "roleChanged": {
+      "title": "Role permissions updated",
+      "text": "Advisor access to reports changed to view-only"
+    },
+    "reportExported": {
+      "title": "Monthly report generated",
+      "text": "Operations summary exported by the administrator"
+    },
+    "settingUpdated": {
+      "title": "System setting updated",
+      "text": "Application deadline extended for Malaysian universities"
+    }
+  },
+  "users": {
+    "eyebrow": "Identity & access",
+    "title": "Users & roles",
+    "subtitle": "Manage platform accounts, assign roles and control what each role can access.",
+    "export": "Export users",
+    "invite": "Invite user",
+    "never": "Never signed in",
+    "changeRole": "Change role",
+    "suspend": "Suspend",
+    "resend": "Resend invite",
+    "activate": "Activate",
+    "stats": {
+      "total": "Total users",
+      "active": "Active accounts",
+      "activeRate": "{{value}}% activation",
+      "pending": "Pending & invited",
+      "suspended": "Suspended"
+    },
+    "searchPlaceholder": "Search by name or email…",
+    "allRoles": "All roles",
+    "allStatuses": "All statuses",
+    "allDepartments": "All departments",
+    "loading": "Loading…",
+    "showing": "Showing {{count}} of {{total}} users",
+    "noResults": "No users match these filters",
+    "noResultsText": "Try a different search term or clear the filters.",
+    "cols": {
+      "user": "User",
+      "role": "Role",
+      "department": "Department",
+      "lastActive": "Last active",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "toast": {
+      "activated": "{{name}}'s account is now active.",
+      "suspended": "{{name}}'s account has been suspended.",
+      "roleChanged": "{{name}} is now assigned the {{role}} role.",
+      "invited": "Invitation sent to {{email}}.",
+      "resent": "Invitation re-sent to {{email}}."
+    }
+  },
+  "perm": {
+    "title": "Role permissions matrix",
+    "subtitle": "Role-based access control — what each role can do in every module",
+    "edit": "Edit permissions",
+    "module": "Module",
+    "modules": {
+      "profile": {
+        "title": "Student profile",
+        "desc": "Personal and academic information"
+      },
+      "documents": {
+        "title": "Documents",
+        "desc": "Upload, review and approve files"
+      },
+      "scholarships": {
+        "title": "Scholarships",
+        "desc": "Scholarship catalogue and eligibility"
+      },
+      "serviceRequests": {
+        "title": "Service requests",
+        "desc": "Create and process service requests"
+      },
+      "applications": {
+        "title": "Applications",
+        "desc": "Application journey and status updates"
+      },
+      "crm": {
+        "title": "Student CRM",
+        "desc": "All student records, notes and follow-ups"
+      },
+      "reports": {
+        "title": "Reports",
+        "desc": "Statistics, charts and exports"
+      },
+      "users": {
+        "title": "Users & roles",
+        "desc": "Accounts, invitations and role assignment"
+      },
+      "system": {
+        "title": "System settings",
+        "desc": "Platform configuration and security"
+      }
+    },
+    "levels": {
+      "edit": "Edit",
+      "view": "View",
+      "none": "No access"
+    },
+    "legend": {
+      "edit": "View, create and update",
+      "view": "Read-only access",
+      "none": "Module hidden for this role"
+    },
+    "note": "Students can only access their own profile, documents, requests and applications."
+  },
+  "invite": {
+    "title": "Invite a new user",
+    "intro": "The user receives an email invitation to set a password and activate the account.",
+    "name": "Full name",
+    "namePh": "e.g. Rana Haddad",
+    "email": "Email address",
+    "role": "Role",
+    "department": "Department",
+    "noDepartment": "Students are not assigned to a department.",
+    "chooseDepartment": "Choose a department",
+    "message": "Personal message (optional)",
+    "messageHint": "Added to the invitation email.",
+    "send": "Send invitation",
+    "sending": "Sending…",
+    "errors": {
+      "name": "Enter the user's full name (at least 3 characters).",
+      "email": "Enter a valid email address.",
+      "duplicate": "A user with this email already exists.",
+      "department": "Choose a department for staff accounts."
+    }
+  },
+  "roleModal": {
+    "title": "Change user role",
+    "confirm": "Update role",
+    "newRole": "New role",
+    "hints": {
+      "student": "Access to their own profile, documents and applications only.",
+      "employee": "Manages students, requests, scholarships and admission results.",
+      "admin": "Full access, including users, roles and system settings."
+    }
+  },
+  "reports": {
+    "eyebrow": "Admin console · Reports",
+    "title": "Reports & analytics",
+    "subtitle": "Track students, requests, applications, destinations, outcomes and team workload for any period.",
+    "exportExcel": "Export Excel",
+    "exportPdf": "Export PDF",
+    "exportCsv": "Export as CSV",
+    "period": "{{from}} – {{to}} 2026",
+    "range": "Reporting period",
+    "presets": {
+      "3m": "Last 3 months",
+      "all": "Last 6 months",
+      "custom": "Custom"
+    },
+    "from": "From",
+    "to": "To",
+    "kpi": {
+      "students": "New students",
+      "requests": "Service requests",
+      "applications": "Applications submitted",
+      "acceptance": "Acceptance rate",
+      "decided": "Of {{count}} decided applications"
+    },
+    "cards": {
+      "volume": {
+        "title": "Students & applications",
+        "sub": "Monthly volume for the selected period"
+      },
+      "statuses": {
+        "title": "Application status statistics",
+        "sub": "Distribution of applications by stage"
+      },
+      "countries": {
+        "title": "Most requested countries",
+        "sub": "Requests by study destination"
+      },
+      "services": {
+        "title": "Most requested services",
+        "sub": "Service requests by type"
+      },
+      "acceptance": {
+        "title": "Acceptance statistics",
+        "sub": "Accepted, rejected and awaiting results"
+      },
+      "workload": {
+        "title": "Employee workload",
+        "sub": "Active and completed cases per advisor"
+      }
+    },
+    "toast": {
+      "exportAll": "Full report prepared as {{format}}.",
+      "exportOne": "“{{name}}” exported as CSV."
+    },
+    "status": "Status",
+    "count": "Count",
+    "share": "Share",
+    "topItem": "Top: {{name}}",
+    "acceptanceNote": "Acceptance rate = accepted ÷ (accepted + rejected).",
+    "loadLine": "{{active}} active · {{done}} completed"
+  }
+}

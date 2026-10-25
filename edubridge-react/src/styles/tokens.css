@@ -1,0 +1,112 @@
+/* EduBridge design tokens — Academic Calm Bridge
+   Navy for structure, Bridge Gold for actions, calm white space. */
+:root {
+  /* Brand */
+  --navy-950: #071a33;
+  --navy-900: #0a2242;
+  --navy-800: #0f2c55;
+  --navy-700: #173a6b;
+  --navy-600: #24508a;
+  --gold-700: #9a6714;
+  --gold-600: #b57b18;
+  --gold-500: #c9952d;
+  --gold-400: #e0b354;
+  --gold-300: #f0cf86;
+  --gold-100: #fbf1da;
+  --gold-50: #fffaf0;
+
+  /* Neutrals */
+  --ink: #102b53;
+  --ink-2: #33496a;
+  --muted: #6b7f98;
+  --muted-2: #95a5b9;
+  --line: #e3eaf2;
+  --line-2: #eef3f8;
+  --surface: #ffffff;
+  --surface-2: #f6f9fd;
+  --surface-3: #eef4fb;
+
+  /* Status */
+  --success: #1f8a5b;
+  --success-bg: #e7f6ee;
+  --warning: #b7791f;
+  --warning-bg: #fdf3e1;
+  --danger: #c2413b;
+  --danger-bg: #fdecea;
+  --info: #2563a8;
+  --info-bg: #e8f1fc;
+
+  /* Type */
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+
+  /* Shape & depth */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --shadow-xs: 0 1px 2px rgba(15, 44, 85, .06);
+  --shadow-sm: 0 4px 14px rgba(15, 44, 85, .06);
+  --shadow-md: 0 12px 30px rgba(15, 44, 85, .10);
+  --shadow-gold: 0 12px 26px rgba(181, 123, 24, .28);
+  --ease: cubic-bezier(.23, 1, .32, 1);
+
+  /* semantic (switch with the theme) */
+  --heading: var(--navy-800);
+  --heading-2: var(--navy-700);
+  --surface-input: #fbfdff;
+  --topbar-bg: rgba(255, 255, 255, .88);
+  color-scheme: light;
+
+  --sidebar-w: 264px;
+  --topbar-h: 68px;
+}
+
+/* Arabic typography: Plex Sans Arabic for reading, Kufi for headings */
+html[lang="ar"] {
+  --font-body: "IBM Plex Sans Arabic", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-display: "Noto Kufi Arabic", "IBM Plex Sans Arabic", sans-serif;
+}
+
+/* ================= Dark theme (portals only; public site and sign-in stay light) ================= */
+html[data-theme="dark"] body:has(.portal) {
+  color-scheme: dark;
+  --ink: #e2e9f3;
+  --ink-2: #b7c4d5;
+  --muted: #8b9db3;
+  --muted-2: #66798f;
+  --line: #22354f;
+  --line-2: #1a2b43;
+  --surface: #0f1c30;
+  --surface-2: #091424;
+  --surface-3: #16273e;
+  --surface-input: #0b1729;
+  --topbar-bg: rgba(9, 20, 36, .86);
+  --heading: #eef3fa;
+  --heading-2: #c6d3e4;
+
+  --success: #4cc38a;
+  --success-bg: rgba(76, 195, 138, .14);
+  --warning: #e6b45c;
+  --warning-bg: rgba(230, 180, 92, .14);
+  --danger: #f07a73;
+  --danger-bg: rgba(240, 122, 115, .14);
+  --info: #6ea8f0;
+  --info-bg: rgba(110, 168, 240, .14);
+  --gold-50: rgba(224, 179, 84, .08);
+  --gold-100: rgba(224, 179, 84, .16);
+  --gold-700: #e7bf6c;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, .3);
+  --shadow-sm: 0 4px 14px rgba(0, 0, 0, .28);
+  --shadow-md: 0 12px 30px rgba(0, 0, 0, .38);
+}
+html[data-theme="dark"] body:has(.portal) .sidebar { background: linear-gradient(180deg, #0b1a30, #06101f); border-inline-end: 1px solid var(--line-2); }
+html[data-theme="dark"] body:has(.portal) .readiness-hero { border: 1px solid var(--line); }
+/* charts: navy series become light blue on the dark background */
+html[data-theme="dark"] body:has(.portal) [fill="#0f2c55"] { fill: #7fb0ec; }
+html[data-theme="dark"] body:has(.portal) [stroke="#0f2c55"] { stroke: #7fb0ec; }
+html[data-theme="dark"] body:has(.portal) [stop-color="#0f2c55"] { stop-color: #7fb0ec; }
+html[data-theme="dark"] body:has(.portal) .recharts-cartesian-grid line { stroke: var(--line-2); }
+html[data-theme="dark"] body:has(.portal) .recharts-text { fill: var(--muted); }
+html[data-theme="dark"] body:has(.portal) .recharts-default-tooltip { background: var(--surface) !important; border-color: var(--line) !important; }

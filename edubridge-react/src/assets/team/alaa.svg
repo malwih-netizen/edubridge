@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Team member placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#efe6f2"/><stop offset="1" stop-color="#d6c4de"/></linearGradient>
+    <linearGradient id="hj" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6d5a80"/><stop offset="1" stop-color="#5b4a6b"/></linearGradient>
+    <clipPath id="c"><circle cx="100" cy="100" r="100"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="200" height="200" fill="url(#bg)"/>
+    <path d="M100 20c-12 26-12 26 0 0" fill="none"/>
+    <!-- shoulders / top -->
+    <path d="M28 205c4-44 34-66 72-66s68 22 72 66z" fill="#24508a"/>
+    <!-- hijab drape -->
+    <path d="M100 34c-34 0-56 26-56 60 0 22 6 40 14 54 10 16 26 24 42 24s32-8 42-24c8-14 14-32 14-54 0-34-22-60-56-60z" fill="url(#hj)"/>
+    <path d="M58 150c12 18 26 26 42 26s30-8 42-26c-6 22-22 36-42 36s-36-14-42-36z" fill="#5b4a6b" opacity=".9"/>
+    <!-- face -->
+    <ellipse cx="100" cy="98" rx="30" ry="36" fill="#f3d0b0"/>
+    <!-- hijab frame over forehead -->
+    <path d="M68 92c0-24 14-40 32-40s32 16 32 40c-6-14-18-22-32-22s-26 8-32 22z" fill="url(#hj)"/>
+    <!-- subtle features -->
+    <ellipse cx="89" cy="100" rx="3.2" ry="3.6" fill="#2b2b3a" opacity=".75"/>
+    <ellipse cx="111" cy="100" rx="3.2" ry="3.6" fill="#2b2b3a" opacity=".75"/>
+    <path d="M91 116c5 4 13 4 18 0" fill="none" stroke="#9c5b4a" stroke-width="2.4" stroke-linecap="round"/>
+    <ellipse cx="82" cy="111" rx="5" ry="3" fill="#e79a8a" opacity=".35"/>
+    <ellipse cx="118" cy="111" rx="5" ry="3" fill="#e79a8a" opacity=".35"/>
+  </g>
+</svg>

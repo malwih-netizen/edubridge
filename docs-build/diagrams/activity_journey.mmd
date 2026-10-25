@@ -1,0 +1,25 @@
+%% size: 1800x3600
+flowchart TD
+  A((Start)):::st --> B["Student browses scholarships"]:::st
+  B --> C["Student signs in & completes profile"]:::st
+  C --> D["Student uploads documents"]:::st
+  D --> E["System computes readiness & match scores"]:::sy
+  E --> F["Student requests application assistance"]:::st
+  F --> G["System notifies the advisor"]:::sy
+  G --> H["Advisor reviews request & documents"]:::ad
+  H --> I{"Documents complete?"}
+  I -- No --> J["Advisor requests missing items<br/>(stage: waiting for student)"]:::ad
+  J --> K["System sends reminders"]:::sy
+  K --> L["Student uploads missing items"]:::st
+  L --> E
+  I -- Yes --> M["Advisor marks ready to apply"]:::ad
+  M --> N["Advisor submits the application"]:::ad
+  N --> O["Waiting for result"]:::ad
+  O --> P{"Result?"}
+  P -- Accepted --> Q["Advisor records acceptance"]:::ad
+  P -- Rejected --> R["Advisor records rejection<br/>& suggests alternatives"]:::ad
+  Q & R --> S["Student is notified"]:::sy
+  S --> T((End)):::st
+  classDef st fill:#f2f2f2,stroke:#333333,color:#000000
+  classDef ad fill:#e6e6e6,stroke:#808080,color:#000000
+  classDef sy fill:#ececec,stroke:#4d4d4d,color:#000000

@@ -1,0 +1,19 @@
+%% size: 2000x2600
+stateDiagram-v2
+  direction TB
+  [*] --> NewRequest: student applies
+  NewRequest --> Contacted: advisor calls
+  Contacted --> PreparingDocuments
+  PreparingDocuments --> WaitingForStudent: items missing
+  WaitingForStudent --> PreparingDocuments: student uploads
+  PreparingDocuments --> ReadyToApply: file complete
+  ReadyToApply --> Submitted: application sent
+  Submitted --> WaitingForResult
+  WaitingForResult --> Accepted: offer received
+  WaitingForResult --> Rejected
+  Accepted --> [*]
+  Rejected --> [*]
+  note right of WaitingForResult
+    Admission tracker updates
+    results_status of the scholarship
+  end note

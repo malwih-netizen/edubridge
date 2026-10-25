@@ -1,0 +1,498 @@
+<!--
+ EduBridge Admin Portal - Users & Roles
+ إدارة المستخدمين والأدوار - منصة EduBridge للمنح الدراسية والخدمات الطلابية
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="theme-color" content="#0F2C55" />
+    <meta name="description" content="EduBridge Users &amp; Roles — Manage platform users, roles and permissions" />
+    <link rel="icon" type="image/png" href="../assetes/logo_edubridge.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="../js/i18n-ar.js"></script>
+    <script src="../js/i18n.js"></script>
+    <title>EduBridge Admin — Users &amp; Roles</title>
+  </head>
+  <body>
+    <div class="edu-toast" id="eduToast" role="status" aria-live="polite">
+      <i data-lucide="users" style="width:14px;height:14px;vertical-align:-2px;margin-right:6px;"></i>
+      Users &amp; Roles center loaded. 2,847 users synced.
+    </div>
+
+    <button class="menu-overlay" aria-label="Close menu"></button>
+
+    <div class="portal-shell">
+      <aside class="portal-sidebar" id="portalSidebar">
+        <div class="sidebar-top">
+          <a href="dashboard.html" class="brand-lockup">
+            <img src="../assetes/logo_edubridge_dark.png" alt="EduBridge" class="brand-logo" />
+          </a>
+          <button class="icon-btn sidebar-close" aria-label="Close sidebar">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav" aria-label="Admin navigation">
+          <a href="dashboard.html" class="side-link">
+            <i data-lucide="layout-dashboard"></i>
+            <span>Admin Overview</span>
+          </a>
+          <a href="users.html" class="side-link active">
+            <i data-lucide="users"></i>
+            <span>Users &amp; Roles</span>
+          </a>
+          <a href="dashboard.html" class="side-link">
+            <i data-lucide="graduation-cap"></i>
+            <span>Students</span>
+          </a>
+          <a href="dashboard.html" class="side-link">
+            <i data-lucide="briefcase"></i>
+            <span>Employees</span>
+          </a>
+          <a href="dashboard.html" class="side-link">
+            <i data-lucide="award"></i>
+            <span>Scholarships</span>
+          </a>
+          <a href="dashboard.html" class="side-link">
+            <i data-lucide="clipboard-list"></i>
+            <span>Applications</span>
+          </a>
+          <a href="dashboard.html" class="side-link">
+            <i data-lucide="concierge-bell"></i>
+            <span>Services</span>
+          </a>
+          <a href="dashboard.html" class="side-link">
+            <i data-lucide="bar-chart-3"></i>
+            <span>Reports</span>
+          </a>
+          <a href="dashboard.html" class="side-link">
+            <i data-lucide="settings"></i>
+            <span>System Settings</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="support-card">
+            <i data-lucide="life-buoy" style="width:18px;height:18px;"></i>
+            <div>
+              <strong>Admin Support</strong>
+              <span>Priority channel, 24/7</span>
+            </div>
+            <i data-lucide="chevron-right" style="width:14px;height:14px;"></i>
+          </div>
+          <div class="security-note">
+            <i data-lucide="shield-check" style="width:14px;height:14px;color:#f4cc78;"></i>
+            Secure. Scalable. Trusted.
+          </div>
+        </div>
+      </aside>
+
+      <main class="portal-main">
+        <header class="portal-header">
+          <div class="header-left">
+            <button class="icon-btn mobile-menu" aria-label="Open menu">
+              <i data-lucide="menu"></i>
+            </button>
+            <img src="../assetes/logo_edubridge.png" alt="" class="portal-header-mark" />
+            <nav class="crumbs" aria-label="Breadcrumb">
+              <i data-lucide="home" style="width:13px;height:13px;"></i>
+              <span>Admin</span>
+              <i data-lucide="chevron-right" style="width:11px;height:11px;"></i>
+              <span class="current">Administrator Dashboard</span>
+            </nav>
+          </div>
+
+          <div class="header-actions">
+            <div class="top-search">
+              <i data-lucide="search" style="width:13px;height:13px;"></i>
+              <input type="search" placeholder="Search users, emails, roles…" aria-label="Search" />
+              <kbd style="font-size:9px;color:#9aa8b8;border:1px solid #dbe4ec;padding:1px 5px;border-radius:4px;">Ctrl K</kbd>
+            </div>
+            <button class="icon-btn notification-btn" aria-label="Notifications">
+              <i data-lucide="bell"></i>
+              <b>3</b>
+            </button>
+            <button class="profile-trigger" aria-label="Profile menu">
+              <span class="avatar avatar-blue">AU</span>
+              <span>Admin User</span>
+              <i data-lucide="chevron-down" style="width:13px;height:13px;"></i>
+            </button>
+          </div>
+        </header>
+
+        <section class="portal-content">
+          <div class="portal-title-row">
+            <div>
+              <p class="eyebrow">USERS &amp; ROLES · IDENTITY &amp; ACCESS</p>
+              <h1>Users &amp; Roles</h1>
+              <p>Manage platform accounts, assign roles and permissions, and monitor access activity.</p>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button class="edu-btn outline small">
+                <i data-lucide="upload" style="width:12px;height:12px;"></i>
+                Import Users
+              </button>
+              <button class="edu-btn gold small">
+                <i data-lucide="user-plus" style="width:12px;height:12px;"></i>
+                Invite User
+              </button>
+            </div>
+          </div>
+
+          <div class="stat-grid users-stats">
+            <div class="stat-card">
+              <div class="stat-icon blue">
+                <i data-lucide="users" style="width:18px;height:18px;"></i>
+              </div>
+              <div>
+                <strong>2,847</strong>
+                <span>Total Platform Users</span>
+                <small><i data-lucide="trending-up" style="width:9px;height:9px;vertical-align:-1px;"></i> +162 this week</small>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon gold">
+                <i data-lucide="shield-half" style="width:18px;height:18px;"></i>
+              </div>
+              <div>
+                <strong>8</strong>
+                <span>Configured Roles</span>
+                <small><i data-lucide="shield-check" style="width:9px;height:9px;vertical-align:-1px;"></i> RBAC enforced</small>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon green">
+                <i data-lucide="user-check" style="width:18px;height:18px;"></i>
+              </div>
+              <div>
+                <strong>2,609</strong>
+                <span>Verified &amp; Active</span>
+                <small><i data-lucide="trending-up" style="width:9px;height:9px;vertical-align:-1px;"></i> 91.6% activation</small>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon blue">
+                <i data-lucide="alert-triangle" style="width:18px;height:18px;"></i>
+              </div>
+              <div>
+                <strong>23</strong>
+                <span>Flagged Accounts</span>
+                <small style="color:#b44949;"><i data-lucide="clock" style="width:9px;height:9px;vertical-align:-1px;"></i> 5 require review</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="users-filter">
+            <label>
+              Role
+              <select aria-label="Filter by role">
+                <option>All Roles</option>
+                <option>Administrator</option>
+                <option>Advisor</option>
+                <option>Student</option>
+                <option>Employee</option>
+                <option>Visa Specialist</option>
+                <option>Scholarship Officer</option>
+              </select>
+            </label>
+            <label>
+              Status
+              <select aria-label="Filter by status">
+                <option>All Statuses</option>
+                <option>Active</option>
+                <option>Pending</option>
+                <option>Suspended</option>
+                <option>Invited</option>
+              </select>
+            </label>
+            <label>
+              Department
+              <select aria-label="Filter by department">
+                <option>All Departments</option>
+                <option>Admissions</option>
+                <option>Student Services</option>
+                <option>Scholarships</option>
+                <option>Visa &amp; Immigration</option>
+                <option>Compliance</option>
+              </select>
+            </label>
+            <label>
+              Last Active
+              <select aria-label="Filter by last active">
+                <option>Any time</option>
+                <option>Last 24 hours</option>
+                <option>Last 7 days</option>
+                <option>Last 30 days</option>
+                <option>Over 30 days</option>
+              </select>
+            </label>
+            <button class="edu-btn navy small" style="margin-left:auto;white-space:nowrap;">
+              <i data-lucide="download" style="width:11px;height:11px;"></i>
+              Export Users
+            </button>
+          </div>
+
+          <div class="users-grid">
+            <div class="users-table">
+              <div class="users-head">
+                <span>User</span>
+                <span>Contact</span>
+                <span>Role</span>
+                <span>Department</span>
+                <span>Last Active</span>
+                <span>Status</span>
+                <span></span>
+              </div>
+
+              <div class="user-line">
+                <div class="student-cell">
+                  <span class="avatar avatar-blue">SA</span>
+                  <b>
+                    Sara Al-Mansoori
+                    <small>ID: EMP-2041</small>
+                  </b>
+                </div>
+                <div>
+                  <div style="font-weight:700;color:#314d6b;">sara.almansoori@edubridge.ae</div>
+                  <small style="color:#94a2b2;">+971 50 234 5678</small>
+                </div>
+                <span class="status-pill blue">Advisor</span>
+                <div style="font-size:9px;color:#63778d;">Student Services</div>
+                <div>
+                  <div style="font-size:9px;color:#475e79;font-weight:700;">2 min ago</div>
+                  <small style="color:#9aa8b8;">Chrome · macOS</small>
+                </div>
+                <span class="status-pill green">Active</span>
+                <button aria-label="More options">
+                  <i data-lucide="more-horizontal" style="width:14px;height:14px;"></i>
+                </button>
+              </div>
+
+              <div class="user-line">
+                <div class="student-cell">
+                  <span class="avatar avatar-gold">YK</span>
+                  <b>
+                    Yousef Karimi
+                    <small>ID: EMP-1876</small>
+                  </b>
+                </div>
+                <div>
+                  <div style="font-weight:700;color:#314d6b;">yousef.karimi@edubridge.ae</div>
+                  <small style="color:#94a2b2;">+971 50 876 5432</small>
+                </div>
+                <span class="status-pill gold">Senior Advisor</span>
+                <div style="font-size:9px;color:#63778d;">Admissions</div>
+                <div>
+                  <div style="font-size:9px;color:#475e79;font-weight:700;">28 min ago</div>
+                  <small style="color:#9aa8b8;">Safari · iOS</small>
+                </div>
+                <span class="status-pill green">Active</span>
+                <button aria-label="More options">
+                  <i data-lucide="more-horizontal" style="width:14px;height:14px;"></i>
+                </button>
+              </div>
+
+              <div class="user-line">
+                <div class="student-cell">
+                  <span class="avatar avatar-blue">NH</span>
+                  <b>
+                    Noor Hassan
+                    <small>ID: EMP-2102</small>
+                  </b>
+                </div>
+                <div>
+                  <div style="font-weight:700;color:#314d6b;">noor.hassan@edubridge.ae</div>
+                  <small style="color:#94a2b2;">+971 55 432 1098</small>
+                </div>
+                <span class="status-pill blue">Visa Specialist</span>
+                <div style="font-size:9px;color:#63778d;">Visa &amp; Immigration</div>
+                <div>
+                  <div style="font-size:9px;color:#475e79;font-weight:700;">1 hr ago</div>
+                  <small style="color:#9aa8b8;">Firefox · Windows</small>
+                </div>
+                <span class="status-pill green">Active</span>
+                <button aria-label="More options">
+                  <i data-lucide="more-horizontal" style="width:14px;height:14px;"></i>
+                </button>
+              </div>
+
+              <div class="user-line">
+                <div class="student-cell">
+                  <span class="avatar avatar-gold">OF</span>
+                  <b>
+                    Omar Farouk
+                    <small>ID: EMP-1934</small>
+                  </b>
+                </div>
+                <div>
+                  <div style="font-weight:700;color:#314d6b;">omar.farouk@edubridge.ae</div>
+                  <small style="color:#94a2b2;">+971 52 777 2211</small>
+                </div>
+                <span class="status-pill slate">Scholarship Officer</span>
+                <div style="font-size:9px;color:#63778d;">Scholarships</div>
+                <div>
+                  <div style="font-size:9px;color:#475e79;font-weight:700;">Yesterday</div>
+                  <small style="color:#9aa8b8;">Edge · Windows</small>
+                </div>
+                <span class="status-pill gold">Pending</span>
+                <button aria-label="More options">
+                  <i data-lucide="more-horizontal" style="width:14px;height:14px;"></i>
+                </button>
+              </div>
+
+              <div class="user-line">
+                <div class="student-cell">
+                  <span class="avatar avatar-blue">LS</span>
+                  <b>
+                    Layla Saeed
+                    <small>ID: EMP-2041</small>
+                  </b>
+                </div>
+                <div>
+                  <div style="font-weight:700;color:#314d6b;">layla.saeed@edubridge.ae</div>
+                  <small style="color:#94a2b2;">+971 50 112 3344</small>
+                </div>
+                <span class="status-pill green">Compliance</span>
+                <div style="font-size:9px;color:#63778d;">Docs &amp; Compliance</div>
+                <div>
+                  <div style="font-size:9px;color:#475e79;font-weight:700;">2 days ago</div>
+                  <small style="color:#9aa8b8;">Chrome · Android</small>
+                </div>
+                <span class="status-pill green">Active</span>
+                <button aria-label="More options">
+                  <i data-lucide="more-horizontal" style="width:14px;height:14px;"></i>
+                </button>
+              </div>
+
+              <button class="full-row-button">
+                Load more users <i data-lucide="chevron-down" style="width:10px;height:10px;"></i>
+              </button>
+            </div>
+
+            <aside class="role-side">
+              <section class="role-preview">
+                <h3>Advisor Role</h3>
+                <p>Default counselor profile — student facing, CRM focused, limited financial access.</p>
+
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <i data-lucide="user-cog" style="width:11px;height:11px;"></i>
+                    <b>User Management</b>
+                  </div>
+                  <span class="limited">Limited</span>
+                </div>
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <i data-lucide="graduation-cap" style="width:11px;height:11px;"></i>
+                    <b>Student Records</b>
+                  </div>
+                  <span class="allowed">Allowed</span>
+                </div>
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <i data-lucide="clipboard-list" style="width:11px;height:11px;"></i>
+                    <b>Applications</b>
+                  </div>
+                  <span class="allowed">Allowed</span>
+                </div>
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <i data-lucide="award" style="width:11px;height:11px;"></i>
+                    <b>Scholarship Awards</b>
+                  </div>
+                  <span class="limited">Read only</span>
+                </div>
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <i data-lucide="concierge-bell" style="width:11px;height:11px;"></i>
+                    <b>Service Requests</b>
+                  </div>
+                  <span class="allowed">Allowed</span>
+                </div>
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <i data-lucide="dollar-sign" style="width:11px;height:11px;"></i>
+                    <b>Financial Data</b>
+                  </div>
+                  <span class="denied">Denied</span>
+                </div>
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <i data-lucide="bar-chart-3" style="width:11px;height:11px;"></i>
+                    <b>Reports</b>
+                  </div>
+                  <span class="limited">Own data</span>
+                </div>
+                <div>
+                  <div style="display:flex;align-items:center;gap:5px;">
+                    <i data-lucide="settings" style="width:11px;height:11px;"></i>
+                    <b>System Settings</b>
+                  </div>
+                  <span class="denied">Denied</span>
+                </div>
+
+                <button class="full-row-button">
+                  Edit Advisor permissions <i data-lucide="arrow-right" style="width:10px;height:10px;"></i>
+                </button>
+              </section>
+
+              <section class="access-activity">
+                <h3>
+                  Recent Access Activity
+                  <button>View audit log</button>
+                </h3>
+
+                <div>
+                  <span><i data-lucide="log-in" style="width:10px;height:10px;"></i></span>
+                  <p>
+                    <b>Sara Al-Mansoori</b> signed in successfully
+                    <small>2 minutes ago · Chrome 128 · Dubai, UAE</small>
+                  </p>
+                </div>
+                <div>
+                  <span><i data-lucide="file-edit" style="width:10px;height:10px;"></i></span>
+                  <p>
+                    <b>Yousef Karimi</b> updated student record STU-8842
+                    <small>31 minutes ago · Safari 17 · Abu Dhabi, UAE</small>
+                  </p>
+                </div>
+                <div>
+                  <span><i data-lucide="user-shield" style="width:10px;height:10px;"></i></span>
+                  <p>
+                    <b>Admin User</b> modified Advisor role permissions
+                    <small>1 hour ago · Admin action logged
+                  </p>
+                </div>
+                <div>
+                  <span><i data-lucide="log-out" style="width:10px;height:10px;"></i></span>
+                  <p>
+                    <b>Noor Hassan</b> session ended — idle timeout
+                    <small>3 hours ago · Firefox 129 · Remote
+                  </p>
+                </div>
+                <div>
+                  <span><i data-lucide="shield-alert" style="width:10px;height:10px;color:#b44949;"></i></span>
+                  <p>
+                    <b>Omar Farouk</b> failed 2FA challenge — blocked 10 min
+                    <small>Yesterday · Edge 127 · Riyadh, KSA
+                  </p>
+                </div>
+              </section>
+            </aside>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://unpkg.com/lucide@1.50.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="../js/app.js"></script>
+  </body>
+</html>

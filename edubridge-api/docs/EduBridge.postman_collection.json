@@ -1,0 +1,3993 @@
+{
+  "info": {
+    "name": "EduBridge API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Start with Auth → POST /auth/login. The token is saved automatically and used by every other request.\nDemo accounts (password demo1234): student@edubridge.app · advisor@edubridge.app · admin@edubridge.app"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "staffToken",
+      "value": ""
+    },
+    {
+      "key": "newEmail",
+      "value": ""
+    },
+    {
+      "key": "resetCode",
+      "value": ""
+    },
+    {
+      "key": "resetToken",
+      "value": ""
+    },
+    {
+      "key": "otherSessionId",
+      "value": "0"
+    }
+  ],
+  "item": [
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "GET /health — API and database status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "API and database status\n\nAccess: Public",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"status\": \"ok\",\n  \"database\": \"10.4.32-MariaDB\",\n  \"time\": \"2026-10-25T17:36:20+02:00\"\n}",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                },
+                "description": "API and database status\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "POST /auth/login — Sign in (saves the token in Postman automatically)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Sign in (saves the token in Postman automatically)\n\nAccess: Public",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@edubridge.app\",\n  \"password\": \"demo1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"token\": \"<JWT>\",\n  \"user\": {\n    \"id\": 1,\n    \"role\": \"student\",\n    \"email\": \"student@edubridge.app\",\n    \"name\": \"Sarah Ahmed\",\n    \"nameAr\": \"سارة أحمد\",\n    \"title\": null,\n    \"titleAr\": null\n  }\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                },
+                "description": "Sign in (saves the token in Postman automatically)\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"student@edubridge.app\",\n  \"password\": \"demo1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "401 example",
+              "code": 401,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_credentials\",\n    \"message\": \"invalid_credentials\"\n  }\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                },
+                "description": "Sign in (saves the token in Postman automatically)\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"student@edubridge.app\",\n  \"password\": \"demo1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// يحفظ التوكن تلقائياً لباقي الطلبات",
+                  "const body = pm.response.json();",
+                  "if (body.token) { pm.collectionVariables.set('token', body.token); }",
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /auth/register — Create a student account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Create a student account\n\nAccess: Public",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Lina\",\n  \"lastName\": \"Saleh\",\n  \"email\": \"lina.{{$timestamp}}@example.com\",\n  \"password\": \"secret123\",\n  \"gender\": \"female\",\n  \"nationality\": \"palestine\",\n  \"currentLevel\": \"bachelor\",\n  \"level\": \"master\",\n  \"field\": \"engineering\",\n  \"gpa\": \"3.5\",\n  \"countries\": [\n    \"germany\",\n    \"canada\"\n  ],\n  \"funding\": \"full\",\n  \"help\": \"full\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 example",
+              "code": 201,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"token\": \"<JWT>\",\n  \"user\": {\n    \"id\": 11,\n    \"role\": \"student\",\n    \"email\": \"lina@example.com\",\n    \"name\": \"Lina Saleh\",\n    \"nameAr\": null,\n    \"title\": null,\n    \"titleAr\": null\n  }\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                },
+                "description": "Create a student account\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Lina\",\n  \"lastName\": \"Saleh\",\n  \"email\": \"lina.{{$timestamp}}@example.com\",\n  \"password\": \"secret123\",\n  \"gender\": \"female\",\n  \"nationality\": \"palestine\",\n  \"currentLevel\": \"bachelor\",\n  \"level\": \"master\",\n  \"field\": \"engineering\",\n  \"gpa\": \"3.5\",\n  \"countries\": [\n    \"germany\",\n    \"canada\"\n  ],\n  \"funding\": \"full\",\n  \"help\": \"full\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "409 example",
+              "code": 409,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"email_taken\",\n    \"message\": \"email_taken\",\n    \"details\": {\n      \"email\": \"taken\"\n    }\n  }\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                },
+                "description": "Create a student account\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Lina\",\n  \"lastName\": \"Saleh\",\n  \"email\": \"lina.{{$timestamp}}@example.com\",\n  \"password\": \"secret123\",\n  \"gender\": \"female\",\n  \"nationality\": \"palestine\",\n  \"currentLevel\": \"bachelor\",\n  \"level\": \"master\",\n  \"field\": \"engineering\",\n  \"gpa\": \"3.5\",\n  \"countries\": [\n    \"germany\",\n    \"canada\"\n  ],\n  \"funding\": \"full\",\n  \"help\": \"full\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "422 example",
+              "code": 422,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"validation_failed\",\n    \"message\": \"validation_failed\",\n    \"details\": {\n      \"email\": \"email\"\n    }\n  }\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                },
+                "description": "Create a student account\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Lina\",\n  \"lastName\": \"Saleh\",\n  \"email\": \"lina.{{$timestamp}}@example.com\",\n  \"password\": \"secret123\",\n  \"gender\": \"female\",\n  \"nationality\": \"palestine\",\n  \"currentLevel\": \"bachelor\",\n  \"level\": \"master\",\n  \"field\": \"engineering\",\n  \"gpa\": \"3.5\",\n  \"countries\": [\n    \"germany\",\n    \"canada\"\n  ],\n  \"funding\": \"full\",\n  \"help\": \"full\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) { pm.collectionVariables.set('newEmail', pm.response.json().user.email); }",
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /auth/me — Current user",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            },
+            "description": "Current user\n\nAccess: Any signed-in user"
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 1,\n  \"role\": \"student\",\n  \"email\": \"student@edubridge.app\",\n  \"name\": \"Sarah Ahmed\",\n  \"nameAr\": \"سارة أحمد\",\n  \"title\": null,\n  \"titleAr\": null\n}",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "me"
+                  ]
+                },
+                "description": "Current user\n\nAccess: Any signed-in user"
+              }
+            },
+            {
+              "name": "401 example",
+              "code": 401,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"unauthenticated\",\n    \"message\": \"unauthenticated\"\n  }\n}",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "me"
+                  ]
+                },
+                "description": "Current user\n\nAccess: Any signed-in user"
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /auth/forgot-password — Send a 6-digit reset code (returned as devCode in local mode)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/forgot-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "forgot-password"
+              ]
+            },
+            "description": "Send a 6-digit reset code (returned as devCode in local mode)\n\nAccess: Public",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{newEmail}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"sent\": true,\n  \"devCode\": \"482913\"\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/forgot-password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "forgot-password"
+                  ]
+                },
+                "description": "Send a 6-digit reset code (returned as devCode in local mode)\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"{{newEmail}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const b = pm.response.json(); if (b.devCode) { pm.collectionVariables.set('resetCode', b.devCode); }",
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /auth/verify-code — Check the reset code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/verify-code",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "verify-code"
+              ]
+            },
+            "description": "Check the reset code\n\nAccess: Public",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{newEmail}}\",\n  \"code\": \"{{resetCode}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"resetToken\": \"7.9f2c…\"\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/verify-code",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "verify-code"
+                  ]
+                },
+                "description": "Check the reset code\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"{{newEmail}}\",\n  \"code\": \"{{resetCode}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "422 example",
+              "code": 422,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"invalid_code\",\n    \"message\": \"invalid_code\"\n  }\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/verify-code",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "verify-code"
+                  ]
+                },
+                "description": "Check the reset code\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"{{newEmail}}\",\n  \"code\": \"{{resetCode}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const b = pm.response.json(); if (b.resetToken) { pm.collectionVariables.set('resetToken', b.resetToken); }",
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /auth/reset-password — Set a new password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/reset-password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "reset-password"
+              ]
+            },
+            "description": "Set a new password\n\nAccess: Public",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"resetToken\": \"{{resetToken}}\",\n  \"password\": \"newSecret123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"ok\": true\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/reset-password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "reset-password"
+                  ]
+                },
+                "description": "Set a new password\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"resetToken\": \"{{resetToken}}\",\n  \"password\": \"newSecret123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /auth/resend-confirmation — Resend the email confirmation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/resend-confirmation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "resend-confirmation"
+              ]
+            },
+            "description": "Resend the email confirmation\n\nAccess: Public",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@edubridge.app\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"sent\": true\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/resend-confirmation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "resend-confirmation"
+                  ]
+                },
+                "description": "Resend the email confirmation\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"student@edubridge.app\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Scholarships",
+      "item": [
+        {
+          "name": "GET /scholarships — Public scholarship directory with filters",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/scholarships?level=master&country=germany",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "scholarships"
+              ],
+              "query": [
+                {
+                  "key": "level",
+                  "value": "master",
+                  "description": "bachelor | master | phd",
+                  "disabled": false
+                },
+                {
+                  "key": "country",
+                  "value": "germany",
+                  "description": "e.g. germany, canada, uk",
+                  "disabled": false
+                },
+                {
+                  "key": "field",
+                  "value": "",
+                  "description": "e.g. engineering, computerScience",
+                  "disabled": true
+                },
+                {
+                  "key": "funding",
+                  "value": "",
+                  "description": "full | partial | self",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "",
+                  "description": "open | upcoming | closed",
+                  "disabled": true
+                },
+                {
+                  "key": "q",
+                  "value": "",
+                  "description": "search in name / university (EN or AR)",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Public scholarship directory with filters\n\nAccess: Public",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "[\n  {\n    \"id\": 2,\n    \"name\": \"DAAD Graduate Scholarship\",\n    \"nameAr\": \"منحة DAAD للدراسات العليا\",\n    \"university\": \"Technical University of Munich\",\n    \"universityAr\": \"الجامعة التقنية في ميونخ\",\n    \"country\": \"germany\",\n    \"levels\": [\n      \"master\",\n      \"phd\"\n    ],\n    \"fields\": [\n      \"engineering\",\n      \"computerScience\",\n      \"science\"\n    ],\n    \"minGpa\": 3.0,\n    \"language\": {\n      \"test\": \"IELTS\",\n      \"score\": 6.5\n    },\n    \"nationalities\": [\n      \"all\"\n    ],\n    \"funding\": \"full\",\n    \"opens\": \"2026-07-15\",\n    \"deadline\": \"2026-12-01\",\n    \"status\": \"open\",\n    \"results\": \"notStarted\",\n    \"amount\": \"EUR 992 / month\",\n    \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n    \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\",\n    \"tags\": []\n  }\n]",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scholarships?level=master&country=germany",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scholarships"
+                  ],
+                  "query": [
+                    {
+                      "key": "level",
+                      "value": "master",
+                      "description": "bachelor | master | phd",
+                      "disabled": false
+                    },
+                    {
+                      "key": "country",
+                      "value": "germany",
+                      "description": "e.g. germany, canada, uk",
+                      "disabled": false
+                    },
+                    {
+                      "key": "field",
+                      "value": "",
+                      "description": "e.g. engineering, computerScience",
+                      "disabled": true
+                    },
+                    {
+                      "key": "funding",
+                      "value": "",
+                      "description": "full | partial | self",
+                      "disabled": true
+                    },
+                    {
+                      "key": "status",
+                      "value": "",
+                      "description": "open | upcoming | closed",
+                      "disabled": true
+                    },
+                    {
+                      "key": "q",
+                      "value": "",
+                      "description": "search in name / university (EN or AR)",
+                      "disabled": true
+                    }
+                  ]
+                },
+                "description": "Public scholarship directory with filters\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /scholarships/{id} — One scholarship",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/scholarships/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "scholarships",
+                "2"
+              ]
+            },
+            "description": "One scholarship\n\nAccess: Public",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 2,\n  \"name\": \"DAAD Graduate Scholarship\",\n  \"nameAr\": \"منحة DAAD للدراسات العليا\",\n  \"university\": \"Technical University of Munich\",\n  \"universityAr\": \"الجامعة التقنية في ميونخ\",\n  \"country\": \"germany\",\n  \"levels\": [\n    \"master\",\n    \"phd\"\n  ],\n  \"fields\": [\n    \"engineering\",\n    \"computerScience\",\n    \"science\"\n  ],\n  \"minGpa\": 3.0,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 6.5\n  },\n  \"nationalities\": [\n    \"all\"\n  ],\n  \"funding\": \"full\",\n  \"opens\": \"2026-07-15\",\n  \"deadline\": \"2026-12-01\",\n  \"status\": \"open\",\n  \"results\": \"notStarted\",\n  \"amount\": \"EUR 992 / month\",\n  \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n  \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\",\n  \"tags\": []\n}",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scholarships/2",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scholarships",
+                    "2"
+                  ]
+                },
+                "description": "One scholarship\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                }
+              }
+            },
+            {
+              "name": "404 example",
+              "code": 404,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"not_found\",\n    \"message\": \"not_found\"\n  }\n}",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scholarships/2",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scholarships",
+                    "2"
+                  ]
+                },
+                "description": "One scholarship\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /auth/login — Sign in as advisor (saves staffToken)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Sign in as advisor (saves staffToken)\n\nAccess: Public",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"advisor@edubridge.app\",\n  \"password\": \"demo1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"token\": \"<JWT>\",\n  \"user\": {\n    \"id\": 2,\n    \"role\": \"employee\",\n    \"email\": \"advisor@edubridge.app\",\n    \"name\": \"Maya Khalil\",\n    \"nameAr\": \"سارة أحمد\",\n    \"title\": null,\n    \"titleAr\": null\n  }\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                },
+                "description": "Sign in as advisor (saves staffToken)\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"advisor@edubridge.app\",\n  \"password\": \"demo1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const b = pm.response.json(); if (b.token) { pm.collectionVariables.set('staffToken', b.token); }",
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /scholarships — Create a scholarship (advisor / admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/scholarships",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "scholarships"
+              ]
+            },
+            "description": "Create a scholarship (advisor / admin)\n\nAccess: Advisor or admin",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{staffToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Scholarship\",\n  \"nameAr\": \"منحة DAAD للدراسات العليا\",\n  \"university\": \"Technical University of Munich\",\n  \"universityAr\": \"الجامعة التقنية في ميونخ\",\n  \"country\": \"germany\",\n  \"levels\": [\n    \"master\",\n    \"phd\"\n  ],\n  \"fields\": [\n    \"engineering\",\n    \"computerScience\",\n    \"science\"\n  ],\n  \"minGpa\": 3.0,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 6.5\n  },\n  \"nationalities\": [\n    \"all\"\n  ],\n  \"funding\": \"full\",\n  \"opens\": \"2026-07-15\",\n  \"deadline\": \"2026-12-01\",\n  \"status\": \"open\",\n  \"amount\": \"EUR 992 / month\",\n  \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n  \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 example",
+              "code": 201,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 2,\n  \"name\": \"DAAD Graduate Scholarship\",\n  \"nameAr\": \"منحة DAAD للدراسات العليا\",\n  \"university\": \"Technical University of Munich\",\n  \"universityAr\": \"الجامعة التقنية في ميونخ\",\n  \"country\": \"germany\",\n  \"levels\": [\n    \"master\",\n    \"phd\"\n  ],\n  \"fields\": [\n    \"engineering\",\n    \"computerScience\",\n    \"science\"\n  ],\n  \"minGpa\": 3.0,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 6.5\n  },\n  \"nationalities\": [\n    \"all\"\n  ],\n  \"funding\": \"full\",\n  \"opens\": \"2026-07-15\",\n  \"deadline\": \"2026-12-01\",\n  \"status\": \"open\",\n  \"results\": \"notStarted\",\n  \"amount\": \"EUR 992 / month\",\n  \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n  \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\",\n  \"tags\": []\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scholarships",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scholarships"
+                  ]
+                },
+                "description": "Create a scholarship (advisor / admin)\n\nAccess: Advisor or admin",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{staffToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Scholarship\",\n  \"nameAr\": \"منحة DAAD للدراسات العليا\",\n  \"university\": \"Technical University of Munich\",\n  \"universityAr\": \"الجامعة التقنية في ميونخ\",\n  \"country\": \"germany\",\n  \"levels\": [\n    \"master\",\n    \"phd\"\n  ],\n  \"fields\": [\n    \"engineering\",\n    \"computerScience\",\n    \"science\"\n  ],\n  \"minGpa\": 3.0,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 6.5\n  },\n  \"nationalities\": [\n    \"all\"\n  ],\n  \"funding\": \"full\",\n  \"opens\": \"2026-07-15\",\n  \"deadline\": \"2026-12-01\",\n  \"status\": \"open\",\n  \"amount\": \"EUR 992 / month\",\n  \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n  \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "403 example",
+              "code": 403,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"forbidden\",\n    \"message\": \"forbidden\"\n  }\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scholarships",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scholarships"
+                  ]
+                },
+                "description": "Create a scholarship (advisor / admin)\n\nAccess: Advisor or admin",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{staffToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Scholarship\",\n  \"nameAr\": \"منحة DAAD للدراسات العليا\",\n  \"university\": \"Technical University of Munich\",\n  \"universityAr\": \"الجامعة التقنية في ميونخ\",\n  \"country\": \"germany\",\n  \"levels\": [\n    \"master\",\n    \"phd\"\n  ],\n  \"fields\": [\n    \"engineering\",\n    \"computerScience\",\n    \"science\"\n  ],\n  \"minGpa\": 3.0,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 6.5\n  },\n  \"nationalities\": [\n    \"all\"\n  ],\n  \"funding\": \"full\",\n  \"opens\": \"2026-07-15\",\n  \"deadline\": \"2026-12-01\",\n  \"status\": \"open\",\n  \"amount\": \"EUR 992 / month\",\n  \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n  \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "422 example",
+              "code": 422,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"validation_failed\",\n    \"message\": \"validation_failed\",\n    \"details\": {\n      \"email\": \"email\"\n    }\n  }\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scholarships",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scholarships"
+                  ]
+                },
+                "description": "Create a scholarship (advisor / admin)\n\nAccess: Advisor or admin",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{staffToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Scholarship\",\n  \"nameAr\": \"منحة DAAD للدراسات العليا\",\n  \"university\": \"Technical University of Munich\",\n  \"universityAr\": \"الجامعة التقنية في ميونخ\",\n  \"country\": \"germany\",\n  \"levels\": [\n    \"master\",\n    \"phd\"\n  ],\n  \"fields\": [\n    \"engineering\",\n    \"computerScience\",\n    \"science\"\n  ],\n  \"minGpa\": 3.0,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 6.5\n  },\n  \"nationalities\": [\n    \"all\"\n  ],\n  \"funding\": \"full\",\n  \"opens\": \"2026-07-15\",\n  \"deadline\": \"2026-12-01\",\n  \"status\": \"open\",\n  \"amount\": \"EUR 992 / month\",\n  \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n  \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT /scholarships/{id} — Update a scholarship",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/scholarships/2",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "scholarships",
+                "2"
+              ]
+            },
+            "description": "Update a scholarship\n\nAccess: Advisor or admin",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{staffToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"DAAD Graduate Scholarship\",\n  \"nameAr\": \"منحة DAAD للدراسات العليا\",\n  \"university\": \"Technical University of Munich\",\n  \"universityAr\": \"الجامعة التقنية في ميونخ\",\n  \"country\": \"germany\",\n  \"levels\": [\n    \"master\",\n    \"phd\"\n  ],\n  \"fields\": [\n    \"engineering\",\n    \"computerScience\",\n    \"science\"\n  ],\n  \"minGpa\": 3.0,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 6.5\n  },\n  \"nationalities\": [\n    \"all\"\n  ],\n  \"funding\": \"full\",\n  \"opens\": \"2026-07-15\",\n  \"deadline\": \"2026-12-01\",\n  \"status\": \"open\",\n  \"amount\": \"EUR 992 / month\",\n  \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n  \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 2,\n  \"name\": \"DAAD Graduate Scholarship\",\n  \"nameAr\": \"منحة DAAD للدراسات العليا\",\n  \"university\": \"Technical University of Munich\",\n  \"universityAr\": \"الجامعة التقنية في ميونخ\",\n  \"country\": \"germany\",\n  \"levels\": [\n    \"master\",\n    \"phd\"\n  ],\n  \"fields\": [\n    \"engineering\",\n    \"computerScience\",\n    \"science\"\n  ],\n  \"minGpa\": 3.0,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 6.5\n  },\n  \"nationalities\": [\n    \"all\"\n  ],\n  \"funding\": \"full\",\n  \"opens\": \"2026-07-15\",\n  \"deadline\": \"2026-12-01\",\n  \"status\": \"open\",\n  \"results\": \"notStarted\",\n  \"amount\": \"EUR 992 / month\",\n  \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n  \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\",\n  \"tags\": []\n}",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scholarships/2",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scholarships",
+                    "2"
+                  ]
+                },
+                "description": "Update a scholarship\n\nAccess: Advisor or admin",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{staffToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"DAAD Graduate Scholarship\",\n  \"nameAr\": \"منحة DAAD للدراسات العليا\",\n  \"university\": \"Technical University of Munich\",\n  \"universityAr\": \"الجامعة التقنية في ميونخ\",\n  \"country\": \"germany\",\n  \"levels\": [\n    \"master\",\n    \"phd\"\n  ],\n  \"fields\": [\n    \"engineering\",\n    \"computerScience\",\n    \"science\"\n  ],\n  \"minGpa\": 3.0,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 6.5\n  },\n  \"nationalities\": [\n    \"all\"\n  ],\n  \"funding\": \"full\",\n  \"opens\": \"2026-07-15\",\n  \"deadline\": \"2026-12-01\",\n  \"status\": \"open\",\n  \"amount\": \"EUR 992 / month\",\n  \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n  \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "403 example",
+              "code": 403,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"forbidden\",\n    \"message\": \"forbidden\"\n  }\n}",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scholarships/2",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scholarships",
+                    "2"
+                  ]
+                },
+                "description": "Update a scholarship\n\nAccess: Advisor or admin",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{staffToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"DAAD Graduate Scholarship\",\n  \"nameAr\": \"منحة DAAD للدراسات العليا\",\n  \"university\": \"Technical University of Munich\",\n  \"universityAr\": \"الجامعة التقنية في ميونخ\",\n  \"country\": \"germany\",\n  \"levels\": [\n    \"master\",\n    \"phd\"\n  ],\n  \"fields\": [\n    \"engineering\",\n    \"computerScience\",\n    \"science\"\n  ],\n  \"minGpa\": 3.0,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 6.5\n  },\n  \"nationalities\": [\n    \"all\"\n  ],\n  \"funding\": \"full\",\n  \"opens\": \"2026-07-15\",\n  \"deadline\": \"2026-12-01\",\n  \"status\": \"open\",\n  \"amount\": \"EUR 992 / month\",\n  \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n  \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT /scholarships/{id}/results — Admission results status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/scholarships/2/results",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "scholarships",
+                "2",
+                "results"
+              ]
+            },
+            "description": "Admission results status\n\nAccess: Advisor or admin",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{staffToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"results\": \"partial\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"ok\": true\n}",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/scholarships/2/results",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "scholarships",
+                    "2",
+                    "results"
+                  ]
+                },
+                "description": "Admission results status\n\nAccess: Advisor or admin",
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{staffToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"results\": \"partial\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Student",
+      "item": [
+        {
+          "name": "GET /students/me — My profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/students/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "students",
+                "me"
+              ]
+            },
+            "description": "My profile\n\nAccess: Student only"
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 1,\n  \"firstName\": \"Sarah\",\n  \"lastName\": \"Ahmed\",\n  \"firstNameAr\": \"سارة\",\n  \"lastNameAr\": \"أحمد\",\n  \"email\": \"student@edubridge.app\",\n  \"nationality\": \"palestine\",\n  \"level\": \"master\",\n  \"field\": \"computerScience\",\n  \"gpa\": 3.7,\n  \"gpaScale\": 4.0,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 6.5\n  },\n  \"preferredCountries\": [\n    \"canada\",\n    \"germany\"\n  ],\n  \"funding\": \"full\",\n  \"intake\": \"Fall 2027\",\n  \"stage\": 2\n}",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/students/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "students",
+                    "me"
+                  ]
+                },
+                "description": "My profile\n\nAccess: Student only"
+              }
+            },
+            {
+              "name": "401 example",
+              "code": 401,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"unauthenticated\",\n    \"message\": \"unauthenticated\"\n  }\n}",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/students/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "students",
+                    "me"
+                  ]
+                },
+                "description": "My profile\n\nAccess: Student only"
+              }
+            },
+            {
+              "name": "403 example",
+              "code": 403,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"forbidden\",\n    \"message\": \"forbidden\"\n  }\n}",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/students/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "students",
+                    "me"
+                  ]
+                },
+                "description": "My profile\n\nAccess: Student only"
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT /students/me — Update my profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/students/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "students",
+                "me"
+              ]
+            },
+            "description": "Update my profile\n\nAccess: Student only",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Sarah\",\n  \"lastName\": \"Ahmed\",\n  \"phone\": \"+970 59 123 4567\",\n  \"nationality\": \"palestine\",\n  \"level\": \"master\",\n  \"field\": \"computerScience\",\n  \"gpa\": 3.7,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 7.0\n  },\n  \"preferredCountries\": [\n    \"canada\",\n    \"germany\",\n    \"uk\"\n  ],\n  \"funding\": \"full\",\n  \"intake\": \"Fall 2027\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 1,\n  \"firstName\": \"Sarah\",\n  \"…\": \"…\"\n}",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/students/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "students",
+                    "me"
+                  ]
+                },
+                "description": "Update my profile\n\nAccess: Student only",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Sarah\",\n  \"lastName\": \"Ahmed\",\n  \"phone\": \"+970 59 123 4567\",\n  \"nationality\": \"palestine\",\n  \"level\": \"master\",\n  \"field\": \"computerScience\",\n  \"gpa\": 3.7,\n  \"language\": {\n    \"test\": \"IELTS\",\n    \"score\": 7.0\n  },\n  \"preferredCountries\": [\n    \"canada\",\n    \"germany\",\n    \"uk\"\n  ],\n  \"funding\": \"full\",\n  \"intake\": \"Fall 2027\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /students/me/documents — My documents (missing ones listed too)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/students/me/documents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "students",
+                "me",
+                "documents"
+              ]
+            },
+            "description": "My documents (missing ones listed too)\n\nAccess: Student only"
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "[\n  {\n    \"id\": 1,\n    \"type\": \"passport\",\n    \"file\": \"Passport_Sarah.pdf\",\n    \"size\": \"1.2 MB\",\n    \"status\": \"approved\",\n    \"reason\": null,\n    \"uploadedAt\": \"2026-09-02\"\n  },\n  {\n    \"id\": \"missing-cv\",\n    \"type\": \"cv\",\n    \"file\": null,\n    \"status\": \"missing\"\n  }\n]",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/students/me/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "students",
+                    "me",
+                    "documents"
+                  ]
+                },
+                "description": "My documents (missing ones listed too)\n\nAccess: Student only"
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /students/me/documents — Upload a document (PDF, JPG, PNG, DOCX — max 10 MB)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/students/me/documents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "students",
+                "me",
+                "documents"
+              ]
+            },
+            "description": "Upload a document (PDF, JPG, PNG, DOCX — max 10 MB)\n\nAccess: Student only",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "type",
+                  "value": "cv",
+                  "type": "text",
+                  "description": "passport | transcript | degree | cv | language | motivation | recommendation | other"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "docs/sample-cv.pdf",
+                  "description": "choose a PDF / JPG / PNG / DOCX"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "201 example",
+              "code": 201,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 6,\n  \"type\": \"cv\",\n  \"file\": \"CV.pdf\",\n  \"size\": \"120 KB\",\n  \"status\": \"underReview\",\n  \"reason\": null,\n  \"uploadedAt\": \"2026-10-25\"\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/students/me/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "students",
+                    "me",
+                    "documents"
+                  ]
+                },
+                "description": "Upload a document (PDF, JPG, PNG, DOCX — max 10 MB)\n\nAccess: Student only",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "type",
+                      "value": "cv",
+                      "type": "text",
+                      "description": "passport | transcript | degree | cv | language | motivation | recommendation | other"
+                    },
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": "docs/sample-cv.pdf",
+                      "description": "choose a PDF / JPG / PNG / DOCX"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "422 example",
+              "code": 422,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"validation_failed\",\n    \"message\": \"validation_failed\",\n    \"details\": {\n      \"file\": \"type\"\n    }\n  }\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/students/me/documents",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "students",
+                    "me",
+                    "documents"
+                  ]
+                },
+                "description": "Upload a document (PDF, JPG, PNG, DOCX — max 10 MB)\n\nAccess: Student only",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "type",
+                      "value": "cv",
+                      "type": "text",
+                      "description": "passport | transcript | degree | cv | language | motivation | recommendation | other"
+                    },
+                    {
+                      "key": "file",
+                      "type": "file",
+                      "src": "docs/sample-cv.pdf",
+                      "description": "choose a PDF / JPG / PNG / DOCX"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /students/me/readiness — Readiness score and missing documents",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/students/me/readiness",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "students",
+                "me",
+                "readiness"
+              ]
+            },
+            "description": "Readiness score and missing documents\n\nAccess: Student only"
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"score\": 65,\n  \"missing\": [\n    \"cv\",\n    \"language\"\n  ]\n}",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/students/me/readiness",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "students",
+                    "me",
+                    "readiness"
+                  ]
+                },
+                "description": "Readiness score and missing documents\n\nAccess: Student only"
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /students/me/recommendations — Scholarships ranked by match score",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/students/me/recommendations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "students",
+                "me",
+                "recommendations"
+              ]
+            },
+            "description": "Scholarships ranked by match score\n\nAccess: Student only"
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "[\n  {\n    \"id\": 2,\n    \"name\": \"DAAD Graduate Scholarship\",\n    \"nameAr\": \"منحة DAAD للدراسات العليا\",\n    \"university\": \"Technical University of Munich\",\n    \"universityAr\": \"الجامعة التقنية في ميونخ\",\n    \"country\": \"germany\",\n    \"levels\": [\n      \"master\",\n      \"phd\"\n    ],\n    \"fields\": [\n      \"engineering\",\n      \"computerScience\",\n      \"science\"\n    ],\n    \"minGpa\": 3.0,\n    \"language\": {\n      \"test\": \"IELTS\",\n      \"score\": 6.5\n    },\n    \"nationalities\": [\n      \"all\"\n    ],\n    \"funding\": \"full\",\n    \"opens\": \"2026-07-15\",\n    \"deadline\": \"2026-12-01\",\n    \"status\": \"open\",\n    \"results\": \"notStarted\",\n    \"amount\": \"EUR 992 / month\",\n    \"description\": \"Monthly stipend, travel allowance and health insurance…\",\n    \"descriptionAr\": \"راتب شهري وبدل سفر وتأمين صحي…\",\n    \"tags\": [],\n    \"match\": {\n      \"score\": 100,\n      \"level\": \"eligible\",\n      \"parts\": {\n        \"field\": 1,\n        \"gpa\": 1,\n        \"level\": 1,\n        \"nationality\": 1,\n        \"language\": 1,\n        \"country\": 1,\n        \"funding\": 1\n      }\n    }\n  }\n]",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/students/me/recommendations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "students",
+                    "me",
+                    "recommendations"
+                  ]
+                },
+                "description": "Scholarships ranked by match score\n\nAccess: Student only"
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /students/me/applications — My applications (8 stages)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/students/me/applications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "students",
+                "me",
+                "applications"
+              ]
+            },
+            "description": "My applications (8 stages)\n\nAccess: Student only"
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "[\n  {\n    \"id\": \"APP-2041\",\n    \"scholarshipId\": 1,\n    \"stage\": 2,\n    \"result\": null,\n    \"updatedAt\": \"2026-10-22\",\n    \"advisor\": \"Maya Khalil\",\n    \"advisorAr\": \"مايا خليل\",\n    \"scholarship\": {\n      \"id\": 1,\n      \"…\": \"…\"\n    }\n  }\n]",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/students/me/applications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "students",
+                    "me",
+                    "applications"
+                  ]
+                },
+                "description": "My applications (8 stages)\n\nAccess: Student only"
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "GET /students/me/service-requests — My service requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/students/me/service-requests",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "students",
+                "me",
+                "service-requests"
+              ]
+            },
+            "description": "My service requests\n\nAccess: Student only"
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "[\n  {\n    \"id\": \"SR-1\",\n    \"service\": \"cv\",\n    \"status\": \"inProgress\",\n    \"priority\": \"medium\",\n    \"createdAt\": \"2026-10-18\",\n    \"assignee\": \"Maya Khalil\"\n  }\n]",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/students/me/service-requests",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "students",
+                    "me",
+                    "service-requests"
+                  ]
+                },
+                "description": "My service requests\n\nAccess: Student only"
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /service-requests — Request a service",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/service-requests",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "service-requests"
+              ]
+            },
+            "description": "Request a service\n\nAccess: Student only",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"service\": \"cv\",\n  \"priority\": \"high\",\n  \"scholarshipId\": 2,\n  \"notes\": \"I need an academic CV for DAAD.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 example",
+              "code": 201,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": \"SR-4\",\n  \"status\": \"newRequest\",\n  \"service\": \"cv\"\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/service-requests",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "service-requests"
+                  ]
+                },
+                "description": "Request a service\n\nAccess: Student only",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"service\": \"cv\",\n  \"priority\": \"high\",\n  \"scholarshipId\": 2,\n  \"notes\": \"I need an academic CV for DAAD.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Account",
+      "item": [
+        {
+          "name": "GET /account/sessions — Signed-in devices",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account/sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "sessions"
+              ]
+            },
+            "description": "Signed-in devices\n\nAccess: Any signed-in user"
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "[\n  {\n    \"id\": \"12\",\n    \"type\": \"laptop\",\n    \"browser\": \"Chrome\",\n    \"os\": \"Windows\",\n    \"city\": \"127.0.0.1\",\n    \"current\": true,\n    \"lastActive\": \"2026-10-25T17:40:00+02:00\"\n  }\n]",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account/sessions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "sessions"
+                  ]
+                },
+                "description": "Signed-in devices\n\nAccess: Any signed-in user"
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const other = pm.response.json().find(s => !s.current); pm.collectionVariables.set('otherSessionId', other ? other.id : '0');",
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE /account/sessions/{id} — Sign out one device",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account/sessions/{{otherSessionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "sessions",
+                "{{otherSessionId}}"
+              ]
+            },
+            "description": "Sign out one device\n\nAccess: Any signed-in user"
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"ok\": true\n}",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account/sessions/{{otherSessionId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "sessions",
+                    "{{otherSessionId}}"
+                  ]
+                },
+                "description": "Sign out one device\n\nAccess: Any signed-in user"
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /account/sessions/revoke-others — Sign out all other devices",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account/sessions/revoke-others",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "sessions",
+                "revoke-others"
+              ]
+            },
+            "description": "Sign out all other devices\n\nAccess: Any signed-in user"
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"ok\": true\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account/sessions/revoke-others",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "sessions",
+                    "revoke-others"
+                  ]
+                },
+                "description": "Sign out all other devices\n\nAccess: Any signed-in user"
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT /account/profile — Update name / phone",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "profile"
+              ]
+            },
+            "description": "Update name / phone\n\nAccess: Any signed-in user",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Sarah\",\n  \"lastName\": \"Ahmed\",\n  \"nameAr\": \"سارة أحمد\",\n  \"phone\": \"+970 59 123 4567\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"ok\": true\n}",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account/profile",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "profile"
+                  ]
+                },
+                "description": "Update name / phone\n\nAccess: Any signed-in user",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Sarah\",\n  \"lastName\": \"Ahmed\",\n  \"nameAr\": \"سارة أحمد\",\n  \"phone\": \"+970 59 123 4567\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /account/email — Change email (needs confirmation)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account/email",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "email"
+              ]
+            },
+            "description": "Change email (needs confirmation)\n\nAccess: Any signed-in user",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"new.email@example.com\",\n  \"password\": \"demo1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"pending\": true,\n  \"email\": \"new.email@example.com\"\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account/email",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "email"
+                  ]
+                },
+                "description": "Change email (needs confirmation)\n\nAccess: Any signed-in user",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"new.email@example.com\",\n  \"password\": \"demo1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST /account/password — Change password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account/password",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "password"
+              ]
+            },
+            "description": "Change password\n\nAccess: Any signed-in user",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current\": \"demo1234\",\n  \"next\": \"demo1234\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"ok\": true\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account/password",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "password"
+                  ]
+                },
+                "description": "Change password\n\nAccess: Any signed-in user",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"current\": \"demo1234\",\n  \"next\": \"demo1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT /account/security — Two-step verification and sign-in alerts",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account/security",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "security"
+              ]
+            },
+            "description": "Two-step verification and sign-in alerts\n\nAccess: Any signed-in user",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"twoFa\": true,\n  \"alerts\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"ok\": true\n}",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account/security",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "security"
+                  ]
+                },
+                "description": "Two-step verification and sign-in alerts\n\nAccess: Any signed-in user",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"twoFa\": true,\n  \"alerts\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT /account/notifications — Notification settings",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/account/notifications",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "account",
+                "notifications"
+              ]
+            },
+            "description": "Notification settings\n\nAccess: Any signed-in user",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requests\": {\n    \"email\": true,\n    \"inApp\": true\n  },\n  \"deadlines\": {\n    \"email\": true,\n    \"inApp\": true\n  },\n  \"messages\": {\n    \"email\": false,\n    \"inApp\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"ok\": true\n}",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/account/notifications",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "account",
+                    "notifications"
+                  ]
+                },
+                "description": "Notification settings\n\nAccess: Any signed-in user",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": {\n    \"email\": true,\n    \"inApp\": true\n  },\n  \"deadlines\": {\n    \"email\": true,\n    \"inApp\": true\n  },\n  \"messages\": {\n    \"email\": false,\n    \"inApp\": true\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Public",
+      "item": [
+        {
+          "name": "POST /contact — Contact us form",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/contact",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "contact"
+              ]
+            },
+            "description": "Contact us form\n\nAccess: Public",
+            "auth": {
+              "type": "noauth"
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Visitor One\",\n  \"email\": \"visitor@example.com\",\n  \"phone\": \"+970 59 111 2222\",\n  \"subject\": \"scholarships\",\n  \"message\": \"Hello, I would like to ask about master scholarships in Germany.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "201 example",
+              "code": 201,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"id\": 1,\n  \"received\": true\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contact",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contact"
+                  ]
+                },
+                "description": "Contact us form\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Visitor One\",\n  \"email\": \"visitor@example.com\",\n  \"phone\": \"+970 59 111 2222\",\n  \"subject\": \"scholarships\",\n  \"message\": \"Hello, I would like to ask about master scholarships in Germany.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "422 example",
+              "code": 422,
+              "status": "Error",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"error\": {\n    \"code\": \"validation_failed\",\n    \"message\": \"validation_failed\",\n    \"details\": {\n      \"name\": \"min\"\n    }\n  }\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/contact",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "contact"
+                  ]
+                },
+                "description": "Contact us form\n\nAccess: Public",
+                "auth": {
+                  "type": "noauth"
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Visitor One\",\n  \"email\": \"visitor@example.com\",\n  \"phone\": \"+970 59 111 2222\",\n  \"subject\": \"scholarships\",\n  \"message\": \"Hello, I would like to ask about master scholarships in Germany.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Finish",
+      "item": [
+        {
+          "name": "POST /auth/logout — Sign out this device (revokes the token)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "Sign out this device (revokes the token)\n\nAccess: Any signed-in user"
+          },
+          "response": [
+            {
+              "name": "200 example",
+              "code": 200,
+              "status": "OK",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "_postman_previewlanguage": "json",
+              "body": "{\n  \"ok\": true\n}",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept-Language",
+                    "value": "ar"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "logout"
+                  ]
+                },
+                "description": "Sign out this device (revokes the token)\n\nAccess: Any signed-in user"
+              }
+            }
+          ],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

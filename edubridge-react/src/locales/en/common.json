@@ -1,0 +1,359 @@
+{
+  "brand": "EduBridge",
+  "tagline": "Bridges Beyond Borders",
+  "language": {
+    "switchLabel": "العربية",
+    "switchAria": "Switch to Arabic"
+  },
+  "roles": {
+    "student": "Student",
+    "employee": "Advisor",
+    "admin": "Administrator"
+  },
+  "portal": {
+    "student": "Student Portal",
+    "employee": "Employee CRM",
+    "admin": "Admin Console"
+  },
+  "nav": {
+    "main": "Main",
+    "manage": "Management",
+    "account": "Account",
+    "dashboard": "Dashboard",
+    "profile": "My Profile",
+    "documents": "My Documents",
+    "scholarships": "Find Scholarships",
+    "services": "Request a Service",
+    "applications": "My Applications",
+    "notifications": "Notifications",
+    "settings": "Settings",
+    "students": "Students",
+    "manageScholarships": "Scholarships",
+    "requests": "Service Requests",
+    "admissions": "Admission Tracker",
+    "overview": "Overview",
+    "users": "Users & Roles",
+    "reports": "Reports",
+    "system": "System Settings"
+  },
+  "topbar": {
+    "search": "Search students, scholarships, documents…",
+    "notifications": "Notifications",
+    "markAllRead": "Mark all as read",
+    "viewAll": "View all notifications",
+    "myProfile": "My profile",
+    "settings": "Settings",
+    "signOut": "Sign out",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "home": "Home",
+    "collapseSidebar": "Collapse sidebar",
+    "expandSidebar": "Expand sidebar"
+  },
+  "sidebar": {
+    "needHelp": "Need help?",
+    "chatAdvisor": "Chat with your advisor",
+    "adminSupport": "Priority support",
+    "secure": "Secure & encrypted session"
+  },
+  "actions": {
+    "save": "Save changes",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "viewAll": "View all",
+    "viewDetails": "View details",
+    "search": "Search",
+    "filter": "Filter",
+    "apply": "Apply",
+    "clear": "Clear all",
+    "export": "Export",
+    "add": "Add",
+    "submit": "Submit",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "upload": "Upload",
+    "download": "Download",
+    "close": "Close",
+    "requestGuidance": "Request guidance",
+    "saveDraft": "Save draft",
+    "send": "Send",
+    "replace": "Replace",
+    "assign": "Assign",
+    "update": "Update",
+    "more": "More"
+  },
+  "status": {
+    "newRequest": "New Request",
+    "contacted": "Contacted",
+    "preparingDocuments": "Preparing Documents",
+    "waitingStudent": "Waiting for Student",
+    "readyToApply": "Ready to Apply",
+    "submitted": "Submitted",
+    "waitingResult": "Waiting for Result",
+    "accepted": "Accepted",
+    "rejected": "Rejected",
+    "acceptedRejected": "Accepted / Rejected",
+    "completed": "Completed",
+    "inProgress": "In progress",
+    "upcoming": "Upcoming",
+    "pending": "Pending",
+    "approved": "Approved",
+    "underReview": "Under review",
+    "missing": "Missing",
+    "active": "Active",
+    "suspended": "Suspended",
+    "invited": "Invited",
+    "open": "Open",
+    "closed": "Closed",
+    "draft": "Draft"
+  },
+  "match": {
+    "match": "Match",
+    "eligible": "Eligible",
+    "potential": "Potentially suitable",
+    "notSuitable": "Not suitable",
+    "disclaimer": "AI-assisted recommendation — it supports your advisor's decision and does not guarantee admission."
+  },
+  "results": {
+    "notStarted": "Results not started",
+    "inProgress": "Results in progress",
+    "partial": "Partially announced",
+    "completed": "Results completed"
+  },
+  "funding": {
+    "full": "Fully funded",
+    "partial": "Partial funding",
+    "self": "Self-funded"
+  },
+  "levels": {
+    "bachelor": "Bachelor's",
+    "master": "Master's",
+    "phd": "PhD"
+  },
+  "countries": {
+    "all": "All countries",
+    "canada": "Canada",
+    "germany": "Germany",
+    "uk": "United Kingdom",
+    "usa": "United States",
+    "turkey": "Turkey",
+    "malaysia": "Malaysia",
+    "australia": "Australia",
+    "netherlands": "Netherlands",
+    "palestine": "Palestine",
+    "jordan": "Jordan",
+    "egypt": "Egypt",
+    "uae": "UAE",
+    "saudi": "Saudi Arabia"
+  },
+  "time": {
+    "justNow": "Just now",
+    "minutesAgo": "{{count}} min ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago",
+    "deadline": "Deadline",
+    "daysLeft": "{{count}} days left"
+  },
+  "greeting": {
+    "morning": "Good morning",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening"
+  },
+  "notifications": {
+    "deadline": "Deadline reminder",
+    "deadlineText": "Global Excellence Scholarship closes in 5 days.",
+    "document": "Document reviewed",
+    "documentText": "Your academic transcript was approved.",
+    "service": "Service update",
+    "serviceText": "Your CV preparation request is now in progress."
+  },
+  "toast": {
+    "saved": "Changes saved successfully.",
+    "uploaded": "{{name}} uploaded and is ready for review.",
+    "requestSent": "Your request has been sent.",
+    "exported": "Export prepared.",
+    "copied": "Copied to clipboard.",
+    "demo": "This action is a demo until the backend API is connected."
+  },
+  "empty": {
+    "title": "Nothing here yet",
+    "text": "Try changing the filters or check back later."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The page you are looking for does not exist or was moved.",
+    "home": "Back to home"
+  },
+  "footer": {
+    "rights": "© 2026 EduBridge. All rights reserved."
+  },
+  "fields": {
+    "computerScience": "Computer Science",
+    "engineering": "Engineering",
+    "business": "Business & Management",
+    "publicHealth": "Health Sciences",
+    "science": "Natural Sciences",
+    "humanities": "Humanities"
+  },
+  "docTypes": {
+    "passport": "Passport",
+    "transcript": "Academic transcript",
+    "degree": "Degree certificate",
+    "cv": "CV / Résumé",
+    "language": "Language certificate",
+    "motivation": "Motivation letter",
+    "recommendation": "Recommendation letter",
+    "other": "Other document"
+  },
+  "services": {
+    "scholarshipSearch": {
+      "title": "Scholarship search",
+      "desc": "Find and shortlist opportunities that fit your profile."
+    },
+    "filePreparation": {
+      "title": "File preparation",
+      "desc": "We organise and review your full application file."
+    },
+    "cv": {
+      "title": "CV preparation",
+      "desc": "A professional academic CV tailored to scholarships."
+    },
+    "motivationLetter": {
+      "title": "Motivation letter",
+      "desc": "Write a compelling statement of purpose with an advisor."
+    },
+    "translation": {
+      "title": "Document translation",
+      "desc": "Certified translation of your official documents."
+    },
+    "applicationAssistance": {
+      "title": "Application assistance",
+      "desc": "Step-by-step help submitting your applications."
+    },
+    "followUp": {
+      "title": "Application follow-up",
+      "desc": "We track results and deadlines on your behalf."
+    }
+  },
+  "departments": {
+    "studentServices": "Student Services",
+    "admissions": "Admissions",
+    "visa": "Visa & Immigration",
+    "scholarships": "Scholarships",
+    "compliance": "Compliance"
+  },
+  "priority": {
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your profile, account security and preferences.",
+    "tabs": {
+      "profile": "Profile",
+      "account": "Account & email",
+      "security": "Security",
+      "devices": "Devices",
+      "preferences": "Preferences",
+      "notifications": "Notifications"
+    },
+    "profile": {
+      "title": "Profile",
+      "text": "This information appears to your advisor and on your requests.",
+      "photo": "Profile photo",
+      "photoHint": "JPG or PNG, up to 2 MB",
+      "change": "Change photo",
+      "remove": "Remove",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "nameAr": "Full name in Arabic",
+      "phone": "Mobile number",
+      "role": "Role",
+      "saved": "Profile updated."
+    },
+    "account": {
+      "title": "Email address",
+      "text": "Used to sign in and to receive updates about your requests.",
+      "current": "Current email",
+      "verified": "Verified",
+      "newEmail": "New email",
+      "password": "Current password",
+      "change": "Change email",
+      "sentTitle": "Confirm your new email",
+      "sentText": "We sent a confirmation link to {{email}}. Your email will change once you open it.",
+      "cancel": "Cancel change",
+      "errEmail": "Enter a valid email address.",
+      "errSame": "This is already your email.",
+      "errPassword": "Enter your current password.",
+      "infoTitle": "Account details",
+      "id": "Account ID",
+      "since": "Member since",
+      "type": "Account type",
+      "dangerTitle": "Deactivate account",
+      "dangerText": "Your profile and requests will be hidden until you sign in again.",
+      "deactivate": "Deactivate account",
+      "deactivated": "Deactivation request sent to the administrator."
+    },
+    "security": {
+      "title": "Password",
+      "text": "Use a strong password you don’t use anywhere else.",
+      "lastChanged": "Last changed {{date}}",
+      "current": "Current password",
+      "new": "New password",
+      "confirm": "Confirm new password",
+      "update": "Update password",
+      "updated": "Password updated.",
+      "errCurrent": "Enter your current password.",
+      "errLength": "Use at least 8 characters.",
+      "errMatch": "Passwords do not match.",
+      "twoFaTitle": "Two-step verification",
+      "twoFaText": "Ask for a 6-digit code sent to your email when signing in from a new device.",
+      "alertsTitle": "Sign-in alerts",
+      "alertsText": "Email me when my account is used on a new device.",
+      "on": "Enabled",
+      "off": "Disabled"
+    },
+    "devices": {
+      "title": "Signed-in devices",
+      "text": "Devices that have signed in to your account recently.",
+      "thisDevice": "This device",
+      "active": "Active now",
+      "lastActive": "Last active {{when}}",
+      "signOut": "Sign out",
+      "signOutAll": "Sign out of all other devices",
+      "signedOut": "Device signed out.",
+      "signedOutAll": "All other devices were signed out.",
+      "none": "No other devices are signed in."
+    },
+    "preferences": {
+      "langTitle": "Language",
+      "langText": "Arabic switches the layout to right-to-left.",
+      "themeTitle": "Appearance",
+      "themeText": "Choose how the portal looks.",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System",
+      "systemHint": "Match device"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "text": "Choose what we send you and where.",
+      "email": "Email",
+      "inApp": "In-app",
+      "items": {
+        "requests": "Updates on my requests",
+        "documents": "Document reviews",
+        "deadlines": "Deadline reminders",
+        "matches": "New scholarship matches",
+        "messages": "Messages from my advisor"
+      },
+      "saved": "Notification settings saved."
+    },
+    "save": "Save changes"
+  },
+  "loading": "Loading…"
+}

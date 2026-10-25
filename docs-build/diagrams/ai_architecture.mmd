@@ -1,0 +1,27 @@
+%% size: 2000x2600
+flowchart TB
+  subgraph IN["Inputs (MySQL)"]
+    P["Student profile<br/>field · GPA · level · nationality<br/>language · countries · funding"]
+    D["Documents + status"]
+    SC["Scholarship criteria<br/>levels · fields · min GPA<br/>language · nationality · funding"]
+  end
+  subgraph CORE["EduBridge decision-support engine (PHP)"]
+    M["1 · Rule-based matcher<br/>weighted score 0–100<br/>Field 25 · GPA 20 · Level 15<br/>Nationality 15 · Language 10<br/>Country 10 · Funding 5"]
+    R["2 · Readiness calculator<br/>weighted required documents"]
+    C[("match_scores<br/>cache")]
+    L["3 · LLM layer (Groq API)<br/>explain match in AR/EN<br/>check document completeness"]
+    GU["Guardrails<br/>no guarantee wording<br/>JSON schema · PII minimised"]
+  end
+  subgraph OUT["Outputs"]
+    O1["Ranked recommendations<br/>Eligible / Potential / Not suitable"]
+    O2["Readiness % + missing list"]
+    O3["Advisor review<br/>(human in the loop)"]
+  end
+  P & SC --> M --> C
+  D --> R
+  C --> L --> GU --> O1
+  R --> O2
+  O1 --> O3
+  style CORE fill:#f5f5f5,stroke:#808080
+  style IN fill:#f2f2f2,stroke:#333333
+  style OUT fill:#f5f5f5,stroke:#333333

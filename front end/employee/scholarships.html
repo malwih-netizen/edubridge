@@ -1,0 +1,458 @@
+<!-- EduBridge — إدارة المنح لموظف المستشار: فلترة القوائم، إحصائيات، جدول المنح، محرر تفاصيل منحة التميز العالمي. -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0F2C55" />
+  <title>Scholarship Management — Employee | EduBridge</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="../js/i18n-ar.js"></script>
+  <script src="../js/i18n.js"></script>
+</head>
+<body>
+
+  <div class="edu-toast" id="eduToast">
+    <i data-lucide="check-circle-2" style="width:14px;height:14px;margin-right:6px;"></i>
+    Scholarship record saved
+  </div>
+
+  <button class="menu-overlay" id="menuOverlay" aria-label="Close menu"></button>
+
+  <div class="portal-shell">
+
+    <aside class="portal-sidebar" id="portalSidebar">
+      <div class="sidebar-top">
+        <a class="brand-lockup" href="dashboard.html">
+          <img class="brand-logo" src="../assetes/logo_edubridge_dark.png" alt="EduBridge" />
+        </a>
+        <button class="icon-btn sidebar-close" id="sidebarClose" aria-label="Close sidebar">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="layout-dashboard"></i> Overview
+        </a>
+        <a class="side-link" href="students.html">
+          <i data-lucide="users"></i> Students
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="ticket"></i> Service Requests
+        </a>
+        <a class="side-link active" href="scholarships.html">
+          <i data-lucide="award"></i> Scholarships
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="file-stack"></i> Applications
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="message-square"></i> Communications
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="bar-chart-3"></i> Reports
+        </a>
+        <a class="side-link" href="dashboard.html">
+          <i data-lucide="settings"></i> Settings
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="support-card">
+          <i data-lucide="headphones"></i>
+          <div>
+            <strong>Support Desk</strong>
+            <span>Priority line for advisors</span>
+          </div>
+          <i data-lucide="chevron-right" style="margin-left:auto;width:14px;height:14px;"></i>
+        </div>
+      </div>
+    </aside>
+
+    <main class="portal-main">
+      <header class="portal-header">
+        <div class="header-left">
+          <button class="icon-btn mobile-menu" id="mobileMenu" aria-label="Open menu">
+            <i data-lucide="menu"></i>
+          </button>
+          <img class="portal-header-mark" src="../assetes/logo_edubridge.png" alt="" />
+          <div class="crumbs">
+            <a href="dashboard.html" style="color:inherit;text-decoration:none;">Employee CRM</a>
+            <i data-lucide="chevron-right" style="width:12px;height:12px;"></i>
+            <span class="current">Scholarship Management</span>
+          </div>
+        </div>
+        <div class="header-actions">
+          <div class="top-search">
+            <i data-lucide="search" style="width:14px;height:14px;"></i>
+            <input type="text" placeholder="Search scholarships..." />
+          </div>
+          <button class="icon-btn notification-btn" aria-label="Notifications">
+            <i data-lucide="bell"></i>
+            <b>3</b>
+          </button>
+          <button class="profile-trigger" aria-label="Profile">
+            <span class="avatar avatar-gold">MA</span>
+            <span>Maya — Advisor</span>
+            <i data-lucide="chevron-down" style="width:13px;height:13px;"></i>
+          </button>
+        </div>
+      </header>
+
+      <section class="portal-content management-page">
+
+        <div class="portal-title-row">
+          <div>
+            <p class="eyebrow">SCHOLARSHIP MANAGEMENT · EMPLOYEE MODE</p>
+            <h1>Scholarship Catalog &amp; Matches</h1>
+            <p>84 active scholarships · 128 student applications this cycle</p>
+          </div>
+          <div class="title-buttons">
+            <button class="edu-btn outline small">
+              <i data-lucide="download" style="width:11px;height:11px;"></i> Export CSV
+            </button>
+            <button class="edu-btn gold small">
+              <i data-lucide="plus" style="width:11px;height:11px;"></i> Add Scholarship
+            </button>
+          </div>
+        </div>
+
+        <div class="filter-row management">
+          <label>
+            Country / Region
+            <select>
+              <option>All regions</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Canada</option>
+              <option>EU — Germany</option>
+            </select>
+          </label>
+          <label>
+            Field of Study
+            <select>
+              <option>All fields</option>
+              <option>Engineering</option>
+              <option>Business / Econ</option>
+              <option>Medicine / Health</option>
+              <option>Computer Science</option>
+            </select>
+          </label>
+          <label>
+            Scholarship Type
+            <select>
+              <option>All types</option>
+              <option>Merit</option>
+              <option>Need-based</option>
+              <option>Athletic</option>
+              <option>Diversity</option>
+            </select>
+          </label>
+          <label>
+            Award Tier
+            <select>
+              <option>Any value</option>
+              <option>Full tuition</option>
+              <option>$50,000+</option>
+              <option>$25,000+</option>
+              <option>Under $25,000</option>
+            </select>
+          </label>
+          <label>
+            Deadline
+            <select>
+              <option>Any round</option>
+              <option>Next 7 days</option>
+              <option>Next 30 days</option>
+              <option>Round 2</option>
+              <option>Rolling</option>
+            </select>
+          </label>
+          <label>
+            Status
+            <select>
+              <option>All statuses</option>
+              <option>Open</option>
+              <option>Closing soon</option>
+              <option>Closed</option>
+            </select>
+          </label>
+          <button class="edu-btn navy">
+            <i data-lucide="filter" style="width:11px;height:11px;"></i> Apply filters
+          </button>
+        </div>
+
+        <div class="stat-grid management-stats">
+          <div class="stat-card">
+            <div class="stat-icon blue"><i data-lucide="award" style="width:19px;height:19px;"></i></div>
+            <div>
+              <strong>84</strong>
+              <span>Active Scholarships</span>
+              <small>12 added this quarter</small>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon gold"><i data-lucide="wallet" style="width:19px;height:19px;"></i></div>
+            <div>
+              <strong>$18.2M</strong>
+              <span>Total Award Pool</span>
+              <small>Avg $216k per scholar</small>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background:#edf8ef;color:#248255;"><i data-lucide="users-round" style="width:19px;height:19px;"></i></div>
+            <div>
+              <strong>128</strong>
+              <span>Applications In-Flight</span>
+              <small>47 this week</small>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><i data-lucide="party-popper" style="width:19px;height:19px;"></i></div>
+            <div>
+              <strong>31</strong>
+              <span>Awards Won This Cycle</span>
+              <small>↑ 6 vs last cycle</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="management-grid">
+
+          <div class="management-table">
+            <div class="scholar-table-head">
+              <span>Scholarship</span>
+              <span>University / Host</span>
+              <span>Country</span>
+              <span>Value</span>
+              <span>Type</span>
+              <span>Deadline</span>
+              <span>Matches</span>
+              <span>Status</span>
+              <span></span>
+            </div>
+
+            <button class="scholar-table-row active">
+              <div class="table-scholar">
+                <i><i data-lucide="graduation-cap" style="width:13px;height:13px;"></i></i>
+                <div>
+                  <strong>Global Excellence Scholarship</strong>
+                  <small>Undergraduate merit · Full-tuition option</small>
+                </div>
+              </div>
+              <div>
+                <strong>Western Michigan Univ.</strong>
+                <small>Engineering &amp; Applied Sciences</small>
+              </div>
+              <span>🇺🇸 USA</span>
+              <div>
+                <strong>Up to $68,000</strong>
+                <small>4 years · renewable 3.0 CGPA</small>
+              </div>
+              <span class="status-pill gold">Merit</span>
+              <div>
+                <strong>15 Feb 2026</strong>
+                <small>Round 2 · 3 days</small>
+              </div>
+              <div>
+                <strong>27 matches</strong>
+                <small>11 applied · 92% avg fit</small>
+              </div>
+              <span class="status-pill red">Closing soon</span>
+              <i data-lucide="chevron-right" style="color:#8796a7;width:13px;height:13px;"></i>
+            </button>
+
+            <button class="scholar-table-row">
+              <div class="table-scholar">
+                <i><i data-lucide="crown" style="width:13px;height:13px;"></i></i>
+                <div>
+                  <strong>Provost Leadership Award</strong>
+                  <small>Presidential cohort · need-aware</small>
+                </div>
+              </div>
+              <div>
+                <strong>Northeastern Illinois</strong>
+                <small>Any undergraduate major</small>
+              </div>
+              <span>🇺🇸 USA</span>
+              <div>
+                <strong>$32,000 / yr</strong>
+                <small>+ housing stipend</small>
+              </div>
+              <span class="status-pill blue">Leadership</span>
+              <div>
+                <strong>01 Mar 2026</strong>
+                <small>Round 2 · 17 days</small>
+              </div>
+              <div>
+                <strong>18 matches</strong>
+                <small>7 applied</small>
+              </div>
+              <span class="status-pill green">Open</span>
+              <i data-lucide="chevron-right" style="color:#8796a7;width:13px;height:13px;"></i>
+            </button>
+
+            <button class="scholar-table-row">
+              <div class="table-scholar">
+                <i><i data-lucide="atom" style="width:13px;height:13px;"></i></i>
+                <div>
+                  <strong>Women in STEM Fellowship</strong>
+                  <small>Research track · mentorship incl.</small>
+                </div>
+              </div>
+              <div>
+                <strong>Univ. of Toronto</strong>
+                <small>Faculty of Applied Science</small>
+              </div>
+              <span>🇨🇦 Canada</span>
+              <div>
+                <strong>C$ 42,000</strong>
+                <small>2 years + research grant</small>
+              </div>
+              <span class="status-pill slate">Diversity</span>
+              <div>
+                <strong>22 Feb 2026</strong>
+                <small>Round 1 · 10 days</small>
+              </div>
+              <div>
+                <strong>22 matches</strong>
+                <small>9 applied</small>
+              </div>
+              <span class="status-pill blue">Open</span>
+              <i data-lucide="chevron-right" style="color:#8796a7;width:13px;height:13px;"></i>
+            </button>
+
+            <button class="scholar-table-row">
+              <div class="table-scholar">
+                <i><i data-lucide="book-open" style="width:13px;height:13px;"></i></i>
+                <div>
+                  <strong>Future Leaders Merit</strong>
+                  <small>Rolling admissions · essay-based</small>
+                </div>
+              </div>
+              <div>
+                <strong>Univ. of Manchester</strong>
+                <small>Business &amp; Social Sciences</small>
+              </div>
+              <span>🇬🇧 UK</span>
+              <div>
+                <strong>£ 24,000</strong>
+                <small>Full tuition for 3 years</small>
+              </div>
+              <span class="status-pill gold">Merit</span>
+              <div>
+                <strong>Rolling</strong>
+                <small>Priority 01 Apr</small>
+              </div>
+              <div>
+                <strong>34 matches</strong>
+                <small>16 applied</small>
+              </div>
+              <span class="status-pill green">Open</span>
+              <i data-lucide="chevron-right" style="color:#8796a7;width:13px;height:13px;"></i>
+            </button>
+
+          </div>
+
+          <aside class="scholar-editor">
+            <div class="editor-title">
+              <div class="scholar-icon" style="width:46px;height:46px;border-radius:12px;background:#e9f1ff;color:#265c9a;display:grid;place-items:center;flex:0 0 auto;">
+                <i data-lucide="graduation-cap" style="width:20px;height:20px;"></i>
+              </div>
+              <div>
+                <strong>Global Excellence Scholarship</strong>
+                <small>Undergraduate · Merit-based · Co-administered</small>
+              </div>
+            </div>
+
+            <h3 style="margin-top:16px;">Editor Overview</h3>
+
+            <dl>
+              <dt>Host university</dt>
+              <dd>Western Michigan University</dd>
+
+              <dt>Eligible programs</dt>
+              <dd>Aerospace, Mech, CS, Electrical Eng</dd>
+
+              <dt>Award structure</dt>
+              <dd>Up to $68,000 over 4 years · renewable at 3.0 CGPA · includes book allowance</dd>
+
+              <dt>Open to nationalities</dt>
+              <dd>MENA, Sub-Saharan Africa, SE Asia · 15 seats per cohort</dd>
+
+              <dt>Min. requirements</dt>
+              <dd>CGPA 3.7+ · SAT 1380+ / ACT 30 · IELTS 6.5 (writing 6.0)</dd>
+
+              <dt>Required docs</dt>
+              <dd>Transcript, 2 LOR, 3 essays, test score report, passport copy</dd>
+
+              <dt>Submission round</dt>
+              <dd>Round 2 · deadline <b style="color:#bf4545;">15 Feb 2026</b> (3 days)</dd>
+
+              <dt>Decisions released</dt>
+              <dd>On or before 10 Apr 2026</dd>
+
+              <dt>Donor / Partner</dt>
+              <dd>WMU International Office + EduBridge MENA cohort</dd>
+
+              <dt>Internal owner</dt>
+              <dd>Maya R. (Advisor Lead) · reviewed weekly</dd>
+            </dl>
+
+            <div class="section-heading" style="margin-top:4px;">
+              <h2 style="font-size:16px;">Cohort Activity</h2>
+            </div>
+
+            <div class="mini-checklist" style="gap:11px;">
+              <div>
+                <div class="check-state verified" style="width:20px;height:20px;"><i data-lucide="users" style="width:10px;height:10px;"></i></div>
+                <div>Students matched this cycle</div>
+                <small style="font-weight:800;color:#28445f;">27</small>
+              </div>
+              <div>
+                <div class="check-state pending" style="width:20px;height:20px;"><i data-lucide="send" style="width:10px;height:10px;"></i></div>
+                <div>Applications already submitted</div>
+                <small style="font-weight:800;color:#a07417;">11 / 27</small>
+              </div>
+              <div>
+                <div class="check-state missing" style="width:20px;height:20px;"><i data-lucide="alert-triangle" style="width:10px;height:10px;"></i></div>
+                <div>Missing docs (≥ 2 items)</div>
+                <small style="font-weight:800;color:#bf4545;">4 students</small>
+              </div>
+              <div>
+                <div class="check-state verified" style="width:20px;height:20px;"><i data-lucide="percent" style="width:10px;height:10px;"></i></div>
+                <div>Avg. AI match score</div>
+                <small style="font-weight:800;color:#237953;">92%</small>
+              </div>
+            </div>
+
+            <div class="summary-actions" style="margin-top:18px;">
+              <button class="edu-btn outline">
+                <i data-lucide="users" style="width:11px;height:11px;"></i> View candidates
+              </button>
+              <button class="edu-btn gold">
+                <i data-lucide="send" style="width:11px;height:11px;"></i> Remind applicants
+              </button>
+            </div>
+          </aside>
+
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/lucide@1.50.0/dist/umd/lucide.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    if (window.lucide) window.lucide.createIcons();
+  </script>
+</body>
+</html>

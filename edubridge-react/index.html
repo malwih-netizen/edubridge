@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0F2C55" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>EduBridge — Bridges Beyond Borders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- English: Plus Jakarta Sans (body) + Fraunces (display) · Arabic: IBM Plex Sans Arabic (body) + Noto Kufi Arabic (display) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // ضبط اللغة والاتجاه قبل أول رسم لتجنب وميض الاتجاه الخاطئ
+      try {
+        var l = localStorage.getItem('edu-lang');
+        if (l === 'ar') { document.documentElement.lang = 'ar'; document.documentElement.dir = 'rtl'; }
+        var th = localStorage.getItem('edu-theme');
+        var dark = th === 'dark' || (th === 'system' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+      } catch (e) {}
+    </script>
+    <style>
+      .boot-loader { position: fixed; inset: 0; display: grid; place-items: center; background: #f6f9fd; }
+      .boot-mark { position: relative; width: 132px; height: 132px; display: grid; place-items: center; }
+      .boot-mark img { width: 92px; height: 92px; object-fit: contain; padding: 14px; border-radius: 50%; background: #fff; box-shadow: 0 10px 30px rgba(15,44,85,.12); }
+      .boot-mark svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: boot-spin 1.1s linear infinite; }
+      .boot-mark .t { fill: none; stroke: rgba(15,44,85,.08); stroke-width: 5; }
+      .boot-mark .a { fill: none; stroke: #c9952d; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 90 260; }
+      @keyframes boot-spin { to { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- شاشة التحميل الأولى (تُستبدل تلقائياً عند تشغيل React) -->
+      <div class="boot-loader" role="status" aria-label="Loading">
+        <div class="boot-mark">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" class="t" /><circle cx="60" cy="60" r="54" class="a" /></svg>
+          <img src="/logo.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

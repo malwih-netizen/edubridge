@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# settings with passwords / secrets (the .env.example files are kept)
+.env
+.env.local
+
+# builds
+edubridge-react/dist/
+deploy/htdocs/
+deploy/*.zip
+
+# generated / temporary
+docs-build/.render/
+edubridge-api/storage/uploads/*
+!edubridge-api/storage/uploads/.gitkeep
+__pycache__/
+*.log
+
+# Word lock files and OS files
+~$*
+Thumbs.db
+.DS_Store
+
+# local editor / Claude settings
+.claude/
+
+# headless browser profiles used to render PDFs/diagrams
+.edge/

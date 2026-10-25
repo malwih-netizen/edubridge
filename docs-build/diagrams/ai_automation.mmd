@@ -1,0 +1,34 @@
+%% size: 2600x2000
+flowchart LR
+  subgraph EV["Events (triggers)"]
+    e1["Profile updated"]
+    e2["Document uploaded /<br/>reviewed"]
+    e3["Scholarship created /<br/>edited"]
+    e4["Daily schedule<br/>06:00 (cron)"]
+    e5["Application stage<br/>changed"]
+  end
+  subgraph JOB["Automation jobs (PHP)"]
+    j1["Re-match this student<br/>(all open scholarships)"]
+    j2["Re-compute readiness"]
+    j3["Match all students<br/>to the new scholarship"]
+    j4["Deadline scanner<br/>(7, 3, 1 days left)"]
+    j5["Close expired scholarships<br/>open → closed"]
+    j6["Stage history + timeline"]
+  end
+  subgraph AC["Actions"]
+    a1["Notify student<br/>new eligible match ≥ 75"]
+    a2["Notify student<br/>missing documents"]
+    a3["Notify advisor<br/>file ready to apply"]
+    a4["Email + in-app reminder"]
+    a5["Update dashboards & reports"]
+  end
+  e1 --> j1 --> a1
+  e2 --> j2 --> a2
+  j2 --> a3
+  e3 --> j3 --> a1
+  e4 --> j4 --> a4
+  e4 --> j5 --> a5
+  e5 --> j6 --> a5
+  style EV fill:#f2f2f2,stroke:#333333
+  style JOB fill:#f5f5f5,stroke:#808080
+  style AC fill:#f5f5f5,stroke:#333333

@@ -1,0 +1,16 @@
+%% size: 3000x2600
+erDiagram
+  users ||--o| students : "is a"
+  users ||--o{ user_sessions : "signs in"
+  users ||--o{ notifications : receives
+  students ||--o{ documents : uploads
+  document_types ||--o{ documents : classifies
+  students ||--o{ match_scores : "is scored"
+  scholarships ||--o{ match_scores : "is scored"
+  students ||--o{ applications : submits
+  scholarships ||--o{ applications : receives
+  applications ||--o{ application_stage_history : tracks
+  students ||--o{ service_requests : requests
+  services ||--o{ service_requests : "type of"
+  students ||--o{ notes : "has"
+  students ||--o{ communications : "has"

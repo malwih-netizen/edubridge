@@ -1,0 +1,1605 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "EduBridge API",
+    "version": "1.0.0",
+    "description": "Smart Scholarship and Student Services Management System.\n\n1. Run **POST /auth/login** with `student@edubridge.app` / `demo1234` (or advisor@ / admin@).\n2. Copy the `token` and press **Authorize** at the top.\n\nErrors always look like `{\"error\": {\"code\": \"...\", \"details\": {...}}}`."
+  },
+  "servers": [
+    {
+      "url": "/api",
+      "description": "This server (same domain)"
+    },
+    {
+      "url": "https://edubridge.infinityfreeapp.com/api",
+      "description": "Hosted — InfinityFree"
+    },
+    {
+      "url": "http://localhost:8000/api",
+      "description": "Local (php -S localhost:8000)"
+    }
+  ],
+  "tags": [
+    {
+      "name": "System"
+    },
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Scholarships"
+    },
+    {
+      "name": "Student"
+    },
+    {
+      "name": "Account"
+    },
+    {
+      "name": "Public"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "API and database status",
+        "description": "**Access:** Public",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "ok",
+                  "database": "10.4.32-MariaDB",
+                  "time": "2026-10-25T17:36:20+02:00"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Sign in (saves the token in Postman automatically)",
+        "description": "**Access:** Public",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "token": "<JWT>",
+                  "user": {
+                    "id": 1,
+                    "role": "student",
+                    "email": "student@edubridge.app",
+                    "name": "Sarah Ahmed",
+                    "nameAr": "سارة أحمد",
+                    "title": null,
+                    "titleAr": null
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "invalid_credentials",
+                    "message": "invalid_credentials"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "email": "student@edubridge.app",
+                "password": "demo1234"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Create a student account",
+        "description": "**Access:** Public",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "token": "<JWT>",
+                  "user": {
+                    "id": 11,
+                    "role": "student",
+                    "email": "lina@example.com",
+                    "name": "Lina Saleh",
+                    "nameAr": null,
+                    "title": null,
+                    "titleAr": null
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "email_taken",
+                    "message": "email_taken",
+                    "details": {
+                      "email": "taken"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "validation_failed",
+                    "message": "validation_failed",
+                    "details": {
+                      "email": "email"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "firstName": "Lina",
+                "lastName": "Saleh",
+                "email": "lina@example.com",
+                "password": "secret123",
+                "gender": "female",
+                "nationality": "palestine",
+                "currentLevel": "bachelor",
+                "level": "master",
+                "field": "engineering",
+                "gpa": "3.5",
+                "countries": [
+                  "germany",
+                  "canada"
+                ],
+                "funding": "full",
+                "help": "full"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Current user",
+        "description": "**Access:** Any signed-in user",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 1,
+                  "role": "student",
+                  "email": "student@edubridge.app",
+                  "name": "Sarah Ahmed",
+                  "nameAr": "سارة أحمد",
+                  "title": null,
+                  "titleAr": null
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "unauthenticated",
+                    "message": "unauthenticated"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/forgot-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Send a 6-digit reset code (returned as devCode in local mode)",
+        "description": "**Access:** Public",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "sent": true,
+                  "devCode": "482913"
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "email": "student@edubridge.app"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/verify-code": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Check the reset code",
+        "description": "**Access:** Public",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "resetToken": "7.9f2c…"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "invalid_code",
+                    "message": "invalid_code"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "email": "student@edubridge.app",
+                "code": "482913"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/reset-password": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Set a new password",
+        "description": "**Access:** Public",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ok": true
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "resetToken": "7.9f2c…",
+                "password": "newSecret123"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/resend-confirmation": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Resend the email confirmation",
+        "description": "**Access:** Public",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "sent": true
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "email": "student@edubridge.app"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scholarships": {
+      "get": {
+        "tags": [
+          "Scholarships"
+        ],
+        "summary": "Public scholarship directory with filters",
+        "description": "**Access:** Public",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 2,
+                    "name": "DAAD Graduate Scholarship",
+                    "nameAr": "منحة DAAD للدراسات العليا",
+                    "university": "Technical University of Munich",
+                    "universityAr": "الجامعة التقنية في ميونخ",
+                    "country": "germany",
+                    "levels": [
+                      "master",
+                      "phd"
+                    ],
+                    "fields": [
+                      "engineering",
+                      "computerScience",
+                      "science"
+                    ],
+                    "minGpa": 3.0,
+                    "language": {
+                      "test": "IELTS",
+                      "score": 6.5
+                    },
+                    "nationalities": [
+                      "all"
+                    ],
+                    "funding": "full",
+                    "opens": "2026-07-15",
+                    "deadline": "2026-12-01",
+                    "status": "open",
+                    "results": "notStarted",
+                    "amount": "EUR 992 / month",
+                    "description": "Monthly stipend, travel allowance and health insurance…",
+                    "descriptionAr": "راتب شهري وبدل سفر وتأمين صحي…",
+                    "tags": []
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "level",
+            "in": "query",
+            "required": false,
+            "description": "bachelor | master | phd",
+            "schema": {
+              "type": "string"
+            },
+            "example": "master"
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "description": "e.g. germany, canada, uk",
+            "schema": {
+              "type": "string"
+            },
+            "example": "germany"
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "required": false,
+            "description": "e.g. engineering, computerScience",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "funding",
+            "in": "query",
+            "required": false,
+            "description": "full | partial | self",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "open | upcoming | closed",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "search in name / university (EN or AR)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Scholarships"
+        ],
+        "summary": "Create a scholarship (advisor / admin)",
+        "description": "**Access:** Advisor or admin",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 2,
+                  "name": "DAAD Graduate Scholarship",
+                  "nameAr": "منحة DAAD للدراسات العليا",
+                  "university": "Technical University of Munich",
+                  "universityAr": "الجامعة التقنية في ميونخ",
+                  "country": "germany",
+                  "levels": [
+                    "master",
+                    "phd"
+                  ],
+                  "fields": [
+                    "engineering",
+                    "computerScience",
+                    "science"
+                  ],
+                  "minGpa": 3.0,
+                  "language": {
+                    "test": "IELTS",
+                    "score": 6.5
+                  },
+                  "nationalities": [
+                    "all"
+                  ],
+                  "funding": "full",
+                  "opens": "2026-07-15",
+                  "deadline": "2026-12-01",
+                  "status": "open",
+                  "results": "notStarted",
+                  "amount": "EUR 992 / month",
+                  "description": "Monthly stipend, travel allowance and health insurance…",
+                  "descriptionAr": "راتب شهري وبدل سفر وتأمين صحي…",
+                  "tags": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "forbidden",
+                    "message": "forbidden"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "validation_failed",
+                    "message": "validation_failed",
+                    "details": {
+                      "email": "email"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "New Scholarship",
+                "nameAr": "منحة DAAD للدراسات العليا",
+                "university": "Technical University of Munich",
+                "universityAr": "الجامعة التقنية في ميونخ",
+                "country": "germany",
+                "levels": [
+                  "master",
+                  "phd"
+                ],
+                "fields": [
+                  "engineering",
+                  "computerScience",
+                  "science"
+                ],
+                "minGpa": 3.0,
+                "language": {
+                  "test": "IELTS",
+                  "score": 6.5
+                },
+                "nationalities": [
+                  "all"
+                ],
+                "funding": "full",
+                "opens": "2026-07-15",
+                "deadline": "2026-12-01",
+                "status": "open",
+                "amount": "EUR 992 / month",
+                "description": "Monthly stipend, travel allowance and health insurance…",
+                "descriptionAr": "راتب شهري وبدل سفر وتأمين صحي…"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scholarships/{id}": {
+      "get": {
+        "tags": [
+          "Scholarships"
+        ],
+        "summary": "One scholarship",
+        "description": "**Access:** Public",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 2,
+                  "name": "DAAD Graduate Scholarship",
+                  "nameAr": "منحة DAAD للدراسات العليا",
+                  "university": "Technical University of Munich",
+                  "universityAr": "الجامعة التقنية في ميونخ",
+                  "country": "germany",
+                  "levels": [
+                    "master",
+                    "phd"
+                  ],
+                  "fields": [
+                    "engineering",
+                    "computerScience",
+                    "science"
+                  ],
+                  "minGpa": 3.0,
+                  "language": {
+                    "test": "IELTS",
+                    "score": 6.5
+                  },
+                  "nationalities": [
+                    "all"
+                  ],
+                  "funding": "full",
+                  "opens": "2026-07-15",
+                  "deadline": "2026-12-01",
+                  "status": "open",
+                  "results": "notStarted",
+                  "amount": "EUR 992 / month",
+                  "description": "Monthly stipend, travel allowance and health insurance…",
+                  "descriptionAr": "راتب شهري وبدل سفر وتأمين صحي…",
+                  "tags": []
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "not_found",
+                    "message": "not_found"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Scholarships"
+        ],
+        "summary": "Update a scholarship",
+        "description": "**Access:** Advisor or admin",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 2,
+                  "name": "DAAD Graduate Scholarship",
+                  "nameAr": "منحة DAAD للدراسات العليا",
+                  "university": "Technical University of Munich",
+                  "universityAr": "الجامعة التقنية في ميونخ",
+                  "country": "germany",
+                  "levels": [
+                    "master",
+                    "phd"
+                  ],
+                  "fields": [
+                    "engineering",
+                    "computerScience",
+                    "science"
+                  ],
+                  "minGpa": 3.0,
+                  "language": {
+                    "test": "IELTS",
+                    "score": 6.5
+                  },
+                  "nationalities": [
+                    "all"
+                  ],
+                  "funding": "full",
+                  "opens": "2026-07-15",
+                  "deadline": "2026-12-01",
+                  "status": "open",
+                  "results": "notStarted",
+                  "amount": "EUR 992 / month",
+                  "description": "Monthly stipend, travel allowance and health insurance…",
+                  "descriptionAr": "راتب شهري وبدل سفر وتأمين صحي…",
+                  "tags": []
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "forbidden",
+                    "message": "forbidden"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "DAAD Graduate Scholarship",
+                "nameAr": "منحة DAAD للدراسات العليا",
+                "university": "Technical University of Munich",
+                "universityAr": "الجامعة التقنية في ميونخ",
+                "country": "germany",
+                "levels": [
+                  "master",
+                  "phd"
+                ],
+                "fields": [
+                  "engineering",
+                  "computerScience",
+                  "science"
+                ],
+                "minGpa": 3.0,
+                "language": {
+                  "test": "IELTS",
+                  "score": 6.5
+                },
+                "nationalities": [
+                  "all"
+                ],
+                "funding": "full",
+                "opens": "2026-07-15",
+                "deadline": "2026-12-01",
+                "status": "open",
+                "amount": "EUR 992 / month",
+                "description": "Monthly stipend, travel allowance and health insurance…",
+                "descriptionAr": "راتب شهري وبدل سفر وتأمين صحي…"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scholarships/{id}/results": {
+      "put": {
+        "tags": [
+          "Scholarships"
+        ],
+        "summary": "Admission results status",
+        "description": "**Access:** Advisor or admin",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ok": true
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 2
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "results": "partial"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/me": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "My profile",
+        "description": "**Access:** Student only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 1,
+                  "firstName": "Sarah",
+                  "lastName": "Ahmed",
+                  "firstNameAr": "سارة",
+                  "lastNameAr": "أحمد",
+                  "email": "student@edubridge.app",
+                  "nationality": "palestine",
+                  "level": "master",
+                  "field": "computerScience",
+                  "gpa": 3.7,
+                  "gpaScale": 4.0,
+                  "language": {
+                    "test": "IELTS",
+                    "score": 6.5
+                  },
+                  "preferredCountries": [
+                    "canada",
+                    "germany"
+                  ],
+                  "funding": "full",
+                  "intake": "Fall 2027",
+                  "stage": 2
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "unauthenticated",
+                    "message": "unauthenticated"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "forbidden",
+                    "message": "forbidden"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Update my profile",
+        "description": "**Access:** Student only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 1,
+                  "firstName": "Sarah",
+                  "…": "…"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "firstName": "Sarah",
+                "lastName": "Ahmed",
+                "phone": "+970 59 123 4567",
+                "nationality": "palestine",
+                "level": "master",
+                "field": "computerScience",
+                "gpa": 3.7,
+                "language": {
+                  "test": "IELTS",
+                  "score": 7.0
+                },
+                "preferredCountries": [
+                  "canada",
+                  "germany",
+                  "uk"
+                ],
+                "funding": "full",
+                "intake": "Fall 2027"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/me/documents": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "My documents (missing ones listed too)",
+        "description": "**Access:** Student only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 1,
+                    "type": "passport",
+                    "file": "Passport_Sarah.pdf",
+                    "size": "1.2 MB",
+                    "status": "approved",
+                    "reason": null,
+                    "uploadedAt": "2026-09-02"
+                  },
+                  {
+                    "id": "missing-cv",
+                    "type": "cv",
+                    "file": null,
+                    "status": "missing"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Upload a document (PDF, JPG, PNG, DOCX — max 10 MB)",
+        "description": "**Access:** Student only",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 6,
+                  "type": "cv",
+                  "file": "CV.pdf",
+                  "size": "120 KB",
+                  "status": "underReview",
+                  "reason": null,
+                  "uploadedAt": "2026-10-25"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "validation_failed",
+                    "message": "validation_failed",
+                    "details": {
+                      "file": "type"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "example": "cv",
+                    "description": "passport | transcript | degree | cv | language | motivation | recommendation | other"
+                  },
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "type",
+                  "file"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/me/readiness": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Readiness score and missing documents",
+        "description": "**Access:** Student only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "score": 65,
+                  "missing": [
+                    "cv",
+                    "language"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/me/recommendations": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Scholarships ranked by match score",
+        "description": "**Access:** Student only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 2,
+                    "name": "DAAD Graduate Scholarship",
+                    "nameAr": "منحة DAAD للدراسات العليا",
+                    "university": "Technical University of Munich",
+                    "universityAr": "الجامعة التقنية في ميونخ",
+                    "country": "germany",
+                    "levels": [
+                      "master",
+                      "phd"
+                    ],
+                    "fields": [
+                      "engineering",
+                      "computerScience",
+                      "science"
+                    ],
+                    "minGpa": 3.0,
+                    "language": {
+                      "test": "IELTS",
+                      "score": 6.5
+                    },
+                    "nationalities": [
+                      "all"
+                    ],
+                    "funding": "full",
+                    "opens": "2026-07-15",
+                    "deadline": "2026-12-01",
+                    "status": "open",
+                    "results": "notStarted",
+                    "amount": "EUR 992 / month",
+                    "description": "Monthly stipend, travel allowance and health insurance…",
+                    "descriptionAr": "راتب شهري وبدل سفر وتأمين صحي…",
+                    "tags": [],
+                    "match": {
+                      "score": 100,
+                      "level": "eligible",
+                      "parts": {
+                        "field": 1,
+                        "gpa": 1,
+                        "level": 1,
+                        "nationality": 1,
+                        "language": 1,
+                        "country": 1,
+                        "funding": 1
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/me/applications": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "My applications (8 stages)",
+        "description": "**Access:** Student only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": "APP-2041",
+                    "scholarshipId": 1,
+                    "stage": 2,
+                    "result": null,
+                    "updatedAt": "2026-10-22",
+                    "advisor": "Maya Khalil",
+                    "advisorAr": "مايا خليل",
+                    "scholarship": {
+                      "id": 1,
+                      "…": "…"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/me/service-requests": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "My service requests",
+        "description": "**Access:** Student only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": "SR-1",
+                    "service": "cv",
+                    "status": "inProgress",
+                    "priority": "medium",
+                    "createdAt": "2026-10-18",
+                    "assignee": "Maya Khalil"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/service-requests": {
+      "post": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Request a service",
+        "description": "**Access:** Student only",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "SR-4",
+                  "status": "newRequest",
+                  "service": "cv"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "service": "cv",
+                "priority": "high",
+                "scholarshipId": 2,
+                "notes": "I need an academic CV for DAAD."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/sessions": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Signed-in devices",
+        "description": "**Access:** Any signed-in user",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": "12",
+                    "type": "laptop",
+                    "browser": "Chrome",
+                    "os": "Windows",
+                    "city": "127.0.0.1",
+                    "current": true,
+                    "lastActive": "2026-10-25T17:40:00+02:00"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/sessions/{id}": {
+      "delete": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Sign out one device",
+        "description": "**Access:** Any signed-in user",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ok": true
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 12
+          }
+        ]
+      }
+    },
+    "/account/sessions/revoke-others": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Sign out all other devices",
+        "description": "**Access:** Any signed-in user",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ok": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/profile": {
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Update name / phone",
+        "description": "**Access:** Any signed-in user",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ok": true
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "firstName": "Sarah",
+                "lastName": "Ahmed",
+                "nameAr": "سارة أحمد",
+                "phone": "+970 59 123 4567"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/email": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Change email (needs confirmation)",
+        "description": "**Access:** Any signed-in user",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "pending": true,
+                  "email": "new.email@example.com"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "email": "new.email@example.com",
+                "password": "demo1234"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/password": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Change password",
+        "description": "**Access:** Any signed-in user",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ok": true
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "current": "demo1234",
+                "next": "newSecret123"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/security": {
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Two-step verification and sign-in alerts",
+        "description": "**Access:** Any signed-in user",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ok": true
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "twoFa": true,
+                "alerts": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/notifications": {
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Notification settings",
+        "description": "**Access:** Any signed-in user",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ok": true
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "requests": {
+                  "email": true,
+                  "inApp": true
+                },
+                "deadlines": {
+                  "email": true,
+                  "inApp": true
+                },
+                "messages": {
+                  "email": false,
+                  "inApp": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contact": {
+      "post": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Contact us form",
+        "description": "**Access:** Public",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 1,
+                  "received": true
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "validation_failed",
+                    "message": "validation_failed",
+                    "details": {
+                      "name": "min"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "Visitor One",
+                "email": "visitor@example.com",
+                "phone": "+970 59 111 2222",
+                "subject": "scholarships",
+                "message": "Hello, I would like to ask about master scholarships in Germany."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Sign out this device (revokes the token)",
+        "description": "**Access:** Any signed-in user",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ok": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
