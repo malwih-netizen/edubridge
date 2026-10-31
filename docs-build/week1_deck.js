@@ -94,6 +94,50 @@ const STUDENTS = [
 ];
 const TOTAL_TASKS = STUDENTS.reduce((n, s) => n + s.tasks.length, 0);
 
+// Short summary slide after each student's tasks: what she delivered, plus three numbers.
+const SUMMARY = {
+  '220217142': {
+    short: 'لمياء',
+    points: [
+      'جهّزت مشروع الـ PHP API بهيكل منظّم وملف إعدادات للبيئة، ورفعته على المستودع المشترك.',
+      'ربطت الخادم بقاعدة MySQL عبر PDO باستعلامات Prepared Statements فقط.',
+      'كتبت عقد الـ API: شكل الطلبات والردود بصيغة JSON ورسائل خطأ موحّدة.',
+      'حدّدت صلاحيات الطالب والموظف والمسؤول، وأنشأت مجموعة Postman للفريق.',
+    ],
+    stats: [['3', 'أدوار مستخدمين'], ['JSON', 'صيغة موحّدة للردود'], ['1', 'مجموعة Postman مشتركة']],
+  },
+  '220217234': {
+    short: 'ندى',
+    points: [
+      'أنشأت مشروع React بأداة Vite وهيكل مجلدات واضح للصفحات والمكوّنات.',
+      'بنت نظام تصميم بالهوية البصرية: ألوان وخطوط وأزرار وحقول وبطاقات.',
+      'فعّلت العربية والإنجليزية مع قلب اتجاه الصفحة RTL / LTR.',
+      'جهّزت 3 تخطيطات للصفحات وخدمة api.js للاتصال بالخادم.',
+    ],
+    stats: [['2', 'لغتان عربي / إنجليزي'], ['3', 'تخطيطات صفحات'], ['1', 'مكتبة مكوّنات موحّدة']],
+  },
+  '220217287': {
+    short: 'آلاء',
+    points: [
+      'صمّمت مخطط ERD لقاعدة البيانات واعتمدته مع الفريق.',
+      'كتبت schema.sql لإنشاء الجداول والعلاقات والمفاتيح الأجنبية.',
+      'جهّزت seed.sql ببيانات وحسابات تجريبية للطالب والموظف والمسؤول.',
+      'أعدّت قاموس البيانات ومخططات UML للتقرير.',
+    ],
+    stats: [['25', 'جدولاً'], ['34', 'علاقة (مفتاح أجنبي)'], ['7', 'Views للتقارير']],
+  },
+  '220217280': {
+    short: 'جنين',
+    points: [
+      'صمّمت خوارزمية التطابق بين الطالب والمنحة على 7 معايير بأوزان.',
+      'قواعد التصنيف: مؤهل من 75، ومحتمل من 50 إلى 74.',
+      'كتبت معادلة مؤشر الجاهزية حسب المستندات المرفوعة وحالتها.',
+      'اختارت Groq API لشرح التوصيات بدل تدريب نموذج، وجهّزت بيانات التقييم.',
+    ],
+    stats: [['7', 'معايير للتطابق'], ['75', 'حد الأهلية من 100'], ['100', 'أعلى درجة تطابق']],
+  },
+};
+
 (async () => {
   const pres = new pptxgen();
   pres.layout = 'LAYOUT_16x9'; // 10 × 5.625 in
@@ -198,6 +242,23 @@ const TOTAL_TASKS = STUDENTS.reduce((n, s) => n + s.tasks.length, 0);
       s.addText(out, { x: x + 0.15, y: y + 0.66, w: cw - 0.3, h: 0.8, fontSize: 12, color: C.text2, ...RTL, valign: 'top', isTextBox: true, margin: 0 });
     });
     s.addNotes(`${st.name}: ${st.tasks.map((t) => t[0]).join('، ')}.`);
+
+    // summary of what she delivered
+    const sum = SUMMARY[st.id];
+    const ss = pres.addSlide({ masterName: 'CONTENT', sectionTitle: 'إنجازات الطالبات' });
+    ss.addText(`ملخص ما أنجزته ${sum.short}`, { placeholder: 'title' });
+    ss.addText(sum.points.map((p, i) => ({
+      text: p,
+      options: { bullet: { code: '25CF' }, paraSpaceAfter: 22, breakLine: i < sum.points.length - 1 },
+    })), { x: 3.75, y: 1.35, w: 5.75, h: 3.55, fontSize: 17, color: C.text1, ...RTL, valign: 'top', isTextBox: true, margin: 0, objectName: 'Summary points' });
+    sum.stats.forEach(([n, label], i) => {
+      const y = 1.3 + i * 1.22;
+      const dark = i === 0;
+      ss.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 0.5, y, w: 2.9, h: 1.05, rectRadius: 0.1, fill: { color: dark ? HEX.navy : 'F3F6FA' }, line: { color: dark ? HEX.navy : 'E3E9F1', width: 0.75 }, objectName: `Summary stat ${i + 1}` });
+      ss.addText(n, { x: 0.6, y: y + 0.08, w: 2.7, h: 0.55, fontSize: 28, bold: true, color: dark ? HEX.gold : HEX.navy, align: 'center', valign: 'middle', isTextBox: true, margin: 0 });
+      ss.addText(label, { x: 0.6, y: y + 0.62, w: 2.7, h: 0.35, fontSize: 12, color: dark ? HEX.white : '33496A', align: 'center', rtlMode: true, isTextBox: true, margin: 0 });
+    });
+    ss.addNotes(`ملخص ${st.name}: ${sum.points.join(' ')}`);
   }
 
   /* ---------- 7. ERD ---------- */
