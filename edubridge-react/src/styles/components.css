@@ -269,7 +269,6 @@ html[dir="rtl"] .input-wrap > .input.ltr-input { padding-left: 14px; padding-rig
 
 /* ============ Heading underline (gold rule under section titles) ============ */
 .page-head h1::after,
-.pub-about-intro h2::after,
 .pub-head h2::after,
 .pub-journey-copy h2::after,
 .pub-guidance-copy h2::after,
@@ -285,7 +284,7 @@ html[dir="rtl"] .input-wrap > .input.ltr-input { padding-left: 14px; padding-rig
   content: ""; display: block; width: 56px; height: 3px; margin-top: 14px; border-radius: 3px;
   background: linear-gradient(90deg, var(--gold-400), var(--gold-600));
 }
-[dir="rtl"] .page-head h1::after, [dir="rtl"] .pub-about-intro h2::after, [dir="rtl"] .pub-head h2::after, [dir="rtl"] .pub-journey-copy h2::after,
+[dir="rtl"] .page-head h1::after, [dir="rtl"] .pub-head h2::after, [dir="rtl"] .pub-journey-copy h2::after,
 [dir="rtl"] .pub-guidance-copy h2::after, [dir="rtl"] #roles h2::after, [dir="rtl"] .pub-cta h2::after,
 [dir="rtl"] .pub-contact-info h2::after, [dir="rtl"] .browse-hero h1::after, [dir="rtl"] .browse-cta h2::after,
 [dir="rtl"] .teaser-head h1::after, [dir="rtl"] .teaser-h2::after, [dir="rtl"] .auth-head h2::after, [dir="rtl"] .auth-story h1::after {

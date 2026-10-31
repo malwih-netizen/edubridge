@@ -222,8 +222,6 @@
     "phoneValue": "+970 8 000 0000"
   },
   "aboutUs": {
-    "title": "A graduation project built by four engineers-to-be",
-    "lead": "We are four Computer Systems Engineering students at the University College of Science and Technology. EduBridge is our graduation project: a web platform that helps an educational consultancy office organise students, documents, scholarships and services in one place.",
     "storyTitle": "Why we built EduBridge",
     "story": "Students usually send their files and questions over WhatsApp, and advisors track everything by hand. We wanted to replace that with one clear workflow: students build their profile, upload documents once, discover suitable scholarships and follow every step, while advisors manage requests from a single CRM.",
     "missionTitle": "Our goal",
@@ -242,7 +240,6 @@
     },
     "teamTitle": "Meet the team",
     "supervisor": "Supervised by Ms. Amina Al-Salout",
-    "university": "University College of Science and Technology · Computer Systems Engineering",
     "members": {
       "lamia": {
         "name": "Lamia Madi",

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Database, GraduationCap, Layout, Server, Target, UsersRound } from 'lucide-react';
+import { Database, Layout, Server, Target, UsersRound } from 'lucide-react';
 
 // صور مؤقتة — استبدلي الملفات في src/assets/team بصور حقيقية (نفس الاسم، أو غيّري الامتداد هنا)
 import lamiaImg from '@/assets/team/lamia.svg';
@@ -22,12 +22,6 @@ export default function AboutSection() {
   return (
     <section className="pub-about" id="about">
       <div className="pub-about-inner">
-        <div className="pub-about-intro">
-          <h2>{t('aboutUs.title')}</h2>
-          <p className="pub-about-lead">{t('aboutUs.lead')}</p>
-          <p className="pub-about-uni"><GraduationCap aria-hidden />{t('aboutUs.university')}</p>
-        </div>
-
         <dl className="pub-about-facts">
           {FACTS.map((k) => (
             <div key={k}>
