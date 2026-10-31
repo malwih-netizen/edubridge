@@ -508,8 +508,7 @@ html[lang="ar"] .pub .public-links a.active { font-weight: 600; }
 .pub-about-facts dd { margin: 4px 0 0; font-family: var(--font-display); font-size: 32px; font-weight: 600; color: var(--heading); line-height: 1.2; }
 [dir="rtl"] .pub-about-facts dd { text-align: right; }
 
-.pub-about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 22px; margin-top: 22px; }
-.pub-about-story { display: grid; gap: 18px; }
+.pub-about-story { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 22px; }
 .pub-about-story article { padding: 26px; border-radius: var(--r-lg); background: var(--surface-2); border: 1px solid var(--line-2); }
 .pub-about-story article.mission { background: var(--navy-800); border-color: var(--heading); }
 .pub-about-story h3 { font-size: 19px; margin: 14px 0 8px; }
@@ -520,33 +519,14 @@ html[lang="ar"] .pub .public-links a.active { font-weight: 600; }
 .mission .pas-icon { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); color: var(--gold-300); }
 .pas-icon svg { width: 20px; height: 20px; }
 
-.pub-about-team { padding: 26px; border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
-.pat-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 14px; padding-block-end: 16px; border-block-end: 1px solid var(--line-2); }
-.pat-head h3 { font-size: 19px; }
-.pat-head span { color: var(--muted); font-size: 13px; font-weight: 600; }
-.pub-about-team ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
-.pub-about-team li { display: flex; gap: 12px; padding: 16px; border-radius: 14px; border: 1px solid var(--line-2); transition: border-color .2s, box-shadow .2s; }
-.pub-about-team li:hover { border-color: var(--gold-300); box-shadow: var(--shadow-sm); }
-.pat-avatar {
-  width: 48px; height: 48px; border-radius: 50%; flex: none; display: grid; place-items: center;
-  background: linear-gradient(135deg, var(--gold-400), var(--gold-700)); color: #fff; font-weight: 800; font-size: 14px;
-}
-.pub-about-team li:nth-child(even) .pat-avatar { background: linear-gradient(135deg, var(--navy-600), var(--navy-800)); }
-.pat-body { min-width: 0; display: grid; gap: 4px; }
-.pat-body b { color: var(--heading); font-size: 15px; }
-.pat-role { display: inline-flex; align-items: center; gap: 6px; color: var(--gold-700); font-size: 12.5px; font-weight: 700; }
-.pat-role svg { width: 14px; height: 14px; flex: none; }
-.pat-body small { color: var(--muted); font-size: 12.5px; line-height: 1.6; }
-
-@media (max-width: 1100px) { .pub-about-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 720px) {
   .pub-about { padding: 64px 16px 0; }
   .pub-about-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pub-about-facts div:nth-child(3) { border-inline-start: 0; }
   .pub-about-facts div:nth-child(n+3) { border-block-start: 1px solid var(--line-2); }
   .pub-about-facts dd { font-size: 26px; }
-  .pub-about-team, .pub-about-story article { padding: 20px; }
-  .pub-about-team ul { grid-template-columns: minmax(0, 1fr); }
+  .pub-about-story { grid-template-columns: minmax(0, 1fr); }
+  .pub-about-story article { padding: 20px; }
 }
 
 /* ================= Footer — navy with brand gold accents ================= */
@@ -593,8 +573,4 @@ html[lang="ar"] .pub .public-links a.active { font-weight: 600; }
 .pub-top:hover { background: var(--gold-500); border-color: var(--gold-500); color: #fff; }
 @media (max-width: 720px) {
   .pub-footer::after { width: 340px; height: 200px; inset-inline-end: -110px; bottom: -110px; }
-}
-.pat-photo {
-  width: 64px; height: 64px; border-radius: 50%; flex: none; object-fit: cover;
-  border: 3px solid #fff; box-shadow: 0 0 0 1.5px var(--gold-300), 0 6px 14px rgba(15, 44, 85, .12);
 }

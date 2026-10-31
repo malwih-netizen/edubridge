@@ -14,7 +14,7 @@ import subprocess
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 WEB = ROOT / 'edubridge-react'
 OUT = ROOT / 'deploy' / 'pages'
-REPO = 'https://github.com/malwih-netizen/edubridge.git'
+REPO = 'https://malwih-netizen@github.com/malwih-netizen/edubridge.git'
 BASE = '/edubridge/'
 
 

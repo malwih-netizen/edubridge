@@ -237,30 +237,6 @@
       "modules": "12",
       "weeks": "15",
       "year": "2026/2027"
-    },
-    "teamTitle": "Meet the team",
-    "supervisor": "Supervised by Ms. Amina Al-Salout",
-    "members": {
-      "lamia": {
-        "name": "Lamia Madi",
-        "role": "Backend developer",
-        "focus": "PHP REST API, authentication and scholarship management"
-      },
-      "nada": {
-        "name": "Nada Al-Astal",
-        "role": "Frontend developer",
-        "focus": "React interfaces, dashboards and bilingual design"
-      },
-      "alaa": {
-        "name": "Alaa Abu Mustafa",
-        "role": "Database & integration",
-        "focus": "MySQL design, students and documents modules, testing"
-      },
-      "janeen": {
-        "name": "Janeen Al-Qutati",
-        "role": "Matching & CRM",
-        "focus": "Scholarship matching, readiness score, CRM and evaluation"
-      }
     }
   }
 }
