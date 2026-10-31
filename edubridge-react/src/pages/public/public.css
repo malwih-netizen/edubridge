@@ -497,14 +497,9 @@ html[lang="ar"] .pub .public-links a.active { font-weight: 600; }
 /* ================= About us (team) ================= */
 .pub-about { padding: 96px 5vw 0; }
 .pub-about-inner { width: min(1200px, 100%); margin: 0 auto; }
-.pub-about-intro { max-width: 820px; }
-.pub .pub-about-intro h2 { font-size: clamp(28px, 3.2vw, 40px); }
-.pub-about-lead { margin-top: 18px; color: var(--ink-2); font-size: 16.5px; line-height: 1.85; }
-.pub-about-uni { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; color: var(--heading-2); font-weight: 600; font-size: 13.5px; }
-.pub-about-uni svg { width: 18px; height: 18px; color: var(--gold-600); flex: none; }
 
 .pub-about-facts {
-  margin: 34px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
   border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--surface); overflow: hidden;
 }
 .pub-about-facts div { padding: 20px 22px; border-inline-start: 1px solid var(--line-2); }
