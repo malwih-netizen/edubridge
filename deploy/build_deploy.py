@@ -139,7 +139,11 @@ if __name__ == '__main__':
         shutil.rmtree(OUT)
     build_web()
     build_api()
-    if kept_env:  # keep the pasted password and JWT secret across rebuilds
+    if kept_env:  # keep the pasted password and JWT secret across rebuilds, adding any setting introduced since
+        have = {line.split('=', 1)[0] for line in kept_env.splitlines() if '=' in line and not line.startswith('#')}
+        missing = [line for line in ENV.splitlines() if '=' in line and not line.startswith('#') and line.split('=', 1)[0] not in have]
+        if missing:
+            kept_env = kept_env.rstrip('\n') + '\n\n# added by build_deploy.py\n' + '\n'.join(missing) + '\n'
         old_env.write_text(kept_env, encoding='utf-8')
     build_sql()
     z = build_zip()
