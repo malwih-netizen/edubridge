@@ -31,3 +31,4 @@ deploy/pages/
 
 # system explainer build files
 docs-build/system-explainer/.render/
+docs-build/system-explainer/system-explainer.html
