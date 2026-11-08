@@ -20,11 +20,7 @@ Live demo: https://edubridge.infinityfreeapp.com
 |---|---|
 | `edubridge-react/` | React 18 + Vite site, Arabic (RTL) / English, student, advisor and admin dashboards |
 | `edubridge-api/` | PHP 8 REST API, MySQL schema/seed/views, Swagger (`/docs`) and Postman collection |
-| `deploy/` | Scripts that build and upload the InfinityFree package |
-| `docs/` | System Analysis & Database Design, AI Integration & Automation (Word + PDF) |
-| `docs-build/` | Scripts that generate those documents and their diagrams |
-| `team-tasks/` | Task sheets for each team member |
-| `front end/` | The original static HTML prototype |
+| `deploy/` | Scripts that build the hosting package, upload it, and publish GitHub Pages |
 
 ## Run locally
 

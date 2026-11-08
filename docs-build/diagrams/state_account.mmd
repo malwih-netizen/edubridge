@@ -1,9 +1,0 @@
-%% size: 1600x1400
-stateDiagram-v2
-  [*] --> Invited: admin invites staff
-  [*] --> Pending: student registers
-  Invited --> Active: accepts invitation
-  Pending --> Active: email confirmed
-  Active --> Suspended: admin suspends
-  Suspended --> Active: admin re-activates
-  Active --> [*]: deactivated

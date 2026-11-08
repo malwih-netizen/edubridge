@@ -1,9 +1,0 @@
-%% size: 1600x1400
-stateDiagram-v2
-  [*] --> Missing
-  Missing --> UnderReview: student uploads
-  UnderReview --> Approved: advisor approves
-  UnderReview --> Rejected: advisor rejects (reason)
-  Rejected --> UnderReview: student re-uploads
-  Approved --> UnderReview: student replaces file
-  Approved --> [*]

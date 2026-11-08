@@ -32,3 +32,11 @@ deploy/pages/
 # system explainer build files
 docs-build/system-explainer/.render/
 docs-build/system-explainer/system-explainer.html
+
+# not code — kept on the computer only
+docs/
+docs-build/
+team-tasks/
+front end/
+deploy/restore_htdocs.py
+deploy/*.md
