@@ -1,0 +1,11 @@
+%% size: 1900x1500
+%%{init: {"themeVariables": {"fontSize": "21px"}, "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div { direction: rtl; } text.messageText, text.actor, .noteText, .actor-man text, text.state-note, g.stateGroup text, .stateLabel text, .edgeLabel text { direction: rtl; unicode-bidi: embed; }"}}%%
+flowchart TB
+  RULE["محرك القواعد — يعمل الآن<br/>يحسب الدرجة والتصنيف لكل منحة"]
+  RULE --> IN["المدخلات للنموذج<br/>ملخص الملف بدون اسم أو بريد أو ملفات<br/>شروط المنحة + درجة كل معيار"]
+  IN --> LLM["Groq — نموذج لغوي جاهز عبر API<br/>الأسبوع الثالث"]:::planned
+  LLM --> OUT["المخرج<br/>2 – 3 جمل تشرح سبب الملاءمة وما ينقص<br/>بلغة الواجهة"]
+  OUT --> CACHE[("match_scores.explanation<br/>تخزين الشرح وإعادة استخدامه")]
+  OUT --> UI["يظهر للطالبة مع التوصية"]
+  OUT --> ADV["المستشار يقرأ الشرح<br/>والقرار له وحده"]
+  classDef planned stroke-dasharray: 6 4,fill:#ffffff

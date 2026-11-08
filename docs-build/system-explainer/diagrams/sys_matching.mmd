@@ -1,0 +1,14 @@
+%% size: 1900x1700
+%%{init: {"themeVariables": {"fontSize": "21px"}, "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div { direction: rtl; } text.messageText, text.actor, .noteText, .actor-man text, text.state-note, g.stateGroup text, .stateLabel text, .edgeLabel text { direction: rtl; unicode-bidi: embed; }"}}%%
+flowchart TB
+  P["الملف الشخصي للطالبة<br/>التخصص · المعدل · المستوى · الجنسية<br/>درجة اللغة · الدول المفضلة · التمويل"]
+  SC["شروط المنحة<br/>التخصصات · الحد الأدنى للمعدل · المستويات<br/>الجنسيات · اللغة المطلوبة · الدولة · التمويل"]
+  P --> CMP
+  SC --> CMP
+  CMP{"مقارنة كل معيار<br/>1 يحقق · 0.5 قريب · 0 لا يحقق"}
+  CMP --> W["ضرب كل نتيجة في وزنها<br/>تخصص 25 · معدل 20 · مستوى 15 · جنسية 15<br/>لغة 10 · دولة 10 · تمويل 5"]
+  W --> SUM["المجموع من 100"]
+  SUM --> C1["75 فأكثر: مؤهل"]
+  SUM --> C2["50 – 74: محتمل"]
+  SUM --> C3["أقل من 50: غير مناسب"]
+  SUM --> CACHE[("match_scores<br/>الدرجة وتفاصيل كل معيار")]

@@ -1,0 +1,14 @@
+%% size: 1500x2300
+%%{init: {"themeVariables": {"fontSize": "21px"}, "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div { direction: rtl; } text.messageText, text.actor, .noteText, .actor-man text, text.state-note, g.stateGroup text, .stateLabel text, .edgeLabel text { direction: rtl; unicode-bidi: embed; }"}}%%
+flowchart TB
+  R["1 · التسجيل وتأكيد البريد<br/>الطالبة"] --> PR["2 · تعبئة الملف الشخصي<br/>الطالبة"]
+  PR --> DOC["3 · رفع المستندات<br/>الطالبة ← الخادم يتحقق ويحفظ"]
+  DOC --> REC["4 · التوصيات ونسبة التطابق + الجاهزية<br/>محرك التطابق"]
+  REC --> SRV["5 · طلب خدمة أو اختيار منحة<br/>الطالبة"]
+  SRV --> ADV["6 · استلام الطلب والتواصل<br/>المستشار"]
+  ADV --> REV{"7 · المستندات كاملة ومقبولة؟<br/>المستشار يراجع"}
+  REV -- "لا" --> MISS["طلب النواقص<br/>إشعار للطالبة"]
+  MISS --> DOC
+  REV -- "نعم" --> SUB["8 · التقديم على المنحة<br/>المستشار"]
+  SUB --> RES["9 · تسجيل النتيجة: قبول / رفض<br/>المستشار"]
+  RES --> NT["10 · إشعار الطالبة بالنتيجة"]

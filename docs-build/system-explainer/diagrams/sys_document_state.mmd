@@ -1,0 +1,15 @@
+%% size: 1700x1100
+%%{init: {"themeVariables": {"fontSize": "21px"}, "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div { direction: rtl; } text.messageText, text.actor, .noteText, .actor-man text, text.state-note, g.stateGroup text, .stateLabel text, .edgeLabel text { direction: rtl; unicode-bidi: embed; }"}}%%
+stateDiagram-v2
+  state "ناقص" as missing
+  state "قيد المراجعة" as review
+  state "مقبول" as approved
+  state "مرفوض + سبب" as rejected
+  [*] --> missing
+  missing --> review: الطالبة ترفع
+  review --> approved: المستشار يقبل
+  review --> rejected: المستشار يرفض
+  rejected --> review: الطالبة تستبدل
+  approved --> review: نسخة أحدث
+  review --> missing: الطالبة تحذف
+  rejected --> missing: الطالبة تحذف

@@ -1,0 +1,30 @@
+%% size: 1300x2400
+%%{init: {"themeVariables": {"fontSize": "21px"}, "themeCSS": ".nodeLabel, .edgeLabel, .label, .cluster-label, foreignObject div { direction: rtl; }"}}%%
+flowchart TB
+  S1["1 · الطالبة<br/>تختار نوع المستند وتسحب الملف"]:::student
+  S2["2 · الواجهة React<br/>فحص أولي: الحجم حتى 10MB"]:::ui
+  S3["3 · الخادم PHP<br/>التوكن صالح؟ الدور طالبة؟"]:::api
+  S4["4 · الخادم PHP<br/>النوع الحقيقي PDF / JPG / PNG / DOCX؟<br/>الحجم مقبول؟"]:::api
+  X["رفض 401 / 403 / 422<br/>ولا يُحفظ شيء"]
+  S5["5 · الخادم PHP<br/>حفظ الملف باسم عشوائي<br/>خارج المجلد العام"]:::api
+  S6[("6 · MySQL — documents<br/>الحالة: قيد المراجعة")]
+  S7["7 · الطالبة<br/>تم الرفع وبانتظار المراجعة<br/>الجاهزية تُحدَّث"]:::student
+  S8["8 · المستشار<br/>يفتح الملف عبر مسار محمي<br/>ويقارنه بالملف الشخصي"]:::advisor
+  S9["9 · المستشار<br/>القرار"]:::advisor
+  OK[("مقبول<br/>documents + audit_log")]
+  NO[("مرفوض + سبب<br/>documents + audit_log")]
+  N["10 · notifications<br/>إشعار للطالبة"]
+  NOAI["لا ذكاء اصطناعي في هذه الخطوات<br/>الخادم وحده يتعامل مع الملف"]:::note
+  S1 --> S2 --> S3
+  S3 -- "نعم" --> S4
+  S3 -- "لا" --> X
+  S4 -- "لا" --> X
+  S4 -- "نعم" --> S5 --> S6 --> S7 --> S8 --> S9
+  S9 -- "قبول" --> OK --> N
+  S9 -- "رفض" --> NO --> N
+  S5 ~~~ NOAI
+  classDef student fill:#000000,color:#ffffff,stroke:#000000
+  classDef advisor fill:#595959,color:#ffffff,stroke:#000000
+  classDef ui fill:#ffffff,stroke:#000000
+  classDef api fill:#e6e6e6,stroke:#000000
+  classDef note fill:#ffffff,stroke-dasharray: 6 4
