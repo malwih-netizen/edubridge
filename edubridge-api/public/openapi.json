@@ -33,6 +33,12 @@
       "name": "Student"
     },
     {
+      "name": "Documents"
+    },
+    {
+      "name": "Admin"
+    },
+    {
       "name": "Account"
     },
     {
@@ -511,6 +517,51 @@
             "in": "query",
             "required": false,
             "description": "search in name / university (EN or AR)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deadlineWithin",
+            "in": "query",
+            "required": false,
+            "description": "deadline in the next N days",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deadlineFrom",
+            "in": "query",
+            "required": false,
+            "description": "YYYY-MM-DD",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deadlineTo",
+            "in": "query",
+            "required": false,
+            "description": "YYYY-MM-DD",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "page number — when given the reply is { data, page, perPage, total, pages }",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "perPage",
+            "in": "query",
+            "required": false,
+            "description": "1–100, default 10",
             "schema": {
               "type": "string"
             }
@@ -1083,6 +1134,49 @@
         }
       }
     },
+    "/students/me/documents/{id}/file": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Open / download my document",
+        "description": "**Access:** Student only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": "<file bytes>"
+              }
+            }
+          },
+          "404": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "not_found",
+                    "message": "not_found"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 6
+          }
+        ]
+      }
+    },
     "/students/me/readiness": {
       "get": {
         "tags": [
@@ -1199,8 +1293,79 @@
                     "scholarship": {
                       "id": 1,
                       "…": "…"
+                    },
+                    "documentIds": [
+                      1,
+                      2
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/me/applications/{code}/documents": {
+      "put": {
+        "tags": [
+          "Student"
+        ],
+        "summary": "Reuse my documents in an application (replaces the list)",
+        "description": "**Access:** Student only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "APP-2041",
+                  "documentIds": [
+                    1,
+                    2,
+                    6
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "validation_failed",
+                    "message": "validation_failed",
+                    "details": {
+                      "documentIds": "in"
                     }
                   }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "APP-2041"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "documentIds": [
+                  1,
+                  2,
+                  6
                 ]
               }
             }
@@ -1266,6 +1431,369 @@
                 "priority": "high",
                 "scholarshipId": 2,
                 "notes": "I need an academic CV for DAAD."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/{id}/documents": {
+      "get": {
+        "tags": [
+          "Documents"
+        ],
+        "summary": "A student's documents",
+        "description": "**Access:** Advisor or admin",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 1,
+                    "type": "passport",
+                    "file": "Passport_Sarah.pdf",
+                    "size": "1.2 MB",
+                    "status": "approved",
+                    "reason": null,
+                    "uploadedAt": "2026-09-02"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ]
+      }
+    },
+    "/documents/{id}/file": {
+      "get": {
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Open a document",
+        "description": "**Access:** Advisor or admin",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": "<file bytes>"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 6
+          }
+        ]
+      }
+    },
+    "/documents/{id}/review": {
+      "put": {
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Approve or reject a document (the student is notified)",
+        "description": "**Access:** Advisor or admin",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 6,
+                  "type": "cv",
+                  "file": "CV.pdf",
+                  "size": "120 KB",
+                  "status": "rejected",
+                  "reason": "Please upload the signed version.",
+                  "uploadedAt": "2026-10-25"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "validation_failed",
+                    "message": "validation_failed",
+                    "details": {
+                      "reason": "required"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 6
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "status": "rejected",
+                "reason": "Please upload the signed version."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/students/me/documents/{id}": {
+      "delete": {
+        "tags": [
+          "Documents"
+        ],
+        "summary": "Delete my document (approved ones are locked)",
+        "description": "**Access:** Student only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "ok": true
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "document_approved",
+                    "message": "document_approved"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 6
+          }
+        ]
+      }
+    },
+    "/admin/users": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "All users",
+        "description": "**Access:** Admin only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 2,
+                    "name": "Maya Khalil",
+                    "nameAr": "مايا خليل",
+                    "email": "advisor@edubridge.app",
+                    "role": "employee",
+                    "department": "studentServices",
+                    "status": "active",
+                    "lastActive": "2026-11-08T10:12:00"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "role",
+            "in": "query",
+            "required": false,
+            "description": "student | employee | admin",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "active | pending | invited | suspended",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "department",
+            "in": "query",
+            "required": false,
+            "description": "studentServices | admissions | visa | scholarships | compliance",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "name or email",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Invite a user (temporary password sent by email)",
+        "description": "**Access:** Admin only",
+        "responses": {
+          "201": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 11,
+                  "name": "Maya Khalil",
+                  "nameAr": "مايا خليل",
+                  "email": "advisor@edubridge.app",
+                  "role": "employee",
+                  "department": "studentServices",
+                  "status": "invited",
+                  "lastActive": null,
+                  "emailSent": true
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "email_taken",
+                    "message": "email_taken"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "name": "Omar Saleh",
+                "email": "omar.saleh@edubridge.app",
+                "role": "employee",
+                "department": "visa"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/users/{id}": {
+      "put": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Change role / department, suspend or activate",
+        "description": "**Access:** Admin only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 11,
+                  "name": "Maya Khalil",
+                  "nameAr": "مايا خليل",
+                  "email": "advisor@edubridge.app",
+                  "role": "employee",
+                  "department": "studentServices",
+                  "status": "suspended",
+                  "lastActive": "2026-11-08T10:12:00"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": {
+                    "code": "cannot_change_own_account",
+                    "message": "cannot_change_own_account"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "example": 11
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "status": "suspended"
               }
             }
           }

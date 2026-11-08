@@ -8,7 +8,11 @@ use App\Services\Mapper;
 
 final class ScholarshipController
 {
-    /** GET /api/scholarships?level=master&country=germany&field=&funding=&q= — public directory. */
+    /**
+     * GET /api/scholarships?level=master&country=germany&field=&funding=&q=
+     *   &deadlineWithin=30 (days from today) | &deadlineFrom=YYYY-MM-DD&deadlineTo=YYYY-MM-DD
+     *   &page=1&perPage=10 → { data, page, perPage, total, pages }   (without page: the full list)
+     */
     public function index(Request $req): never
     {
         $where = ["status <> 'draft'"];
@@ -23,7 +27,27 @@ final class ScholarshipController
             $where[] = '(name LIKE ? OR name_ar LIKE ? OR university LIKE ? OR university_ar LIKE ?)';
             array_push($params, ...array_fill(0, 4, '%' . $q['q'] . '%'));
         }
-        Response::json(Mapper::scholarships(implode(' AND ', $where), $params));
+        Validator::check($q, ['deadlineWithin' => 'numeric|between:0,3650', 'deadlineFrom' => 'date', 'deadlineTo' => 'date',
+            'page' => 'numeric|between:1,100000', 'perPage' => 'numeric|between:1,100']);
+        if (!empty($q['deadlineWithin'])) {
+            $where[] = 'deadline BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL ? DAY)';
+            $params[] = (int) $q['deadlineWithin'];
+        }
+        if (!empty($q['deadlineFrom'])) { $where[] = 'deadline >= ?'; $params[] = $q['deadlineFrom']; }
+        if (!empty($q['deadlineTo']))   { $where[] = 'deadline <= ?'; $params[] = $q['deadlineTo']; }
+
+        $list = Mapper::scholarships(implode(' AND ', $where), $params);
+        if (empty($q['page'])) Response::json($list);
+
+        $perPage = (int) ($q['perPage'] ?? 10);
+        $page = (int) $q['page'];
+        Response::json([
+            'data'    => array_slice($list, ($page - 1) * $perPage, $perPage),
+            'page'    => $page,
+            'perPage' => $perPage,
+            'total'   => count($list),
+            'pages'   => (int) ceil(count($list) / $perPage),
+        ]);
     }
 
     /** GET /api/scholarships/{id} */

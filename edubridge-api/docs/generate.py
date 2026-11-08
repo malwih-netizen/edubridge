@@ -26,8 +26,9 @@ SCHOLARSHIP = {
     'descriptionAr': 'راتب شهري وبدل سفر وتأمين صحي…', 'tags': [],
 }
 USER = {'id': 1, 'role': 'student', 'email': 'student@edubridge.app', 'name': 'Sarah Ahmed', 'nameAr': 'سارة أحمد', 'title': None, 'titleAr': None}
+USERROW = {'id': 2, 'name': 'Maya Khalil', 'nameAr': 'مايا خليل', 'email': 'advisor@edubridge.app', 'role': 'employee', 'department': 'studentServices', 'status': 'active', 'lastActive': '2026-11-08T10:12:00'}
 
-# auth: public | any (signed in) | student | staff (employee/admin)
+# auth: public | any (signed in) | student | staff (employee/admin) | admin
 ENDPOINTS = [
     # ---------------- System ----------------
     dict(tag='System', method='GET', path='/health', auth='public', summary='API and database status',
@@ -66,7 +67,9 @@ ENDPOINTS = [
     dict(tag='Scholarships', method='GET', path='/scholarships', auth='public', summary='Public scholarship directory with filters',
          query=[('level', 'bachelor | master | phd', 'master'), ('country', 'e.g. germany, canada, uk', 'germany'),
                 ('field', 'e.g. engineering, computerScience', ''), ('funding', 'full | partial | self', ''),
-                ('status', 'open | upcoming | closed', ''), ('q', 'search in name / university (EN or AR)', '')],
+                ('status', 'open | upcoming | closed', ''), ('q', 'search in name / university (EN or AR)', ''),
+                ('deadlineWithin', 'deadline in the next N days', ''), ('deadlineFrom', 'YYYY-MM-DD', ''), ('deadlineTo', 'YYYY-MM-DD', ''),
+                ('page', 'page number — when given the reply is { data, page, perPage, total, pages }', ''), ('perPage', '1–100, default 10', '')],
          responses={200: [SCHOLARSHIP]}),
     dict(tag='Scholarships', method='GET', path='/scholarships/{id}', auth='public', summary='One scholarship',
          params=[('id', 2)], responses={200: SCHOLARSHIP, 404: {'error': {'code': 'not_found', 'message': 'not_found'}}}),
@@ -100,7 +103,10 @@ ENDPOINTS = [
     dict(tag='Student', method='POST', path='/students/me/documents', auth='student', summary='Upload a document (PDF, JPG, PNG, DOCX — max 10 MB)',
          multipart=[('type', 'cv', 'passport | transcript | degree | cv | language | motivation | recommendation | other'), ('file', None, 'the file')],
          responses={201: {'id': 6, 'type': 'cv', 'file': 'CV.pdf', 'size': '120 KB', 'status': 'underReview', 'reason': None, 'uploadedAt': '2026-10-25'},
-                    422: {'error': {'code': 'validation_failed', 'message': 'validation_failed', 'details': {'file': 'type'}}}}),
+                    422: {'error': {'code': 'validation_failed', 'message': 'validation_failed', 'details': {'file': 'type'}}}},
+         pm_tests=["pm.collectionVariables.set('docId', pm.response.json().id);"]),
+    dict(tag='Student', method='GET', path='/students/me/documents/{id}/file', auth='student', summary='Open / download my document', params=[('id', 6)],
+         pm_params={'id': '{{docId}}'}, responses={200: '<file bytes>', 404: {'error': {'code': 'not_found', 'message': 'not_found'}}}),
     dict(tag='Student', method='GET', path='/students/me/readiness', auth='student', summary='Readiness score and missing documents',
          responses={200: {'score': 65, 'missing': ['cv', 'language']}}),
     dict(tag='Student', method='GET', path='/students/me/recommendations', auth='student', summary='Scholarships ranked by match score',
@@ -108,12 +114,49 @@ ENDPOINTS = [
                                                      'parts': {'field': 1, 'gpa': 1, 'level': 1, 'nationality': 1, 'language': 1, 'country': 1, 'funding': 1}}}]}),
     dict(tag='Student', method='GET', path='/students/me/applications', auth='student', summary='My applications (8 stages)',
          responses={200: [{'id': 'APP-2041', 'scholarshipId': 1, 'stage': 2, 'result': None, 'updatedAt': '2026-10-22',
-                           'advisor': 'Maya Khalil', 'advisorAr': 'مايا خليل', 'scholarship': {'id': 1, '…': '…'}}]}),
+                           'advisor': 'Maya Khalil', 'advisorAr': 'مايا خليل', 'scholarship': {'id': 1, '…': '…'}, 'documentIds': [1, 2]}]},
+         pm_tests=["const a = pm.response.json(); pm.collectionVariables.set('appId', a.length ? a[0].id : 'none');"]),
+    dict(tag='Student', method='PUT', path='/students/me/applications/{code}/documents', auth='student',
+         summary='Reuse my documents in an application (replaces the list)', params=[('code', 'APP-2041')], pm_params={'code': '{{appId}}'},
+         body={'documentIds': [1, 2, 6]}, pm_body={'documentIds': ['{{docId}}']},
+         responses={200: {'id': 'APP-2041', 'documentIds': [1, 2, 6]}, 422: {'error': {'code': 'validation_failed', 'message': 'validation_failed', 'details': {'documentIds': 'in'}}}}),
     dict(tag='Student', method='GET', path='/students/me/service-requests', auth='student', summary='My service requests',
          responses={200: [{'id': 'SR-1', 'service': 'cv', 'status': 'inProgress', 'priority': 'medium', 'createdAt': '2026-10-18', 'assignee': 'Maya Khalil'}]}),
     dict(tag='Student', method='POST', path='/service-requests', auth='student', summary='Request a service',
          body={'service': 'cv', 'priority': 'high', 'scholarshipId': 2, 'notes': 'I need an academic CV for DAAD.'},
          responses={201: {'id': 'SR-4', 'status': 'newRequest', 'service': 'cv'}}),
+
+    # ---------------- Documents (advisor / admin) ----------------
+    dict(tag='Documents', method='GET', path='/students/{id}/documents', auth='staff', summary="A student's documents", params=[('id', 1)],
+         responses={200: [{'id': 1, 'type': 'passport', 'file': 'Passport_Sarah.pdf', 'size': '1.2 MB', 'status': 'approved', 'reason': None, 'uploadedAt': '2026-09-02'}]}),
+    dict(tag='Documents', method='GET', path='/documents/{id}/file', auth='staff', summary='Open a document', params=[('id', 6)],
+         pm_params={'id': '{{docId}}'}, responses={200: '<file bytes>'}),
+    dict(tag='Documents', method='PUT', path='/documents/{id}/review', auth='staff', summary='Approve or reject a document (the student is notified)',
+         params=[('id', 6)], pm_params={'id': '{{docId}}'}, body={'status': 'rejected', 'reason': 'Please upload the signed version.'},
+         responses={200: {'id': 6, 'type': 'cv', 'file': 'CV.pdf', 'size': '120 KB', 'status': 'rejected', 'reason': 'Please upload the signed version.', 'uploadedAt': '2026-10-25'},
+                    422: {'error': {'code': 'validation_failed', 'message': 'validation_failed', 'details': {'reason': 'required'}}}}),
+    dict(tag='Documents', method='DELETE', path='/students/me/documents/{id}', auth='student', summary='Delete my document (approved ones are locked)',
+         params=[('id', 6)], pm_params={'id': '{{docId}}'},
+         responses={200: {'ok': True}, 409: {'error': {'code': 'document_approved', 'message': 'document_approved'}}}),
+
+    # ---------------- Administration ----------------
+    dict(tag='Admin', method='POST', path='/auth/login', auth='public', summary='Sign in as admin (saves adminToken)', postman_only=True,
+         body={'email': 'admin@edubridge.app', 'password': 'demo1234'},
+         pm_tests=["const b = pm.response.json(); if (b.token) { pm.collectionVariables.set('adminToken', b.token); }"],
+         responses={200: {'token': '<JWT>', 'user': {**USER, 'id': 3, 'role': 'admin', 'email': 'admin@edubridge.app', 'name': 'Admin User'}}}),
+    dict(tag='Admin', method='GET', path='/admin/users', auth='admin', summary='All users',
+         query=[('role', 'student | employee | admin', ''), ('status', 'active | pending | invited | suspended', ''),
+                ('department', 'studentServices | admissions | visa | scholarships | compliance', ''), ('q', 'name or email', '')],
+         responses={200: [USERROW]}),
+    dict(tag='Admin', method='POST', path='/admin/users', auth='admin', summary='Invite a user (temporary password sent by email)',
+         body={'name': 'Omar Saleh', 'email': 'omar.saleh@edubridge.app', 'role': 'employee', 'department': 'visa'},
+         pm_body={'name': 'Postman Test', 'email': 'postman.{{$timestamp}}@edubridge.app', 'role': 'employee', 'department': 'visa'},
+         pm_tests=["pm.collectionVariables.set('newUserId', pm.response.json().id);"],
+         responses={201: {**USERROW, 'id': 11, 'status': 'invited', 'lastActive': None, 'emailSent': True},
+                    409: {'error': {'code': 'email_taken', 'message': 'email_taken'}}}),
+    dict(tag='Admin', method='PUT', path='/admin/users/{id}', auth='admin', summary='Change role / department, suspend or activate',
+         params=[('id', 11)], pm_params={'id': '{{newUserId}}'}, body={'status': 'suspended'},
+         responses={200: {**USERROW, 'id': 11, 'status': 'suspended'}, 409: {'error': {'code': 'cannot_change_own_account', 'message': 'cannot_change_own_account'}}}),
 
     # ---------------- Account ----------------
     dict(tag='Account', method='GET', path='/account/sessions', auth='any', summary='Signed-in devices',
@@ -143,7 +186,7 @@ ENDPOINTS = [
     dict(tag='Finish', method='POST', path='/auth/logout', auth='any', summary='Sign out this device (revokes the token)', responses={200: {'ok': True}}),
 ]
 
-AUTH_NOTE = {'public': 'Public', 'any': 'Any signed-in user', 'student': 'Student only', 'staff': 'Advisor or admin'}
+AUTH_NOTE = {'public': 'Public', 'any': 'Any signed-in user', 'student': 'Student only', 'staff': 'Advisor or admin', 'admin': 'Admin only'}
 
 
 def openapi():
@@ -157,7 +200,8 @@ def openapi():
                                         'content': {'application/json': {'example': ex}}} for code, ex in e['responses'].items()}}
         if e['auth'] == 'public':
             op['security'] = []
-        params = [{'name': n, 'in': 'path', 'required': True, 'schema': {'type': 'integer'}, 'example': ex} for n, ex in e.get('params', [])]
+        params = [{'name': n, 'in': 'path', 'required': True, 'schema': {'type': 'integer' if isinstance(ex, int) else 'string'}, 'example': ex}
+                  for n, ex in e.get('params', [])]
         params += [{'name': n, 'in': 'query', 'required': False, 'description': d, 'schema': {'type': 'string'}, **({'example': ex} if ex else {})}
                    for n, d, ex in e.get('query', [])]
         if params:
@@ -208,6 +252,8 @@ def postman():
             req['auth'] = {'type': 'noauth'}
         elif e['auth'] == 'staff':
             req['auth'] = {'type': 'bearer', 'bearer': [{'key': 'token', 'value': '{{staffToken}}', 'type': 'string'}]}
+        elif e['auth'] == 'admin':
+            req['auth'] = {'type': 'bearer', 'bearer': [{'key': 'token', 'value': '{{adminToken}}', 'type': 'string'}]}
         if 'body' in e:
             req['header'].append({'key': 'Content-Type', 'value': 'application/json'})
             req['body'] = {'mode': 'raw', 'raw': json.dumps(e.get('pm_body', e['body']), ensure_ascii=False, indent=2), 'options': {'raw': {'language': 'json'}}}
@@ -229,7 +275,7 @@ def postman():
                  'description': 'Start with Auth → POST /auth/login. The token is saved automatically and used by every other request.\n'
                                 'Demo accounts (password demo1234): student@edubridge.app · advisor@edubridge.app · admin@edubridge.app'},
         'auth': {'type': 'bearer', 'bearer': [{'key': 'token', 'value': '{{token}}', 'type': 'string'}]},
-        'variable': [{'key': 'baseUrl', 'value': BASE}, {'key': 'token', 'value': ''}, {'key': 'staffToken', 'value': ''},
+        'variable': [{'key': 'baseUrl', 'value': BASE}, {'key': 'token', 'value': ''}, {'key': 'staffToken', 'value': ''}, {'key': 'adminToken', 'value': ''}, {'key': 'docId', 'value': ''}, {'key': 'appId', 'value': ''}, {'key': 'newUserId', 'value': ''},
                      {'key': 'newEmail', 'value': ''}, {'key': 'resetCode', 'value': ''}, {'key': 'resetToken', 'value': ''},
                      {'key': 'otherSessionId', 'value': '0'}],
         'item': [{'name': tag, 'item': items} for tag, items in folders.items()],

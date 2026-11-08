@@ -9,6 +9,7 @@ sign in with the demo accounts (password demo1234). The full version with the AP
 import os
 import pathlib
 import shutil
+import stat
 import subprocess
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -22,9 +23,15 @@ def run(*cmd, cwd):
     subprocess.run(cmd, cwd=cwd, check=True)
 
 
+def make_writable_and_retry(func, path, _exc):
+    # git marks its object files read-only, which stops rmtree on Windows
+    os.chmod(path, stat.S_IWRITE)
+    func(path)
+
+
 if __name__ == '__main__':
     if OUT.exists():
-        shutil.rmtree(OUT)
+        shutil.rmtree(OUT, onexc=make_writable_and_retry)
     npm = 'npm.cmd' if os.name == 'nt' else 'npm'
     # --mode pages loads edubridge-react/.env.pages (VITE_API_URL empty → demo data)
     subprocess.run([npm, 'exec', '--', 'vite', 'build', '--mode', 'pages', '--base', BASE, '--outDir', str(OUT), '--emptyOutDir'], cwd=WEB, check=True)

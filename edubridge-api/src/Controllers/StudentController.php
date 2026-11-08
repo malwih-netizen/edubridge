@@ -75,16 +75,83 @@ final class StudentController
         if (!isset(self::MIME[$mime])) throw new HttpException(422, 'validation_failed', ['file' => 'type']);
 
         // stored outside public/ with a random name; served only through an authorised endpoint
-        $dir = dirname(__DIR__, 2) . "/storage/uploads/$id";
+        $dir = self::uploadsDir() . "/$id";
         if (!is_dir($dir)) mkdir($dir, 0775, true);
         $stored = bin2hex(random_bytes(12)) . '.' . self::MIME[$mime];
         if (!move_uploaded_file($f['tmp_name'], "$dir/$stored")) throw new HttpException(500, 'upload_failed');
+        $name = mb_substr(basename($f['name']), 0, 190);
 
-        Database::run(
-            'INSERT INTO documents (student_id, type_code, file_name, stored_path, mime_type, size_bytes) VALUES (?, ?, ?, ?, ?, ?)',
-            [$id, $type, mb_substr(basename($f['name']), 0, 190), "$id/$stored", $mime, $f['size']],
-        );
-        Response::json(Mapper::document(Database::one('SELECT * FROM documents WHERE id = ?', [Database::insertId()])), 201);
+        // a second upload of the same type replaces the file in place, so links to applications are kept
+        $old = Database::one('SELECT * FROM documents WHERE student_id = ? AND type_code = ? ORDER BY uploaded_at DESC LIMIT 1', [$id, $type]);
+        if ($old) {
+            Database::run(
+                "UPDATE documents SET file_name = ?, stored_path = ?, mime_type = ?, size_bytes = ?, status = 'underReview',
+                 reject_reason = NULL, reviewed_by = NULL, reviewed_at = NULL, uploaded_at = NOW() WHERE id = ?",
+                [$name, "$id/$stored", $mime, $f['size'], $old['id']],
+            );
+            self::removeStored($old['stored_path']);
+            $docId = (int) $old['id'];
+        } else {
+            Database::run(
+                'INSERT INTO documents (student_id, type_code, file_name, stored_path, mime_type, size_bytes) VALUES (?, ?, ?, ?, ?, ?)',
+                [$id, $type, $name, "$id/$stored", $mime, $f['size']],
+            );
+            $docId = Database::insertId();
+        }
+        Response::json(Mapper::document(Database::one('SELECT * FROM documents WHERE id = ?', [$docId])), $old ? 200 : 201);
+    }
+
+    /** DELETE /api/students/me/documents/{id} — an approved document is locked (an advisor already relied on it). */
+    public function deleteDocument(Request $req, string $id): never
+    {
+        $doc = $this->ownDocument($req, $id);
+        if ($doc['status'] === 'approved') throw new HttpException(409, 'document_approved');
+        Database::run('DELETE FROM documents WHERE id = ?', [$doc['id']]);
+        self::removeStored($doc['stored_path']);
+        Response::json(['ok' => true]);
+    }
+
+    /** GET /api/students/me/documents/{id}/file */
+    public function downloadDocument(Request $req, string $id): never
+    {
+        $doc = $this->ownDocument($req, $id);
+        Response::file(self::uploadsDir() . '/' . $doc['stored_path'], $doc['mime_type'], $doc['file_name']);
+    }
+
+    /** PUT /api/students/me/applications/{code}/documents  { documentIds: [..] } — reuse uploaded documents in an application. */
+    public function linkDocuments(Request $req, string $code): never
+    {
+        $id = $this->studentId($req);
+        $appId = Database::value('SELECT id FROM applications WHERE code = ? AND student_id = ?', [$code, $id]);
+        if (!$appId) throw new HttpException(404, 'not_found');
+        $ids = array_values(array_unique(array_map('intval', (array) ($req->body()['documentIds'] ?? []))));
+        if ($ids) {
+            $in = implode(',', array_fill(0, count($ids), '?'));
+            $own = (int) Database::value("SELECT COUNT(*) FROM documents WHERE student_id = ? AND id IN ($in)", [$id, ...$ids]);
+            if ($own !== count($ids)) throw new HttpException(422, 'validation_failed', ['documentIds' => 'in']);
+        }
+        Database::transaction(function () use ($appId, $ids) {
+            Database::run('DELETE FROM application_documents WHERE application_id = ?', [$appId]);
+            foreach ($ids as $docId) Database::run('INSERT INTO application_documents (application_id, document_id) VALUES (?, ?)', [$appId, $docId]);
+        });
+        Response::json(['id' => $code, 'documentIds' => $ids]);
+    }
+
+    public static function uploadsDir(): string
+    {
+        return dirname(__DIR__, 2) . '/storage/uploads';
+    }
+
+    private static function removeStored(string $storedPath): void
+    {
+        $path = self::uploadsDir() . '/' . $storedPath;
+        if (!str_contains($storedPath, '..') && is_file($path)) unlink($path);
+    }
+
+    private function ownDocument(Request $req, string $docId): array
+    {
+        return Database::one('SELECT * FROM documents WHERE id = ? AND student_id = ?', [(int) $docId, $this->studentId($req)])
+            ?? throw new HttpException(404, 'not_found');
     }
 
     public function readiness(Request $req): never
@@ -108,10 +175,14 @@ final class StudentController
         );
         $sch = [];
         foreach (Mapper::scholarships("status <> 'draft'") as $s) $sch[$s['id']] = $s;
+        $docs = [];
+        foreach (Database::all('SELECT ad.application_id, ad.document_id FROM application_documents ad JOIN applications a ON a.id = ad.application_id WHERE a.student_id = ?', [$id]) as $l) {
+            $docs[$l['application_id']][] = (int) $l['document_id'];
+        }
         Response::json(array_map(fn ($a) => [
             'id' => $a['code'], 'scholarshipId' => (int) $a['scholarship_id'], 'stage' => (int) $a['stage'], 'result' => $a['result'],
             'updatedAt' => substr($a['updated_at'], 0, 10), 'advisor' => $a['advisor'], 'advisorAr' => $a['advisor_ar'],
-            'scholarship' => $sch[$a['scholarship_id']] ?? null,
+            'scholarship' => $sch[$a['scholarship_id']] ?? null, 'documentIds' => $docs[$a['id']] ?? [],
         ], $rows));
     }
 

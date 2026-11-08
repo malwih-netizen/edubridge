@@ -148,7 +148,10 @@
     },
     "deleted": "{{name}} was deleted.",
     "deleteTitle": "Delete document?",
-    "deleteText": "{{name}} will be removed from your file and from any application that has not been submitted yet. This cannot be undone."
+    "deleteText": "{{name}} will be removed from your file and from any application that has not been submitted yet. This cannot be undone.",
+    "locked": "An approved document can't be deleted. Upload a new version with Replace instead.",
+    "failed": "Something went wrong. Please try again.",
+    "noPreview": "The file can be viewed once the backend is connected."
   },
   "scholarships": {
     "eyebrow": "Scholarship search",

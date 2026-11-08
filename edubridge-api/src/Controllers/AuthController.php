@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use App\Core\{Auth, Database, HttpException, Request, Response, Validator};
+use App\Services\Mailer;
 
 final class AuthController
 {
@@ -57,6 +58,10 @@ final class AuthController
             throw new HttpException(401, 'invalid_credentials');
         }
         if ($user['status'] === 'suspended') throw new HttpException(403, 'account_suspended');
+        if ($user['status'] === 'invited') {
+            Database::run("UPDATE users SET status = 'active' WHERE id = ?", [$user['id']]);
+            $user['status'] = 'active';
+        }
         Response::json(['token' => Auth::issueToken($user, $req), 'user' => Auth::publicUser($user)]);
     }
 
@@ -73,7 +78,7 @@ final class AuthController
         Response::json(['ok' => true]);
     }
 
-    /** POST /api/auth/forgot-password — stores a 6-digit code (email sending comes later). */
+    /** POST /api/auth/forgot-password — emails a 6-digit code that is valid for 10 minutes. */
     public function forgot(Request $req): never
     {
         $d = Validator::check($req->body(), ['email' => 'required|email']);
@@ -84,8 +89,12 @@ final class AuthController
                 'INSERT INTO password_resets (email, code_hash, expires_at) VALUES (?, ?, DATE_ADD(NOW(), INTERVAL 10 MINUTE))',
                 [$email, password_hash($code, PASSWORD_BCRYPT)],
             );
-            // TODO: send $code by email (PHPMailer). In local mode we return it to ease testing.
-            if (\App\Core\Env::get('APP_ENV') === 'local') Response::json(['sent' => true, 'devCode' => $code]);
+            $sent = Mailer::send($email, $req->lang() === 'ar' ? 'رمز استعادة كلمة المرور — EduBridge' : 'Your EduBridge password reset code',
+                $req->lang() === 'ar'
+                    ? "رمز استعادة كلمة المرور: $code\nالرمز صالح لمدة 10 دقائق. إذا لم تطلبه، تجاهل هذه الرسالة."
+                    : "Your password reset code: $code\nThe code is valid for 10 minutes. If you did not ask for it, ignore this email.");
+            // without email settings (local development) the code is returned so the flow can be tested
+            if (!$sent && \App\Core\Env::get('APP_ENV') === 'local') Response::json(['sent' => true, 'devCode' => $code]);
         }
         Response::json(['sent' => true]); // same answer whether or not the email exists
     }

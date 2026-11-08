@@ -134,6 +134,9 @@ export default function AdminUsers() {
       setData((list) => [{ lastActive: null, ...payload, ...created, status: 'invited' }, ...(list || [])]);
       toast(t('users.toast.invited', { email: payload.email }));
       closeInvite();
+    } catch (err) {
+      if (err?.error?.code === 'email_taken') setErrors({ email: t('invite.errors.duplicate') });
+      else toast(tc('errors.generic'));
     } finally {
       setSaving(false);
     }

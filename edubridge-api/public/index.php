@@ -13,7 +13,7 @@ if (PHP_SAPI === 'cli-server') {
 
 require dirname(__DIR__) . '/src/bootstrap.php';
 
-use App\Controllers\{AccountController, AuthController, ContactController, HealthController, ScholarshipController, StudentController};
+use App\Controllers\{AccountController, AdminController, AuthController, ContactController, DocumentController, HealthController, ScholarshipController, StudentController};
 use App\Core\{HttpException, Request, Response, Router};
 
 Response::cors();
@@ -48,11 +48,24 @@ $r->get('/api/students/me',                  [StudentController::class, 'profile
 $r->put('/api/students/me',                  [StudentController::class, 'updateProfile'], ['student']);
 $r->get('/api/students/me/documents',        [StudentController::class, 'documents'], ['student']);
 $r->post('/api/students/me/documents',       [StudentController::class, 'upload'], ['student']);
+$r->delete('/api/students/me/documents/{id}',   [StudentController::class, 'deleteDocument'], ['student']);
+$r->get('/api/students/me/documents/{id}/file', [StudentController::class, 'downloadDocument'], ['student']);
+$r->put('/api/students/me/applications/{code}/documents', [StudentController::class, 'linkDocuments'], ['student']);
 $r->get('/api/students/me/readiness',        [StudentController::class, 'readiness'], ['student']);
 $r->get('/api/students/me/recommendations',  [StudentController::class, 'recommendations'], ['student']);
 $r->get('/api/students/me/applications',     [StudentController::class, 'applications'], ['student']);
 $r->get('/api/students/me/service-requests', [StudentController::class, 'serviceRequests'], ['student']);
 $r->post('/api/service-requests',            [StudentController::class, 'requestService'], ['student']);
+
+// ---- documents (advisors / admins) ----
+$r->get('/api/students/{id}/documents', [DocumentController::class, 'forStudent'], $staff);
+$r->get('/api/documents/{id}/file',     [DocumentController::class, 'file'], $staff);
+$r->put('/api/documents/{id}/review',   [DocumentController::class, 'review'], $staff);
+
+// ---- administration ----
+$r->get('/api/admin/users',      [AdminController::class, 'users'], ['admin']);
+$r->post('/api/admin/users',     [AdminController::class, 'create'], ['admin']);
+$r->put('/api/admin/users/{id}', [AdminController::class, 'update'], ['admin']);
 
 // ---- account settings (every role) ----
 $r->get('/api/account/sessions',                  [AccountController::class, 'sessions'], $any);

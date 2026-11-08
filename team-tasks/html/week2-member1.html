@@ -1,0 +1,104 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>الأسبوع الثاني — لمياء فتحي حمدي ماضي</title><style>
+@page { size: A4; margin: 14mm 13mm 14mm 13mm; }
+* { box-sizing: border-box; }
+html { direction: rtl; }
+body { font-family: "Simplified Arabic", serif; color: #10233f; font-size: 13.5pt; line-height: 1.5; margin: 0;
+       -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+bdi[dir=ltr] { font-family: "Simplified Arabic", serif; }
+.hero { background: #0f2c55; color: #fff; border-radius: 10px; padding: 14px 20px 12px; position: relative; overflow: hidden; }
+.hero:after { content: ""; position: absolute; left: -40px; bottom: -70px; width: 220px; height: 150px; border: 2px solid rgba(228,187,99,.45); border-bottom: 0; border-radius: 50% 50% 0 0; }
+.hero .proj { color: #e9c06d; font-size: 11.5pt; font-weight: bold; }
+.hero h1 { margin: 2px 0 2px; font-size: 22pt; line-height: 1.25; }
+.hero .sub { font-size: 12pt; opacity: .9; }
+.card { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 0; border: 1.5px solid #d9e2ec; border-radius: 10px; margin: 12px 0; overflow: hidden; }
+.card div { padding: 8px 12px; border-left: 1px solid #e6ecf2; }
+.card div:last-child { border-left: 0; }
+.card small { display: block; color: #6c7f95; font-size: 10.5pt; }
+.card b { font-size: 13pt; }
+.card .en-name { font-size: 10.5pt; color: #50647c; }
+h2 { font-size: 16pt; color: #0f2c55; margin: 14px 0 6px; padding-right: 10px; border-right: 5px solid #c9952d; line-height: 1.3; }
+.summary { background: #f6f9fc; border: 1px solid #e3eaf2; border-radius: 9px; padding: 9px 14px; margin: 0; }
+ul.with { margin: 4px 0 0; padding-right: 20px; }
+ul.with li { margin: 1px 0; }
+.legend { font-size: 11pt; color: #50647c; margin: 6px 0 0; }
+.week { break-inside: avoid; margin-top: 12px; }
+.week-head { display: flex; align-items: center; gap: 10px; background: #fbf4e4; border: 1px solid #ecd6a6; border-radius: 9px; padding: 5px 12px; break-after: avoid; }
+.week-num { background: #c9952d; color: #fff; border-radius: 7px; padding: 1px 10px; font-weight: bold; font-size: 12.5pt; }
+.week-title { font-weight: bold; font-size: 14pt; color: #0f2c55; }
+.week-date { margin-right: auto; font-size: 11pt; color: #6c7f95; }
+table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 12.5pt; }
+th { background: #0f2c55; color: #fff; font-weight: bold; padding: 5px 8px; text-align: right; font-size: 12pt; }
+td { border-bottom: 1px solid #e3eaf2; padding: 6px 8px; vertical-align: top; text-align: right; }
+tr { break-inside: avoid; }
+tr:nth-child(even) td { background: #fafcfe; }
+td.chk, th.chk { width: 34px; text-align: center; }
+.box { display: inline-block; width: 17px; height: 17px; border: 2px solid #0f2c55; border-radius: 4px; margin-top: 4px; }
+td.num { width: 26px; color: #8a9bb0; font-size: 11pt; text-align: center; }
+td.task b { display: block; color: #0f2c55; font-size: 13pt; }
+td.task span { color: #33475f; font-size: 12pt; }
+td.out { width: 27%; color: #27613f; font-size: 11.5pt; }
+.team-table td, .team-table th { font-size: 11.5pt; padding: 4px 8px; }
+.me td { background: #fff7e3 !important; font-weight: bold; }
+.notes { border: 1.5px dashed #c9d5e2; border-radius: 9px; padding: 8px 14px; min-height: 90px; }
+.notes .line { border-bottom: 1px solid #dde5ee; height: 26px; }
+.sign { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 12px; font-size: 12pt; }
+.sign div { border-top: 1.5px solid #9fb0c3; padding-top: 4px; text-align: center; color: #50647c; }
+.progress { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 6px; }
+.progress div { border: 1px solid #dde5ee; border-radius: 8px; padding: 5px 8px; font-size: 11.5pt; text-align: center; }
+.progress b { display: block; font-size: 12.5pt; color: #0f2c55; }
+.foot { margin-top: 12px; font-size: 10pt; color: #8a9bb0; text-align: center; }
+.page-break { break-before: page; }
+
+.status { display: inline-block; border-radius: 6px; padding: 0 8px; font-size: 11pt; font-weight: bold; white-space: nowrap; }
+.status.done { background: #e3f4ea; color: #1f6b43; }
+.status.part { background: #fff1d6; color: #8a5a00; }
+.status.todo { background: #fde7e7; color: #a12a2a; }
+td.st { width: 92px; text-align: center; }
+.bar { height: 14px; background: #e6ecf2; border-radius: 7px; overflow: hidden; margin-top: 6px; }
+.bar span { display: block; height: 100%; background: #c9952d; }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.kpis div { border: 1px solid #dde5ee; border-radius: 8px; padding: 6px 10px; text-align: center; }
+.kpis b { display: block; font-size: 18pt; color: #0f2c55; line-height: 1.2; }
+ul.list { margin: 4px 0 0; padding-right: 20px; }
+ul.list li { margin: 3px 0; }
+.links td { font-size: 11.5pt; padding: 4px 8px; }
+</style></head><body>
+<div class="hero"><div class="proj"><bdi dir="ltr">Edu Bridge – Smart Scholarship and Student Services Management System</bdi></div>
+<h1>تقرير الأسبوع الثاني — بناء الوحدات الأساسية</h1>
+<div class="sub">مطوّرة الواجهة الخلفية <bdi dir="ltr">Backend – PHP</bdi></div></div>
+<div class="card">
+<div><small>اسم الطالبة</small><b>لمياء فتحي حمدي ماضي</b><div class="en-name"><bdi dir="ltr">Lamia Fathi Hamdi Madi</bdi></div></div>
+<div><small>الرقم الجامعي</small><b><bdi dir="ltr">220217142</bdi></b><small style="margin-top:4px">الكلية الجامعية للعلوم والتكنولوجيا</small></div>
+<div><small>المشرفة</small><b>أ. أمينة السلوت</b><small style="margin-top:4px">العام الدراسي <bdi dir="ltr">2026/2027</bdi></small></div>
+</div>
+<h2>وين وصلنا</h2>
+<div class="summary">نسبة إنجاز مهام الأسبوع الثاني: <b><bdi dir="ltr">100%</bdi></b>
+<div class="bar"><span style="width:100%"></span></div>
+<div class="kpis"><div><b>6</b>منجزة</div><div><b>0</b>منجزة جزئياً</div><div><b>0</b>لم تبدأ</div></div></div>
+<div class="week"><h2>مهام الأسبوع الثاني وحالتها</h2>
+<table><tr><th style="width:26px">#</th><th>المهمة</th><th>ما تم فعلياً</th><th class="st">الحالة</th></tr>
+<tr><td class="num">1</td><td class="task" style="width:24%"><b>وحدة المصادقة</b></td><td class="task"><span>تسجيل حساب، دخول، خروج، <bdi dir="ltr">me</bdi> مع <bdi dir="ltr">bcrypt</bdi> و<bdi dir="ltr">JWT</bdi>، وكل توكن مرتبط بجلسة يمكن إلغاؤها.</span></td><td class="st"><span class="status done">منجزة</span></td></tr>
+<tr><td class="num">2</td><td class="task" style="width:24%"><b>حماية المسارات</b></td><td class="task"><span>كل مسار يحدد الأدوار المسموحة (طالب / موظف / مسؤول) ويُرفض أي طلب بدون صلاحية بالرمز <bdi dir="ltr">401/403</bdi>.</span></td><td class="st"><span class="status done">منجزة</span></td></tr>
+<tr><td class="num">3</td><td class="task" style="width:24%"><b>استعادة كلمة المرور</b></td><td class="task"><span>طلب الرمز والتحقق منه وتعيين كلمة مرور جديدة، ويُرسل الرمز على البريد عبر <bdi dir="ltr">SMTP</bdi> بالعربي أو الإنجليزي حسب لغة الواجهة.</span></td><td class="st"><span class="status done">منجزة</span></td></tr>
+<tr><td class="num">4</td><td class="task" style="width:24%"><b>إدارة المستخدمين للمسؤول</b></td><td class="task"><span><bdi dir="ltr">Users API</bdi>: عرض وفلترة، دعوة مستخدم بكلمة مرور مؤقتة على البريد، تغيير الدور والقسم، إيقاف الحساب مع تسجيل خروجه من كل الأجهزة.</span></td><td class="st"><span class="status done">منجزة</span></td></tr>
+<tr><td class="num">5</td><td class="task" style="width:24%"><b>وحدة المنح الدراسية</b></td><td class="task"><span>عرض المنح وتفاصيلها للجميع، والإضافة والتعديل وتسجيل النتائج للموظف والمسؤول فقط. الإغلاق بتغيير الحالة بدل الحذف.</span></td><td class="st"><span class="status done">منجزة</span></td></tr>
+<tr><td class="num">6</td><td class="task" style="width:24%"><b>البحث والفلترة</b></td><td class="task"><span>الفلترة بالدولة والمستوى والتخصص والتمويل والحالة والاسم، وفلتر الموعد النهائي، وترقيم الصفحات عند طلبه.</span></td><td class="st"><span class="status done">منجزة</span></td></tr>
+</table></div>
+<div class='week'><h2>ما الذي عدّلناه وأضفناه</h2><ul class='list'>
+<li>إضافة مسارات الحساب: الأجهزة والجلسات، إلغاء جلسة، تعديل الملف، تغيير البريد وكلمة المرور، الأمان والإشعارات.</li>
+<li>توثيق الـ <bdi dir="ltr">API</bdi> على <bdi dir="ltr">Swagger</bdi> ومجموعة <bdi dir="ltr">Postman</bdi> فيها 33 طلباً تُختبر تلقائياً.</li>
+<li>رفع الـ <bdi dir="ltr">API</bdi> على الاستضافة على نفس دومين الموقع، مع حماية ملفات الإعدادات والكود وتمرير التوكن.</li>
+<li>رابط فحص الخادم <bdi dir="ltr">health</bdi> صار يحدد سبب أي مشكلة في الاتصال بقاعدة البيانات.</li>
+<li>إكمال المتبقي: إرسال البريد، إدارة المستخدمين، فلتر الموعد وترقيم الصفحات — و43 طلباً في <bdi dir="ltr">Postman</bdi> تنجح كلها.</li>
+</ul></div>
+<div class='week'><h2>يُرحَّل للأسبوع الثالث</h2>
+<ul class='list'><li>ضبط بيانات البريد <bdi dir="ltr">(MAIL_*)</bdi> في ملف الإعدادات على الاستضافة حتى تصل الرسائل فعلياً.</li></ul>
+<p class='legend'>إضافةً إلى مهام الأسبوع الثالث: الوحدات الذكية وسير العمل.</p></div>
+<div class='week'><h2>روابط المشروع</h2><table class='links'>
+<tr><td style='width:34%'><b>الموقع</b></td><td><bdi dir="ltr">https://edubridge.infinityfreeapp.com</bdi></td></tr>
+<tr><td style='width:34%'><b>توثيق الـ <bdi dir="ltr">API</bdi> (<bdi dir="ltr">Swagger</bdi>)</b></td><td><bdi dir="ltr">https://edubridge.infinityfreeapp.com/api/docs/</bdi></td></tr>
+<tr><td style='width:34%'><b>الكود على <bdi dir="ltr">GitHub</bdi></b></td><td><bdi dir="ltr">https://github.com/malwih-netizen/edubridge</bdi></td></tr>
+<tr><td style='width:34%'><b>نسخة العرض (<bdi dir="ltr"><bdi dir="ltr">GitHub</bdi> Pages</bdi>)</b></td><td><bdi dir="ltr">https://malwih-netizen.github.io/edubridge/</bdi></td></tr>
+</table></div>
+<div class="sign"><div>توقيع الطالبة</div><div>توقيع المشرفة</div><div>التاريخ</div></div>
+<div class='foot'><bdi dir="ltr">EduBridge</bdi> · تقرير الأسبوع الثاني · لمياء فتحي حمدي ماضي</div></body></html>

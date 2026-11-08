@@ -40,6 +40,14 @@ DB_PASS=PASTE_YOUR_MYSQL_PASSWORD_HERE
 
 JWT_SECRET={secrets.token_hex(32)}
 JWT_TTL_HOURS=72
+
+# Email (SMTP) for reset codes and staff invitations — empty MAIL_HOST = no email
+MAIL_HOST=
+MAIL_PORT=587
+MAIL_USER=
+MAIL_PASS=
+MAIL_FROM=
+MAIL_FROM_NAME=EduBridge
 """
 
 ROOT_HTACCESS = """# EduBridge — React single-page app

@@ -23,6 +23,21 @@ final class Response
         ], fn ($v) => $v !== null)], $status);
     }
 
+    /** Streams a stored file to an authorised user (never served directly by the web server). */
+    public static function file(string $path, string $mime, string $downloadName): never
+    {
+        if (!is_file($path)) self::error(404, 'file_missing');
+        http_response_code(200);
+        header("Content-Type: $mime");
+        header('Content-Length: ' . filesize($path));
+        header("Content-Disposition: inline; filename*=UTF-8''" . rawurlencode($downloadName));
+        header('X-Content-Type-Options: nosniff');
+        header('Cache-Control: private, no-store');
+        header('Access-Control-Expose-Headers: Content-Disposition');
+        readfile($path);
+        exit;
+    }
+
     public static function cors(): void
     {
         $allowed = array_map('trim', explode(',', (string) Env::get('CORS_ORIGINS', 'http://localhost:5173')));

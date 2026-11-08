@@ -60,23 +60,39 @@ export default function StudentDocuments() {
         const idx = modal.type === 'other' ? -1 : cur.findIndex((d) => d.type === modal.type);
         if (idx === -1) return [...cur, saved];
         const next = [...cur];
-        next[idx] = { ...saved, id: cur[idx].id };
+        next[idx] = saved; // the server replaces the file in place and keeps the same document id
         return next;
       });
       toast(tc('toast.uploaded', { name: tc(`docTypes.${modal.type}`) }));
       setModal(null);
+    } catch {
+      toast(t('documents.failed'));
     } finally {
       setBusy(false);
     }
   };
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     const d = toDelete;
+    setToDelete(null);
+    try {
+      await studentService.deleteDocument(d.id);
+    } catch (err) {
+      toast(err?.error?.code === 'document_approved' ? t('documents.locked') : t('documents.failed'));
+      return;
+    }
     docs.setData((cur) => (DOC_TYPES.slice(0, -1).includes(d.type)
-      ? cur.map((x) => (x.id === d.id ? { id: x.id, type: x.type, file: null, status: 'missing' } : x))
+      ? cur.map((x) => (x.id === d.id ? { id: `missing-${x.type}`, type: x.type, file: null, status: 'missing' } : x))
       : cur.filter((x) => x.id !== d.id)));
     toast(t('documents.deleted', { name: tc(`docTypes.${d.type}`) }));
-    setToDelete(null);
+  };
+
+  const view = async (d) => {
+    try {
+      if (!(await studentService.openDocument(d.id))) toast(t('documents.noPreview'));
+    } catch {
+      toast(t('documents.failed'));
+    }
   };
 
   const tabs = [
@@ -155,7 +171,7 @@ export default function StudentDocuments() {
                     <div className="doc-actions">
                       {hasFile(d) ? (
                         <>
-                          <IconButton icon={Eye} label={tc('actions.view')} onClick={() => toast(tc('toast.demo'))} />
+                          <IconButton icon={Eye} label={tc('actions.view')} onClick={() => view(d)} />
                           <Button variant="outline" size="sm" icon={RefreshCw} onClick={() => openUpload(d.type, true)}>{tc('actions.replace')}</Button>
                           <IconButton icon={Trash2} label={tc('actions.delete')} className="doc-del" onClick={() => setToDelete(d)} />
                         </>
